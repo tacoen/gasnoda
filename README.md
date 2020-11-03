@@ -38,4 +38,4 @@ Then, rename the folder to "noda". You should now have Gasnoda theme files under
 
 # It limitless!
 
-![theme-dev-screenshoot](screenshoot.jpg)
+![theme-dev-screenshoot](screenshot.jpg)
