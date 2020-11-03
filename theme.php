@@ -6,7 +6,6 @@ use Gantry\Framework\Theme as GantryTheme;
 use Grav\Common\Theme;
 use RocketTheme\Toolbox\ResourceLocator\UniformResourceLocator;
 
-
 class Noda extends Theme
 {
     public $gantry = '5.4.0';
@@ -24,11 +23,19 @@ class Noda extends Theme
         return [
             'onThemeInitialized' => ['onThemeInitialized', 0],
             'onAdminMenu' => ['onAdminMenu', 0],
+			'onShortcodeHandlers' => ['onShortcodeHandlers', 0],			
+			'onTwigSiteVariables' => ['onTwigSiteVariables', 0],
+			'onTwigExtensions' => ['onTwigExtensions', 0],			
+            'onFormProcessed' => ['onFormProcessed', 0],			
         ];
     }
-   
+
     public function onAdminMenu()
     {
+	
+        $this->grav['assets']->add('user://themes/noda/admin/poko.css',1);
+		$this->grav['assets']->add('user://themes/noda/js/module.js');
+		$this->grav['assets']->add('user://themes/noda/admin/poko.js');
 	
 		if (isset($this->grav['theme']->config()['links'])) {
 			
@@ -44,7 +51,7 @@ class Noda extends Theme
 		}
 		
     }
-	
+
     public function onThemeInitialized()
     {
         if (defined('GRAV_CLI') && GRAV_CLI) {
@@ -75,21 +82,10 @@ class Noda extends Theme
         // Set the theme path from Grav variable.
         $gantry['theme.path'] = $path;
         $gantry['theme.name'] = $name;
-
-        $this->enable([
-            'onTwigSiteVariables' => ['onTwigSiteVariables', 0],
-		]);
 		
         // Define the template.
         require $locator('theme://includes/theme.php');
 
-		$theme_uri = str_replace( $_SERVER['DOCUMENT_ROOT'], '', $locator('theme://'));
-
-        if ($this->isAdmin()) {
-			$assets = $this->grav['assets'];
-			$assets->addCss($theme_uri.'/admin/poko.css', 1);
-			$assets->addJs($theme_uri.'/admin/poko.js', 1);
-		} 
 
         // Define Gantry services.
  
@@ -98,6 +94,11 @@ class Noda extends Theme
         };
     }
 	
+    public function onShortcodeHandlers()
+    {
+        $this->grav['shortcode']->registerAllShortcodes('user://themes/noda/php/shortcodes');
+    }
+
 
 	public function onTwigSiteVariables()
     {
@@ -122,5 +123,29 @@ class Noda extends Theme
 		}
 
     }	
+
+    public function onTwigExtensions()
+    {
+		require_once(__DIR__.'/php/GaskenTwigExtension.php');
+        $this->grav['twig']->twig->addExtension(new GaskenTwigExtension());
+        require_once(__DIR__.'/php/ColorMixerTwigExtension.php');
+        $this->grav['twig']->twig->addExtension(new ColorMixerTwigExtension());
+    }		
+	
+    public function onFormProcessed(Event $event)
+    {
+        $action = $event['action'];
+        $params = $event['params'];
+        $form = $event['form'];
+		$path = GRAV_ROOT . $params['path']; 
+		
+        switch ($action) {	
+			case 'txt-write':
+				$data = $form->value()->toArray();
+				$file = $path ."/". $data['file'];
+				file_put_contents($file,$data['text']);
+				break;
+		}
+	}
 	
 }

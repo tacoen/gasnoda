@@ -101,6 +101,11 @@ form:
           styles: vertical
           fields:
 
+            header.items_title:
+              type: text
+              label: Name
+              default: Variations
+              
             header.items:
               type: list
               styles: vertical
@@ -109,6 +114,9 @@ form:
                 .name:
                     type: text
                     label: Name
+                .desc:
+                   type: textarea
+                   label: Description
                 .txt:
                    type: textarea
                    label: Text

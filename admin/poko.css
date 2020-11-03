@@ -107,4 +107,6 @@ font-size: .8em;
 .sf-view .base:before { content: "base/main";  }
 
 
-
+.pages-list .row:hover {
+	outline: 1px solid #0092;
+}
