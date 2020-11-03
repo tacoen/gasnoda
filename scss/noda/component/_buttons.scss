@@ -1,0 +1,35 @@
+textarea, select[multiple=multiple], #{$all-text-inputs} {
+	border: 1px inset #0006;
+	outline: 0;
+}
+
+#{$all-buttons} {
+	--hover: var(--ho,var(--neu-l));
+	--active: var(--ac,var(--neu-d));
+	--border: var(--shade-l);
+	--shadow: var(--shade);
+	--hilight: var(--tint);
+
+	font-weight: 500;
+	border-radius: var(--bradius);
+	transition: all .35s ease-in-out;
+	background-color: var(--button);
+	padding: varc('padding',.5,2);	
+	border: 1px solid var(--border);
+	color: var(--txt);
+
+	&:hover {
+		background-color: var(--hover);
+		box-shadow: 0 3px 2px -2px var(--shadow);
+	}
+	
+	&:active,&:focus {
+		background-color: var(--active);
+		box-shadow: inset 0 1px 3px -1px var(--hilight);
+	}
+	
+	&.toggle { border: 1px solid #0000; background-color: #0000;box-shadow:none }
+	&.toggle:hover { text-shadow: 0 0px 5px #0003; }
+	&.naked { border: 1px solid var(--border); background-color: #0000; box-shadow:none}
+
+}

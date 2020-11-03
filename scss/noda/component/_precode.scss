@@ -1,0 +1,29 @@
+
+code {
+    background-color: var(--w1,var(--neu-l));
+	padding-top: 0rem;
+	font-weight: 700;
+}
+
+pre { 
+	background-color: var(--w1, var(--neu));
+	padding: varc('padding',1,2);
+	border: 1px solid var(--lc,var(--neu-d));
+	min-height: 20vh;
+	font-size: .9rem;
+	max-width: 100%;
+}
+
+pre code { background-color:#0000; font-weight: normal; }
+
+
+.monitor pre { 
+    background: rgb(17,34,51);
+    background: linear-gradient(30deg, rgba(17,34,51,1) 70%, rgba(0,0,0,1) 100%);
+    color: var(--lc,var(--neu-l));  
+    font-size: .85rem; 
+    border: 1px solid #0000;
+    line-height: 1.3; 
+    max-height: 100%; 
+	border-radius: var(--bradius);
+}

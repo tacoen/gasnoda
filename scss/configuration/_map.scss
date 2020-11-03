@@ -1,0 +1,55 @@
+$layout-sections: (
+
+	'navigation': (
+		color: $navigation-background,
+		text: $navigation-text-color,
+		active: $navigation-active,
+		hover: $navigation-hover ),
+	'header': (
+		color: $header-background,
+		text: $header-text-color,
+		active: $header-active,
+		hover: $header-hover ),
+	'aside': (
+		color: $aside-background,
+		text: $aside-text-color,
+		active: $aside-active,
+		hover: $aside-hover ),
+	'footer': (
+		color: $footer-background,
+		text: $footer-text-color,
+		active: $footer-active,
+		hover: $footer-hover )
+);
+
+		
+$colors: ( 
+	'accent-1': ( color: $accent-color-1),
+	'accent-2': ( color: $accent-color-2),
+	'accent-3': ( color: $accent-color-3),
+	'accent-4': ( color: $accent-color-4),
+	'yellow': ( 
+		alert: 'warning', 
+		notice: true, 
+		icon: '\f071',
+		color: $color-yellow ),
+	red: ( 
+		alert: 'error', 
+		notice: true, 
+		icon: '\f188',
+		color: $color-red ),
+	blue: ( 
+		alert: 'info', 
+		notice: true,
+		icon: '\f05a',
+		color: $color-blue ), 
+	green: ( 
+		alert: 'success', 
+		notice: true, 
+		icon: '\f046',
+		color: $color-green ),
+	primary: ( 
+		color: $base-primary ),
+	secondary: ( 
+		color: $base-secondary )
+);

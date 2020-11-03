@@ -1,0 +1,51 @@
+@import "function.scss";
+
+
+
+.menu-parent-indicator { transition: all .5s linear; opacity: .5; }
+.menu-parent-indicator:hover { opacity: 1 }
+
+.g-block .fixed {
+    overflow: auto;
+    position: fixed;
+    width: inherit;
+    height: 100vh;
+}
+
+
+.gn-col > div.shrink {flex: 0 1 25%;}
+
+.main-content pre { line-height: 1.2 }
+
+#gn-branding a { 
+    text-align: center;display: flex;
+    width: 100%;justify-content: center;align-items: center;
+    padding: 1rem;
+}
+
+
+aside a.active { color: var(--yellow); }
+
+.chapter-header { 
+
+    border-top: 1px solid #0002;
+    text-align: center;
+    margin: 0 -1.5rem;
+    padding: 1.5rem;
+    @include flex(column,center,center);
+    min-height: 80vh;
+
+    h2 { font-size: 5rem; font-weight: 300; margin: 0;}
+
+    .main-content { width: 55%; text-align: left; }
+
+}
+
+.client-info { margin-bottom: 1rem !important; }
+   
+
+.pg {
+    h3,h4 { text-transform: capitalize; }
+	h4:not(:first-child) { margin-top: 3rem; }
+}
+

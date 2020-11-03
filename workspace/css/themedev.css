@@ -1,0 +1,89 @@
+.h-watch {
+  padding: 2rem 0; }
+  .h-watch *:hover .dem {
+    display: block; }
+  .h-watch *:hover .dem2 {
+    display: block; }
+  .h-watch .dem {
+    display: none;
+    outline: 1px dashed #c005;
+    outline-offset: -1px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%; }
+  .h-watch .dem2 {
+    display: none;
+    outline: 1px dotted #0009;
+    outline-offset: -1px;
+    position: absolute;
+    left: 0;
+    width: 50%; }
+  .h-watch > * {
+    color: #000 !important;
+    border: none !important;
+    position: relative;
+    padding-right: 40%; }
+  .h-watch > *:after {
+    content: attr(data-content);
+    position: absolute;
+    font-size: .75rem;
+    font-weight: normal;
+    top: 0;
+    right: 0;
+    text-transform: lowercase;
+    color: var(--red); }
+
+.he .char {
+  font-size: 1rem;
+  text-align: center; }
+
+#gn-theme-dev {
+  display: flex;
+  flex-direction: "row";
+  align-items: start;
+  justify-content: start;
+  flex-wrap: wrap; }
+  #gn-theme-dev .header {
+    flex: 1 1 100%;
+    border-bottom: 1px dotted #0009; }
+    #gn-theme-dev .header h1 {
+      font-weight: 300;
+      color: var(--blue); }
+  #gn-theme-dev .side {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    flex-wrap: wrap;
+    flex: 1 0 calc(20% - 4rem);
+    min-height: 100%;
+    padding-top: 2rem;
+    padding-right: 1rem; }
+    #gn-theme-dev .side h4 {
+      margin: 1em 0 .5rem 0 !important;
+      color: var(--red);
+      font-size: .8rem;
+      text-transform: uppercase; }
+  #gn-theme-dev .menu {
+    list-style-type: none;
+    margin: 0 0 1em 0;
+    padding: 0; }
+  #gn-theme-dev .content {
+    padding-top: 2rem;
+    display: block;
+    width: 80%;
+    border-left: 1px dotted #0009;
+    padding: 2rem 0 5rem 3rem; }
+    #gn-theme-dev .content .td-title {
+      font-weight: 300; }
+    #gn-theme-dev .content textarea {
+      min-height: 75vh; }
+    #gn-theme-dev .content .grid-outline .g-grid {
+      outline: 1px dotted red; }
+      #gn-theme-dev .content .grid-outline .g-grid div > div {
+        outline: 1px dotted green; }
+
+/* end of wraper */
+
+/*# sourceMappingURL=themedev.css.map */

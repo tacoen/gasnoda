@@ -1,0 +1,14 @@
+#{$all-buttons} {
+	user-select: none;
+	white-space: nowrap;
+	
+	&.xsmall { font-size: .7rem; padding: varc('padding',.25,.5); }
+	&.small { font-size: .9rem; padding: varc('padding',.5,1); }
+	&.large { font-size: 1.2rem; padding: varc('padding',1,2); }
+	&.xlarge { font-size: 1.5rem; padding: varc('padding',1,3); }
+	
+}
+
+button + button,
+a.button + a.button { margin-left: .5rem; }
+

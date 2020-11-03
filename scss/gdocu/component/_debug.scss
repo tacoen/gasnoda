@@ -1,0 +1,17 @@
+.flex-debug {
+    .g-block {outline: 1px dotted #cc0;}
+    .g-content {outline: 1px dashed #c00; background:#eee; } 
+	.g-container {
+		outline: 1px solid #ccc !important;
+		padding: .5rem !important;
+	}
+}
+
+.the-class { 
+	background-color: var(--blue); 
+	font-weight: 700; 
+	color: var(--neu-w); 
+	padding: 3px; font-size: .7rem;
+	float:right;
+}
+

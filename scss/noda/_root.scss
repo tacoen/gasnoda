@@ -1,0 +1,37 @@
+:root {
+
+	$lstep: (94%-lightness($base-neutral))/4;
+	$dstep: (lightness($base-neutral)-10)/4;
+
+	--padding: $content-padding;
+	--margin: $content-margin;
+	--bradius: $content-border-radius;
+	--line-height: $content-line-height;
+	--box-height: $content-box-height;
+    --ctl-height: $menu-icon-h;
+    --ctl-width: $menu-icon-w;
+
+	--neu-w: hsl( round(hue($base-neutral)/1deg), round(saturation($base-neutral)), 95%);
+	--neu-l1: lighten($base-neutral,$lstep*2);
+	--neu-l: lighten($base-neutral,$lstep);
+	--neu: $base-neutral;
+	--neu-d: darken($base-neutral,$dstep);
+	--neu-d1: darken($base-neutral,$dstep*2);
+	--neu-b: hsl( round(hue($base-neutral)/1deg), round(saturation($base-neutral)), 5%);
+	--neu-txt: maxtint($base-neutral);
+	--button: var(--neu-l);
+
+	--bg: $base-background;
+	--body-bg: $base-offwhite;
+
+	--tint: #fff9;
+	--shade: #0004;
+	--spot: #ff03;
+	--shade-l: #0002;
+
+	@each $name, $set in $colors {
+		@if (not-empty(map-get($set,'color'))) {
+			--#{$name}: map-get($set,'color');
+		}
+	}
+}

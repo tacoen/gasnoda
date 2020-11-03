@@ -1,0 +1,119 @@
+.pg-grid {
+    display: flex;
+    flex-flow:row;
+
+}
+
+table,pre,blockquote { margin-top: 0 }
+
+h3 { font-size: 1.8rem }
+h4 { font-size: 1.3rem }
+h5 { font-size: 1rem }
+h3:not(:first-child) { 
+    border-top: 1px solid #0002; padding-top: 1rem; margin-top: 2rem  }
+h4,h5 { color: #789; }
+h6 { color: var(--secondary); text-transform: uppercase; font-size: .75rem; }
+
+.pg {
+	--color: #89a;
+	@include flex(column,start,start,wrap);
+    flex: 0 0 100%;
+    width: 100%;
+	padding-bottom: 5rem;
+
+    .main-content { 
+        line-height: 1.8rem;
+        margin: 1rem 0 3rem; 
+    }
+}
+
+.has-toc .pg {
+	width: 80%;
+	flex: 0 0 80%;	
+}
+
+
+.pg-content > .g-content {
+    margin-top:0;
+    padding-top:0;
+}
+
+.pg-header {
+    position: relative; 
+    border: 1px solid #0002;
+    border-left:none;
+    border-right: none;
+    margin: 0 -1.5rem;
+    padding: 1rem 1.5rem;
+    font-size: .9rem;
+
+    h2 { 
+        letter-spacing: -.2rem;
+        font-size: 3rem; 
+        line-height: 1.15; font-weight: 300; 
+        margin: 0 0 1rem 0;
+    }
+    
+    .metadata { color: #345 }
+	.tags { 
+		float: right; 
+		
+		a { 
+			color: #fff;
+			background-color: #89a;
+			padding: 3px 6px;
+			font-size: .8em;
+			border-radius: 3px;
+			display: inline-block;
+		}
+		
+	}
+    
+	.tools { position: absolute; top: 1rem; right: 1.5rem; }
+}
+
+.con { 
+     background: var(--l2);
+     padding: .5rem 1rem;
+     text-align:center;
+     font-weight: 300;
+     font-size: 1.2rem;
+}
+   
+.pg-side { 
+    display: flex;
+    flex: 0 0 20%;
+    width: 20%;
+    margin-left: 1rem;
+    padding-left: 1rem;
+    border-left: 1px solid #0002;
+    font-size: .85rem;
+
+    h4 { font-size: .9rem; margin-top: var(--margin) }
+
+}
+
+.pg-note {
+    margin: 0 -1.5rem;
+    padding: 1.5rem;
+    border-top: 1px solid #0002;
+    font-size: .75rem;
+
+    p { margin: 0;}
+}
+
+
+.pg .code pre { 
+    font-size: .85rem; 
+    border: 1px solid #0000;
+    line-height: 1.15; 
+    max-height: 100%;
+	margin-top: 0;
+}
+
+
+
+.pinned {
+	animation-name: block-bounce; 
+	animation-duration: .5s; 
+}

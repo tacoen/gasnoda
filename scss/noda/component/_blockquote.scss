@@ -1,0 +1,12 @@
+
+blockquote {
+	
+	background-color: var(--w0,var(--neu-l));
+	
+	border: 1px solid var(--lc,var(--neu-d));
+	border-left-width: 1rem;
+	padding: varc('padding',1,2,4);
+
+	cite { text-align: right; margin: 0 }
+	
+}

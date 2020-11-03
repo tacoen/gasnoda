@@ -1,0 +1,23 @@
+.offwhite { background-color: var(--body-bg); }
+
+#g-floats > div { display: none; }
+#g-floats > div.show { display: initial; }
+
+.g-offcanvas-toggle,
+#g-offcanvas { display: none; }
+
+
+.bcolors {
+    background-color: var(--bg);
+    color: var(--txt);
+    a { color: var(--txt) }
+}
+
+#g-header,
+#g-navigation {
+    .g-content { margin:0; padding: 0 }
+}
+
+#g-aside {
+	@include scrollbars(.25rem)
+}

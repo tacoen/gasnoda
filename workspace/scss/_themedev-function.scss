@@ -1,0 +1,99 @@
+.h-watch {
+  padding: 2rem 0;
+  *:hover {
+  	   .dem { display: block }
+  	   .dem2 { display: block }
+  }
+  .dem { 
+      display:none;
+      outline: 1px dashed #c005; 
+      outline-offset: -1px;
+      position: absolute;
+      top:0;
+      left:0;
+      width: 50%;
+ }
+ .dem2 { 
+      display:none;
+      outline: 1px dotted #0009; 
+      outline-offset: -1px;
+      position: absolute;
+      left:0;
+      width: 50%;
+ }
+
+  > * { 
+      color: #000 !important; 
+      border:none !important; 
+      position: relative;
+      padding-right: 40%; 
+  }
+  > *:after { 
+    content: attr(data-content); 
+    position: absolute;
+    font-size: .75rem; 
+    font-weight: normal;
+    top:0;
+    right:0;
+	text-transform: lowercase;
+	color: var(--red);
+  }
+
+}
+
+.he {
+    .char { 
+        font-size: 1rem; text-align:center;
+    }
+}
+
+#gn-theme-dev {
+     
+     @include flex('row',start,start);
+    
+    .header {
+        flex: 1 1 100%;
+        h1 { font-weight: 300; color: var(--blue); }
+	    border-bottom: 1px dotted #0009;
+    }
+	
+	.side {
+	    @include flex(column,start,start);
+	    flex: 1 0 calc(20% - 4rem);
+	    min-height: 100%;
+	    padding-top: 2rem;
+	    padding-right: 1rem;
+		h4 {
+		    margin: 1em 0 .5rem 0 !important;
+		    color: var(--red);
+		    font-size: .8rem;
+		    text-transform: uppercase;
+		}
+	}
+	
+	.menu {
+		list-style-type: none;
+		margin: 0 0 1em 0; 
+		padding:0;
+	}
+	
+	.content {
+	    padding-top: 2rem;
+        display: block;
+	    width: 80%;
+	    border-left: 1px dotted #0009;
+	    padding: 2rem 0 5rem 3rem;
+
+	    
+	    .td-title { font-weight: 300; }
+	    textarea { min-height: 75vh; }
+
+        .grid-outline {
+    	    .g-grid { 
+	            outline: 1px dotted red; 
+	            div > div { outline: 1px dotted green }
+	        }
+        }
+
+	}
+}

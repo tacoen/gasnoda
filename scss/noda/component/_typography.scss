@@ -1,0 +1,39 @@
+@include import-font($font-base);
+
+body {
+	font-family: get-font-family($font-base);
+	@include poko-fontsize($font-size);
+	line-height: var(--line-height);
+	background: var(--body-bg);
+}
+
+
+code,mark,kbd {
+	display: inline-flex;
+	align-items: center;
+	padding: 0 .25rem;
+	vertical-align: baseline;
+}
+
+
+mark {
+	background-color: #b0d12a;
+	line-height: 1.25;
+	vertical-align: baseline;
+}
+
+html body kbd {
+	background: #000c;
+	color: #fff !important;
+    border-radius: .15rem;	
+	line-height: 1.15 /* normalize */;
+	vertical-align: baseline;
+}	
+
+p {
+
+	kbd,
+	.button { padding: 0.1rem 0.5rem; }
+
+}
+

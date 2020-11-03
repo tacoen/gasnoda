@@ -1,0 +1,64 @@
+#res-ctl-navigation { 
+    border-radius: 50%; 
+    background: var(--neu-b); 
+    color: var(--neu-w);
+    top: var(--margin);
+}
+
+
+#res-ctl-aside.active { color: #345; }
+#res-ctl-aside.active { color: #fff; }
+
+aside {
+
+	padding-bottom: 5rem;
+	
+	a.active {
+		color: var(--yellow) !important;
+		font-weight: 700;
+	}
+
+
+	a.active {
+		color: var(--yellow) !important;
+		font-weight: 700;
+	}
+
+    .g-content { margin: 0; padding: 0 }
+
+    overflow-y: scroll;
+    height:100%;
+    top:0;
+
+    #gn-branding {
+        padding: 1rem;          
+    }    
+
+    .gn-tree { 
+
+        li { 
+            margin-left: -1rem;
+            padding-left: 2rem;
+            .indicator:before { right: 0 }
+            line-height:2 !important;
+        }
+
+        .toplevel > li { 
+            .indicator:before { right: 1rem !important; }
+            padding-left: 1rem;
+            margin-left:0;
+        }
+    }
+
+	.open { background-color: #fff1;  border-top: 2px solid #456; } 
+
+    a {
+        color: #ddd !important;
+        &:hover { 
+            color:#fff !important; 
+        }
+
+    
+    }
+
+}

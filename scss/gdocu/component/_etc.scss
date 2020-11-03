@@ -1,0 +1,54 @@
+.pg .g-content {
+	margin: 0 .5em;
+}	
+
+.gn-table.emoji big { font-size: 3rem; }
+.gn-table.emoji code { font-size: .8rem; display: inline-block; background: #0000; line-height: 1; }
+
+.pg p,
+.pg li {	
+	@include linktype();
+}
+
+.pg-codebox { 
+    position: relative;
+} 
+
+
+.img-pad { 
+padding: 1rem; background: #0003; margin-bottom: 1rem; 
+border-radius: .25rem;
+}
+
+pre.blueprint { font-size: .8rem; line-height: 1.2;}
+
+
+/* ------------------ */
+
+.g5-lm-particle-particle {
+    text-align: left;
+    border-radius: 0.1875rem;
+    cursor: move;
+    position: relative;
+    font-size: .8rem;
+    background-color: #2A82B7;
+    border: 2px solid #2A82B7;
+    width: 200px;
+}
+
+.g5-lm-particle-particle .particle-icon {
+        background-color: #2A82B7;
+        color:#fff;
+        width: 30px;
+        display:inline-block;
+        padding: .5rem;
+}
+
+.g5-lm-particle-particle .particle-title {
+    color: #2A82B7;
+    background: #fff;
+    width:calc(200px - 30px - .5rem);
+    padding: .5rem;
+    display:inline-block;
+}
+

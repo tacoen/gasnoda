@@ -1,0 +1,136 @@
+// toggle
+
+.toggle {
+	
+	--base: var(--d1,var(--neu));
+	--base-d: var(--d2,var(--neu));
+	
+	
+	
+	.toggle-label {
+		background-color: var(--neu);
+		padding: varc('padding',1,2);
+		cursor: pointer;
+		display: block;
+		margin:0;
+		font-weight: 700;
+		border-top: 1px solid var(--tint);
+		border-bottom: 1px solid var(--shade);		
+		box-shadow: inset 0 1px 3px 1px #fff6;
+
+		&:after {
+			color: var(--neu-txt);
+			font-family: FontAwesome;
+			content: "\f196";
+			float: right;
+			font-weight: bold;
+		}
+	}
+
+	.toggle-content {
+        padding: 1em;
+		border: 1px solid #0002;
+        border-bottom-left-radius: var(--bradius);
+        border-bottom-right-radius: var(--bradius);
+		border-top: none;
+	}
+
+	.toggle-input {
+		display: none; //Hide input element
+
+		&:not(checked) ~ .toggle-content {
+			display:none;
+		}
+
+		&:checked {
+			~ .toggle-content {
+				display: block;
+			}
+
+			~ .toggle-label {
+        		border-bottom-left-radius: 0;
+        		border-bottom-right-radius: 0;
+				&:after { content: "\f147"; }
+			}
+		}
+	}
+}
+
+.toggle-group {
+	.toggle:first-child {
+		.toggle-label {
+			border-top-left-radius: var(--bradius);
+			border-top-right-radius: var(--bradius);
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+	}
+
+	.toggle:last-child {
+		.toggle-label {
+			border-bottom-left-radius: var(--bradius);
+			border-bottom-right-radius: var(--bradius);
+		}
+	}
+}
+
+
+.toggle-tab {
+	--base: var(--d1,var(--neu));
+	--base-d: var(--d2,var(--neu));
+	
+	input[type=radio] { display: none; }
+
+	#tab1:checked {
+		~ .tabcontent-tab1 { display: block; }
+		~ .tabcontent-tab2 { display: none; }
+		~ .tabcontent-tab3 { display: none; }
+		~ .tabmenu label[for='tab1'] { 
+			background-color: var(--neu); 
+			}
+	}
+	
+	#tab2:checked {
+		~ .tabcontent-tab1 { display: none; }
+		~ .tabcontent-tab2 { display: block; }
+		~ .tabcontent-tab3 { display: none; }
+		~ .tabmenu label[for='tab2'] { 
+			background-color: var(--neu); 
+			}
+	}	
+	
+	#tab3:checked {
+		~ .tabcontent-tab1 { display: none; }
+		~ .tabcontent-tab2 { display: none; }
+		~ .tabcontent-tab3 { display: block; }
+		~ .tabmenu label[for='tab3'] { 
+			background-color: var(--neu); 
+			}
+	}
+
+	.tabmenu { 
+
+		display: block; 
+		list-style: none; 
+		margin: 0; padding: 0;
+		display: flex;
+		flex-flow: row;
+
+		border-bottom: 5px solid var(--neu);
+
+		label { 
+			background-color: var(--neu-d); 
+			margin: 0;
+		}
+
+		li {
+			background: var(--neu-d);
+			margin: 0 0 0 .5rem;
+		} 
+
+		label {
+			display: block;
+			padding: .25rem 2rem 0 2rem;
+		}
+	}
+}	

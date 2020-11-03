@@ -1,0 +1,19 @@
+.g-error {
+
+	#g-container-main {
+		height: 100vh;
+		width: 100%;
+		background:#fff;
+	}
+
+	#g-main  {
+		text-align: center;
+		height: 100vh;
+		display: flex;
+		justify-content:flex-start;
+		align-items:center;
+	}
+
+	h1 { font-size:3rem; text-transform: capitalize; color:#0009; margin: 0}
+	
+}

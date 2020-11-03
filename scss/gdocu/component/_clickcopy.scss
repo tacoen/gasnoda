@@ -1,0 +1,44 @@
+.font-info {
+    --lh: 2.0;
+    --fz: 1rem;
+    position: relative;
+    counter-increment: test var(--lh); 
+    margin-top: 1rem;
+}
+
+.font-info:before {
+    margin-top: .5rem;
+    display: block;
+    content:attr(style);
+    font-size: 12px;
+    color: var(--red);
+    margin-bottom: 1rem;
+}
+
+
+.click-copy {
+    position: relative;
+    outline: 1px solid #0001;
+    --text: 'copy';
+	&:after { 
+		content: var(--text); 
+		position: absolute;
+		top: 0;
+		right: 0;
+		background: #0001;
+		padding: 2px 5px;
+		font-size: .7rem;
+		opacity: .6
+	}
+}
+
+pre.scss {
+    background: #fefee0;
+    border: 1px solid #0001;
+    max-height: 80vh;
+    font-size: .8rem;
+}
+
+pre {
+	@include scrollbars(.15rem)
+}

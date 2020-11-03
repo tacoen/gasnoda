@@ -1,0 +1,228 @@
+.gn-card {
+	@include flex(column);
+    @include border-radius(4);
+	height: var(--box-height);
+	background-color: var(--neu);
+	color: var(--txt);
+    overflow:hidden;
+
+
+	.content { margin: 0; padding:0; }
+	ul,li { list-style-type:none; margin:0; padding:0 }
+	
+	.headline,
+	.item-title { font-weight: 700; }
+}
+
+.gn-card.cue {
+	background-color: var(--bg, var(--neu));
+	position: relative;
+
+	.content {
+		width: 100%;
+		height: 100%;
+		background-position: 50% 15%;
+		background-size: 100%;
+		background-repeat: no-repeat;
+		background-blend-mode: lighten;
+		position: relative;
+		transition: all 1s ease;
+		color: var(--txt);
+	}
+
+	.item-title {
+		font-size: 1.1rem;
+		margin-bottom: 1rem;
+	}
+	
+	.overlay {
+		height: 100%;
+		width: 100%;
+		line-height: 1.2;
+		text-align: center;
+		
+		
+		.normal,.hover {
+			height: 100%;
+			display: flex;
+			flex-flow: column;
+			justify-content: flex-end;
+			position: absolute;
+			width: 100%;
+			transition: all .5s ease;
+		}
+
+		.items,.description {
+			padding: 0 .5rem 4rem .5rem;
+		}
+		
+		.normal {
+			opacity: 1;
+			color: var(--txt);
+		}
+
+		.hover {
+			transform: translateY(100%);
+			background-color: #0009;
+			color: var(--w1);
+		}
+	}
+
+	.headline {
+		margin-bottom: 0;
+	}
+	
+	&:hover {
+		.content {
+			background-size: 120%;
+			background-position: 50% 15%;
+		}
+		.hover {
+			transform: translateY(0);
+		}
+		.normal {
+			opacity: .1;
+		}
+	}	
+}
+
+.gn-card.card {
+
+	background-color: var(--bg, var(--neu));
+
+	a { 
+		width:100%;
+		height:100%;
+		position: relative;
+	}
+	
+	.headline {
+		position: absolute; 
+		top:0;
+		left:0;
+		width: 100%;
+		padding: .5rem 0; 
+		text-align: center; 
+	}
+	
+	.content,
+	.image { height: 50%; }
+	.description { padding: 1rem; text-align: center;  }
+	.items { @include flex(column, center, center); padding: 1rem 0; }
+	.item { text-align: center; margin-bottom: 1rem;}
+	
+	
+}
+
+.gn-card.default {
+	@include flex(column,center,center);
+	padding: 0 2rem;
+	text-align: center;
+	.headline { font-size: 1.5rem; margin-botttom: 1rem; }
+	.description { margin-bottom: 1rem; }
+}
+
+.gn-card.imagebox {
+  .content {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-color: var(--d2,var(--shade));
+    color: var(--w1);
+    background-blend-mode: normal;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+	line-height: 1.2;	
+  }
+
+  .overlay {
+    background-color: #000C;
+    position: relative;
+    height: 50%;
+    z-index: 2;
+	line-height: 1.8;	
+  }
+
+  .item { 	line-height: 1.8;	}
+
+  .headline { margin-bottom: 1rem; font-size: 1.2rem }
+
+  .description {
+    padding: 0;
+  }
+
+  .hover {
+    padding: 2rem 1rem 1rem 1rem;
+    transition: all 1s ease-out;
+	font-size: .9rem;
+  }
+
+  .normal {
+    padding: 2rem 1rem 1rem 1rem;
+    transition: all 1s ease-out;
+    text-align: left;
+    position: absolute;
+    top: 0;
+    display: block;
+  }
+
+  .hover {
+    text-align: left;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+  }
+
+  li{ padding-left: 1.5rem; position: relative;  }
+
+  li:before {
+    font-family: FontAwesome;
+    content: '\f00c';
+    position: absolute;
+	left:  0;
+	width: 1rem;
+    color: var(--co, var(--primary));
+  }
+
+  &:hover {
+    .normal {
+      opacity: 0;
+    }
+
+    .hover {
+      opacity: 1;
+    }
+  }
+
+  a.pin {
+    --fz:1rem;
+    --sq:calc(5 * var(--fz));
+    background-color: var(--co, var(--primary, var(--neu-l)));
+    color: #fff !important;
+    z-index: 3;
+    right: 1rem;
+    position: absolute;
+    top: calc(-3 * var(--fz));
+    font-size: var(--fz);
+    width: var(--sq);
+    height: var(--sq);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    word-spacing: 100vh;
+    word-break: break-word;
+    line-height: 1;
+    transform: rotate(15deg);
+    border: none;
+    outline: none;
+    transition: all 1s linear;
+	text-align: center;
+  }
+
+  &:hover a.pin {
+    transform: rotate(0deg);
+    box-shadow: 0 3px 4px #0009;
+  }
+}

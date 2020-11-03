@@ -1,0 +1,32 @@
+nav.menucan {
+
+	.g-go-back { display: none; }
+	
+	li {
+		.menu-dropdown { background-color: var(--bg, var(--neu)); }
+		&:hover { background-color: var(--hover, var(--d1,var(--neu-d))); }
+	}
+	
+	li.active {
+		background: var(--active,var(--l1,var(--neu)));
+		.menu-dropdown { background-color: var(--l1,var(--neu)); }
+		&:hover { background-color: var(--l1,var(--neu-l)); }
+	}
+		
+	a { color: var(--txt); }
+
+	.toplevel {
+		
+		background-color: var(--bg,var(--neu));
+		
+		li {
+			width: $menu-col-width;
+		}
+	}
+
+	.nav-item-container {
+	
+		padding: var(--padding);
+	}
+	
+}

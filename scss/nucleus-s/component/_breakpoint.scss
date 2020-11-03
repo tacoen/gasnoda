@@ -1,0 +1,115 @@
+// Run Size Creation Function
+@include size-x;
+
+// Equal size fallbacks for older browsers
+@each $i, $n in ('33-3', 1/3), ('16-7', 1/6), ('14-3', 1/7), ('12-5', 1/8), ('11-1', 1/9), ('9-1', 1/11), ('8-3', 1/12) {
+    .size-#{$i} {
+        @include flex(0 percentage($n));
+        width: percentage($n);
+        max-width: percentage($n);
+		.res { width: percentage($n); }
+
+    }
+}
+
+// Support for non flex browsers
+.g-block.size-100,
+.size-100 {
+    width: 100%;
+    max-width: 100%;
+    @include flex-grow(0);
+    @include flex-basis(100%);
+}
+
+
+// Visibility
+.visible-large,
+.visible-desktop,
+.visible-tablet,
+.visible-phone,
+.g-block.visible-large,
+.g-block.visible-desktop,
+.g-block.visible-tablet,
+.g-block.visible-phone {
+  display: none !important;
+}
+
+@include breakpoint(mobile-only) {
+  .visible-phone {
+    display: block !important;
+  }
+  .g-block.visible-phone {
+    display: block !important;
+  }
+}
+
+@include breakpoint(tablet-range) {
+  .visible-tablet {
+    display: block !important;
+  }
+  .g-block.visible-tablet {
+    display: block !important;
+  }
+}
+
+@include breakpoint(desktop-range) {
+  .visible-desktop {
+    display: block !important;
+  }
+  .g-block.visible-desktop {
+    display: block !important;
+  }
+}
+
+@include breakpoint(large-desktop-range) {
+  .visible-large {
+    display: block !important;
+  }
+  .g-block.visible-large {
+    display: block !important;
+  }
+  .visible-desktop {
+    display: block !important;
+  }
+  .g-block.visible-desktop {
+    display: block !important;
+  }
+}
+
+// Invisibility
+@include breakpoint(mobile-only) {
+  .hidden-phone {
+    display: none !important;
+  }
+}
+
+@include breakpoint(tablet-range) {
+  .hidden-tablet {
+    display: none !important;
+  }
+}
+
+@include breakpoint(desktop-range) {
+  .hidden-desktop {
+    display: none !important;
+  }
+}
+
+@include breakpoint(large-desktop-range) {
+  .hidden-large {
+    display: none !important;
+  }
+  .hidden-desktop {
+    display: none !important;
+  }
+}
+
+// Alignment
+@include breakpoint(mobile-only) {
+  .align-right {
+    text-align: inherit !important;
+  }
+  .align-left {
+    text-align: inherit !important;
+  }
+}

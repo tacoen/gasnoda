@@ -1,0 +1,113 @@
+@each $name, $set in $colors {
+	@if (not-empty(map-get($set,'color'))) { 
+		$color: map-get($set,'color');
+		
+		.bg-color-#{$name} { @include hsl-colors($color,maxtint($color)) }
+		
+		.txt-#{$name} { color: $color }
+
+		.#{$name} { 
+			@include hsl-var($color); 
+			--notices: var(--lc);
+			--button: var(--bg);
+		}
+		
+		
+		@if (not-empty(map-get($set,'alert'))) {
+			.alert-#{map-get($set,'alert')} {
+				--border: $color;
+				--alert: hsl-set($color, 90%);
+				--icon: map-get($set,'icon');
+			}
+		}
+
+		@if (not-empty(map-get($set,'notice'))) {
+			.notices.#{$name} {
+				--border: $color;
+				--bg: hsl-set($color, 75%);
+				--txt: maxtint($color);
+			}
+		}
+
+	}
+}
+
+.hsl-pal {
+	--w1: unquote("hsl(var(--h), var(--s), 93%)");
+	--b1: unquote("hsl(var(--h), var(--s), 7%)");
+	--d1: unquote("hsl(var(--h), var(--s), calc(var(--l) - 10%))");
+	--d2: unquote("hsl(var(--h), var(--s), calc(var(--l) - 20%))");
+	--d3: unquote("hsl(var(--h), var(--s), calc(var(--l) - 30%))");
+	--l1: unquote("hsl(var(--h), var(--s), calc(var(--l) + 10%))");
+	--l2: unquote("hsl(var(--h), var(--s), calc(var(--l) + 20%))");
+	--l3: unquote("hsl(var(--h), var(--s), calc(var(--l) + 30%))");
+	--co: unquote("hsl(var(--h-co), var(--s), var(--l))");
+	--a1: unquote("hsl(var(--h-a1), var(--s), var(--l))");
+	--a2: unquote("hsl(var(--h-a2), var(--s), var(--l))");
+	--t1: unquote("hsl(var(--h-t1), var(--s), var(--l))");
+	--t2: unquote("hsl(var(--h-t2), var(--s), var(--l))");
+}
+
+.button-3d {
+	border-top: 2px solid var(--tint);
+	border-left: 2px solid var(--tint);
+	border-bottom: 2px solid var(--shade);
+	border-right: 2px solid var(--shade);
+}
+
+html body {
+
+.bgcolor-bg { background-color: var(--bg); color: var(--txt); 
+	&:hover { background-color: var(--ho); } }
+.bgcolor-co { background-color: var(--co); color: var(--txt); 
+	&:hover { background-color: var(--co-ho); } }
+
+.bgcolor-a1 { background-color: var(--a1); color: var(--txt); }
+.bgcolor-a2 { background-color: var(--a2); color: var(--txt); }
+.bgcolor-t1 { background-color: var(--t1); color: var(--txt); }
+.bgcolor-t2 { background-color: var(--t2); color: var(--txt); }
+
+.bgcolor-b0 { background-color: var(--b0); color: var(--w0); }
+.bgcolor-w0 { background-color: var(--w0); color: var(--b0); }
+.bgcolor-b1 { background-color: var(--b1); color: var(--w0); }
+.bgcolor-w1 { background-color: var(--w1); color: var(--b0); }
+.bgcolor-dc { background-color: var(--dc); color: var(--dc-txt); }
+.bgcolor-d1 { background-color: var(--d1); color: var(--dc-txt); }
+.bgcolor-d2 { background-color: var(--d2); color: var(--dc-txt); }
+.bgcolor-d3 { background-color: var(--d3); color: var(--dc-txt); }
+.bgcolor-lc { background-color: var(--lc); color: var(--lc-txt); }
+.bgcolor-l1 { background-color: var(--l1); color: var(--lc-txt); }
+.bgcolor-l2 { background-color: var(--l2); color: var(--lc-txt); }
+.bgcolor-l3 { background-color: var(--l3); color: var(--lc-txt); }
+
+.bgcolor-primary { 
+	background-color: var(--primary, var(--co, var(--neu-l)));
+	color: var(--primary-txt, var(--co-txt, var(--neu-txt)));
+	:hover { background-color: var(--primary-ho, var(--co-ho)); }
+}
+
+.bgcolor-secondary { 
+	background-a1lor: var(--secondary, var(--a1, var(--neu-l)));
+	color: var(--secondary-txt, var(--a1-txt, var(--neu-txt)));
+	:hover { background-a1lor: var(--secondary-ho, var(--a1-ho)); }
+}
+	
+
+.bg-shade { background-color: var(--shade); }
+.bg-tint { background-color: var(--tint); }
+.bg-spot { background-color: var(--spot); }
+
+.bgcolor-neu { background-color: var(--neu); color: var(--neu-txt); }
+.bgcolor-neu-d { background-color: var(--neu-d); color: var(--neu-txt);  }
+.bgcolor-neu-d1 { background-color: var(--neu-d1); color: var(--neu-txt);  }
+.bgcolor-neu-l { background-color: var(--neu-l); color: var(--neu-txt);  }
+.bgcolor-neu-l1 { background-color: var(--neu-l1); color: var(--neu-txt); }
+.bgcolor-neu-w { background-color: var(--neu-w); color: var(--neu-b);  }
+.bgcolor-neu-b { background-color: var(--neu-b); color: var(--neu-w);  }
+.txt-neu { color: var(--neu-txt); }
+.txt-w { color: #fff !important; }
+.txt-b { color: #000 !important; }
+
+}
+	
+/* ----------------------------------------------------------------------------------- */
