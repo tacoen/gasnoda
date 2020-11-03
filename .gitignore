@@ -1,3 +1,5 @@
 *.css.map
 
 bin/*
+.sass-cache/
+.sass-cache/*
