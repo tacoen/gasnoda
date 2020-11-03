@@ -1,0 +1,8 @@
+base:
+  image: 'gantry-admin://preset/default.png'
+  description: Default
+  colors:
+        - '#304055'
+        - '#991111'
+        - '#ffffff'
+        - '#222222'

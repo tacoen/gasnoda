@@ -1,0 +1,156 @@
+details:
+  name: Gasnoda
+  version: '2.0'
+  icon: html5
+  date: 'August 17, 2020'
+
+  description: Gasnoda Theme
+  images:
+    thumbnail: /admin/image/preset1.png
+    preview: /admin/image/preset1.png
+
+author:
+  name: tacoen
+  email: tacoen@gmail.com
+  url: https://github.com/tacoen/
+
+  homepage: https://github.com/tacoen/gasnoda
+  readme: https://github.com/tacoen/gasnoda/blob/master/README.md
+  keywords: gantry, gantry5, theme, gaskeun
+  bugs: https://github.com/tacoen/gasnoda/issues
+  license: MIT
+
+  documentation:
+    link: https://github.com/tacoen/gasnoda/wiki
+
+  support:
+    link: https://github.com/tacoen/gasnoda/issues
+
+
+configuration:
+  gantry:
+    platform: grav
+    engine: nucleus
+
+  theme:
+    base: gantry-theme://common
+    file: gantry-theme://include/theme.php
+    class: \Gantry\Framework\Theme
+
+  fonts:
+    clearsans:
+      300: 'gantry-theme://fonts/clearsans_light_macroman/clearsans-light-webfont'
+      400: 'gantry-theme://fonts/clearsans_regular_macroman/clearsans-regular-webfont'
+      500: 'gantry-theme://fonts/clearsans_medium_macroman/clearsans-medium-webfont'
+      700: 'gantry-theme://fonts/clearsans_bold_macroman/clearsans-bold-webfont'
+
+  css:
+    compiler: \Gantry\Component\Stylesheet\ScssCompiler
+    paths:
+      - gantry-theme://scss
+      - gantry-engine://scss
+    files:
+      - nucleus-s
+      - theme
+      - gdocu
+      - custom
+    persistent:
+      - nucleus-s
+    overrides:
+      - theme
+      - gdocu
+      - custom    
+  
+  section-variations:
+
+    Layout Function:
+      dock-top: Dock it on Top
+      fix-at-top: Fix at Top
+      fix-at-left: Fix at left
+      toggle-able: Toggleable
+
+    Utility:
+      disabled: Disabled
+      center: Center
+      nomarginall: No Margin
+      nopaddingall: No Padding
+      small-font: Small Font
+      mobile-only: Mobile Only
+
+    Styles Color:
+      bg-color-accent-1: accent-1
+      bg-color-accent-2: accent-2
+      bg-color-accent-3: accent-3
+      bg-color-accent-4: accent-4
+      bg-color-yellow: yellow
+      bg-color-red: red
+      bg-color-blue: blue
+      bg-color-green: green
+      cover-1: Cover 1
+      cover-2: Cover 2
+      cover-3: Cover 3
+      cover-4: Cover 4
+      
+    Effects:
+      shadow: Shadow 1
+      shadow2: Shadow 2
+      rounded: Rounded
+      square: Square
+    
+  block-variations:
+
+    Utility:
+      disabled: Disabled
+      align-right: Align Right
+      align-left: Align Left
+      center: Center
+      nomarginall: No Margin
+      nopaddingall: No Padding
+      hide-mobile: Hide on small
+      
+    Transition:
+      banim-fade: fade
+      banim-slide-l: slide-left
+      banim-slide-r: slie-right
+      banim-bounce: bounce
+      
+    Styles Color:
+      bg-accent-1: accent-1
+      bg-accent-2: accent-2
+      bg-accent-3: accent-3
+      bg-accent-4: accent-4
+      bg-yellow: yellow
+      bg-red: red
+      bg-blue: blue
+      bg-green: green
+      cover-1: Cover 1
+      cover-2: Cover 2
+      cover-3: Cover 3
+      cover-4: Cover 4      
+      
+  dependencies:
+    gantry: 5.4.0
+
+admin:
+  styles:
+
+    main:
+      - base
+      - font
+      - content
+
+    sections:
+      - navigation
+      - aside
+      - header
+      - footer
+
+    variations:
+      - accent
+      - cover
+      - color
+
+    configuration:
+      - menu
+      - breakpoints
+      - option

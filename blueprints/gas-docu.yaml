@@ -1,0 +1,124 @@
+title: gdocu
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+  
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        gdocu-opt:
+          type: tab
+          title: Component
+          fields:
+
+            columns:
+              type: columns
+              fields:
+                column1:
+                  type: column
+                  fields:
+
+                    content:
+                        type: section
+                        title: Variables
+
+                    header.query:
+                        type: input
+                        label: Code Query Selection
+
+                    header.jsopt:
+                        type: checkboxes
+                        label: JS Options
+                        use: keys
+                        default:
+                            toc: false
+                            constructstyle: false
+                        options:
+                            toc: Table of Content
+                            constructstyle: Construct Stylesheet
+
+                    content4:
+                        type: section
+                        title: Extend
+
+                    header.sample:
+                        type: toggle
+                        label: Include content.html
+                        default: 1
+                        options:
+                            1: PLUGIN_ADMIN.YES
+                            0: PLUGIN_ADMIN.NO
+                        validate:
+                            type: bool
+                        highlight: 0
+
+                    header.particle_skeleton:
+                        type: toggle
+                        label: Include skeleton.txt
+                        default: 1
+                        options:
+                            1: PLUGIN_ADMIN.YES
+                            0: PLUGIN_ADMIN.NO
+                        validate:
+                            type: bool
+                        highlight: 0
+                        
+                column2:
+                  type: column
+                  fields:                        
+
+                    content3:
+                        type: section
+                        title: Particle
+
+                    header.picon:
+                        type: input
+                        label: Particle Icon
+              
+                    header.pname:
+                        type: input
+                        label: Particle Title
+
+                    header.particle_name:
+                        type: text
+                        label: Particle File
+
+                    content2:
+                        type: section
+                        title: Template
+                        
+                    header.template_name:
+                        type: text
+                        label: Template File
+
+        gdocu-list:
+          type: tab
+          title: List
+          styles: vertical
+          fields:
+
+            header.items:
+              type: list
+              styles: vertical
+              label: Items
+              fields:
+                .name:
+                    type: text
+                    label: Name
+                .txt:
+                   type: textarea
+                   label: Text
+                .type:
+                    type: radio
+                    label: Choice
+                    default: text
+                    options:
+                        text: Text
+                        markdown: Markdown
+                        twig: Twig
+                        html: html
+                        

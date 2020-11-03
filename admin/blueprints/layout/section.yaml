@@ -1,0 +1,100 @@
+name: Section
+description: Layout section.
+type: section
+
+form:
+  fields:
+    _tabs:
+      type: container.tabs
+      fields:
+
+        _tab_title:
+          label: Layout
+          fields:
+
+            boxed:
+                type: select.selectize
+                label: Layout
+                description: Select the Layout container behavior. 'Inherit' refers to Page Settings.
+                isset: true
+                selectize:
+                    allowEmptyOption: true
+                options:
+                    '': Inherit
+                    0: Fullwidth (Boxed Content)
+                    2: Fullwidth (Flushed Content)
+                    1: Boxed
+                    3: Remove Container
+
+            variations:
+                type: input.block-variations
+                label: Variations
+    
+            blockcolor:
+                type: input.checkbox
+                label: Block Color
+                default: true
+
+            class:
+                type: input.selectize
+                label: CSS Classes
+                description: Enter CSS class names.
+                default:
+
+            extra:
+                type: collection.keyvalue
+                label: Tag Attributes
+                description: Extra Tag attributes.
+                key_placeholder: Key (data-*, style, ...)
+                value_placeholder: Value
+                exclude: ['id', 'class']
+
+        _tab_mobile:
+          label: Responsive
+          fields:
+
+            res_enable:
+                type: input.checkbox
+                label: Enabled
+                default: false
+
+            _info:
+                type: separator.note
+                class: alert alert-info
+                content: '<small>Control how this section appear at responsive breakpoints.<br>Checking Always Responsive will enable the responsive function of this section for all breakpoints.</small>'
+
+            res_title:
+                type: input.text
+                label: Text
+                placeholder: Icon Text
+
+            res_offcanvas:
+                type: select.selectize
+                label: Off Position
+                default: top
+                options:
+                    top: Top
+                    left: Left (Swipe)
+                    right: Right (Swipe)
+                    bottom: Bottom
+
+            res_icon:
+                type: input.icon
+                label: Toggle Icon
+                default: fa fa-bars
+
+            res_opt_swipe:
+                type: input.checkbox
+                label: Swipe
+                
+            res_opt_fixed:
+                type: input.checkbox
+                label: Icon Position Fixed
+
+            res_opt_always:
+                type: input.checkbox
+                label: Always Responsive
+
+
+
+

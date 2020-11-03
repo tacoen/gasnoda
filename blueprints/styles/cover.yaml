@@ -1,0 +1,40 @@
+name: Background-Cover Image
+type: variations
+
+form:
+  fields:
+    blend-mode:
+      type: select.selectize
+      label: blend
+      placeholder: 'Select...'
+      default: soft-light
+      options:
+        normal: normal
+        soft-light: soft-light
+        hard-light: hard-light
+        overlay: overlay
+        darken: darken
+        multiply: multiply
+        screen: screen
+        lighten: lighten
+        color-burn: color-burn
+        color-dodge: color-dodge
+        saturation: saturation
+        hue: hue
+        color: color
+        luminosity: luminosity
+        difference: difference
+        auto: auto
+        
+    image-1:
+      type: input.imagepicker
+      label: Cover 1
+    image-2:
+      type: input.imagepicker
+      label: Cover 2
+    image-3:
+      type: input.imagepicker
+      label: Cover 3
+    image-4:
+      type: input.imagepicker
+      label: Cover 4

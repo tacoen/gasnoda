@@ -1,0 +1,34 @@
+name: Content
+type: main
+
+form:
+  fields:
+
+    border-radius:
+        type: input.text
+        label: Border-radius
+        default: "0.25rem"
+        placeholder: 0.25rem (default) 
+        pattern: '\d+(\.\d+){0,1}(rem|em|%|px)'
+
+    box-height:
+        type: input.text
+        default: "80vh"
+        label: Box Height
+        placeholder: Content Box Height
+        pattern: '\d+(\.\d+){0,1}(vh|rem|%|px)'
+
+    padding:
+        type: input.text
+        label: Horizontal
+        default: "0.5rem"
+        placeholder: 0.5rem (default) 
+        pattern: '\d+(\.\d+){0,1}(rem|em|%|px)'
+
+    margin:
+        type: input.text
+        label: Horizontal
+        default: "1rem"
+        placeholder: 1rem (default) 
+        pattern: '\d+(\.\d+){0,1}(rem|em|%|px)'
+

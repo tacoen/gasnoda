@@ -1,0 +1,39 @@
+title: Listing
+'@extends':
+    type: default
+    context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        List:
+          type: tab
+          title: List
+          fields:
+
+            header.layout:
+              name: layout
+              type: select
+              label: Layout
+              placeholder: 'Select...'
+              default: vertical
+              options:
+                vertical: vertical
+                horizontal: horizontal
+
+            header.items:
+              name: items
+              type: list
+              label: Items
+
+              fields:
+                .title:
+                  type: text
+                  label: Title
+                .text:
+                  type: text
+                  label: text

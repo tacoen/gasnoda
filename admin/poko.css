@@ -1,0 +1,110 @@
+.sf-note {
+padding: 0 0 0 185px;
+font-size: .8em;
+}	
+
+.opt-note {
+	padding: 0 0 0 .65rem;
+	font-size: .8em;
+}	
+
+.opt-note.header {
+	padding-top: 1rem; font-weight: 700; color: #911;
+}
+
+.sf-note a { cursor:pointer; display:inline-block; margin-right: .5rem; }
+
+
+.sf-view {
+    background: #0001;
+    width: 100%;
+    box-shadow: 0px 1px 4px #0006;
+	color: #0005;
+}
+
+.sf-view a { 
+	padding: 1rem 0; 
+	display:block; 
+}
+
+.sf-view .btn {
+	padding: .25rem;
+	display:inline-block;
+	appearance: button;
+}
+
+.sf-view .pre {
+	display:block;
+	padding: .5rem;
+	margin-bottom: 1rem;
+}
+	
+.sf-view p { 
+	margin: 1rem 0 0 31% !important; 
+	font-size: .9rem;
+	line-height: 1.1;
+}
+
+.sf-view b { font-size: 1.2rem }
+
+.sf-view .body {
+	width: 340px;
+	height: 272px;
+	position: relative;
+	margin: 0 auto;
+}
+
+.sf-view .header {
+    position: absolute;
+    top:0;
+    width: 100%;
+    height: 20%;
+}
+
+.sf-view .navi {
+    position: absolute;
+    top:20%;
+    width: 100%;
+    height: 10%;
+}
+
+.sf-view .footer {
+    position: absolute;
+    bottom:0;
+    width: 100%;
+    height: 10%;
+}
+
+.sf-view .aside {
+    position: absolute;
+    width: 30%;
+    height: 100%;
+	top:0;
+}
+
+
+.sf-view .base {
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    height: 60%;
+}
+
+.sf-view *:before {
+    font-size: .7rem;
+    display: flex;
+    padding: .3rem;
+    justify-content: flex-end;
+    align-items: center;
+	position: absolute;
+	left: 100%;
+}
+
+
+.sf-view .footer:before { content: "footer"; }
+.sf-view .header:before { content: "header"; }
+.sf-view .navi:before { content: "navigation"; }
+.sf-view .base:before { content: "base/main";  }
+
+
+

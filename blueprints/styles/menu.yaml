@@ -1,0 +1,66 @@
+name: Menu
+type: configuration
+
+form:
+  fields:
+
+    col-width:
+      type: input.text
+      label: Dropdown Width
+      description: 'Specify the default width of menu dropdowns for simple mode in rem, em or px units. This width can be overridden on each individual menu item from the menu editor.'
+      default: "180px"
+      pattern: '\d+(\.\d+){0,1}(rem|em|px)'
+
+    animation:
+      type: select.select
+      label: Animation
+      description: Select the dropdown animation.
+      default: g-fade
+      options:
+        g-no-animation: No Animation
+        g-fade: Fade
+        g-zoom: Zoom
+        g-fade-in-up: Fade In Up
+    
+    _note1:
+        type: separator.note
+        class: opt-note header
+        content: Offcanvas
+
+    mobile-breakpoint:
+        type: input.text
+        label: Menu Breakpoint
+        default: "48rem"
+        pattern: '\d+(\.\d+){0,1}(rem|em|ex|ch|vw|vh|vmin|vmax|%|px|cm|mm|in|pt|pc)'
+
+    panel-width:
+        type: input.text
+        label: Panel Width
+        description: Set offcanvas size in rem, em, px, or percentage unit values
+        default: "75vw"
+        pattern: '\d+(\.\d+){0,1}(rem|em|ex|ch|vw|vh|vmin|vmax|%|px|cm|mm|in|pt|pc)'
+      
+    _note2:
+        type: separator.note
+        class: opt-note header
+        content: Toggle Icon
+        
+    icon:
+        type: input.icon
+        label: Icon
+        default: fa fa-bars
+
+    icon-w:
+      type: input.text
+      label: Toggle Width
+      default: "3rem"
+      pattern: '\d+(\.\d+){0,1}(rem|em|ex|ch|vw|vh|vmin|vmax|%|px|cm|mm|in|pt|pc)'
+    
+    icon-h:
+      type: input.text
+      label: Toggle Height
+      default: "3rem"
+      pattern: '\d+(\.\d+){0,1}(rem|em|ex|ch|vw|vh|vmin|vmax|%|px|cm|mm|in|pt|pc)'
+
+
+      

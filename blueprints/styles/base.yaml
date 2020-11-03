@@ -1,0 +1,41 @@
+name: Main
+type: main
+
+form:
+  fields:
+
+    background:
+      type: input.colorpicker
+      label: Background Color
+      default: "#f7f7f7"
+
+    neutral:
+      type: input.colorpicker
+      label: Neutral Color
+      default: "#dddddd"
+    
+    primary:
+      type: input.colorpicker
+      label: Primary Color
+      default: "#ffcc33"
+
+    secondary:
+      type: input.colorpicker
+      label: Secondary Color
+      default: "#dd2222"
+      
+    offwhite:
+      type: input.colorpicker
+      label: Off Content
+      default: "#ffffff"
+    fnote4:
+      type: separator.note
+      class: sf
+      content: <div class='sf-note'><a onclick='javascript:poko_direct_modif(this,"light")' data-ref='[base][background]' data-dst='[base][offwhite]'>Lighter Background</a></div>
+
+    text-color:
+      type: input.colorpicker
+      label: Text Color
+      default: "#222222"
+
+      

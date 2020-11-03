@@ -1,0 +1,23 @@
+name: Footer
+type: sections
+
+form:
+  fields:
+
+    background:
+      type: input.colorpicker
+      label: Background
+      
+    text-color:
+      type: input.colorpicker
+      label: Text Color      
+
+    active:
+      type: input.colorpicker
+      label: Active Background
+      placeholder: Lighten background(default)
+
+    hover:
+      type: input.colorpicker
+      label: Hover Background
+      placeholder: Darken background(default)

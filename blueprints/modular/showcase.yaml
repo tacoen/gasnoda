@@ -1,0 +1,100 @@
+title: Showcase
+extends@: default
+
+form:
+  fields:
+    tabs:
+      fields:
+        advanced:
+          fields:
+            columns:
+              fields:
+                column1:
+                  fields:
+                    name:
+                      default: 'modular/showcase'
+                      data-options@: '\Grav\Common\Page\Pages::modularTypes'
+            overrides:
+              fields:
+                header.template:
+                  default: 'modular/showcase'
+                  data-options@: '\Grav\Common\Page\Pages::modularTypes'
+        buttons:
+          type: tab
+          title: Properties
+          fields:
+            header.timeout:
+                name: timeout
+                type: number
+                label: Slide second
+                default: 10
+                validate:
+                    min: 0
+                    max: 60
+                    step: 10               
+            header.animation:
+              name: animation
+              type: select
+              label: Animation
+              placeholder: 'Select...'
+              default: paralax-h
+              options:
+                paralax-h: paralax-h
+                paralax-v: paralax-v
+                zoom: zoom-flash
+                fade: fade
+            header.layout:
+              name: layout
+              type: select
+              label: Layout
+              placeholder: 'Select...'
+              default: center
+              options:
+                center: center
+                align-left: left
+                align-right: right
+                none: none
+            header.blend:
+              type: select
+              label: Image Blend-Mode
+              placeholder: 'Select...'
+              default: soft-light
+              options:
+                normal: normal
+                soft-light: soft-light
+                hard-light: hard-light
+                overlay: overlay
+                darken: darken
+                multiply: multiply
+                screen: screen
+                lighten: lighten
+                color-burn: color-burn
+                color-dodge: color-dodge
+                saturation: saturation
+                hue: hue
+                color: color
+                luminosity: luminosity
+                difference: difference
+                auto: auto                
+                
+            header.buttons:
+              name: buttons
+              type: list
+              label: Buttons
+              fields:
+                .text:
+                  type: text
+                  label: Text
+                .url:
+                  type: text
+                  label: URL
+                .primary:
+                  type: toggle
+                  label: Primary
+                  highlight: 1
+                  default: 1
+                  options:
+                      1: 'Yes'
+                      0: 'No'
+                  validate:
+                      type: bool

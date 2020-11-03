@@ -1,0 +1,28 @@
+name: Fonts
+type: main
+
+form:
+  fields:
+
+    base:
+        type: input.fonts
+        label: Base Font
+        default: 'clearsans, sans-serif'
+
+    heading:
+        type: input.fonts
+        label: Heading Font
+
+    size:
+        type: input.text
+        label: Font Size
+        pattern: '\d+(\.\d+){0,1}(rem|em|px)'
+        placeholder: 1.5rem(default)
+        default: 1.5rem
+    
+    line-height:
+        type: input.text
+        label: Line Height
+        pattern: '\d+(\.\d+){0,1}'
+        placeholder: Font-size + 0.4 (default) 
+        default: "1.9"

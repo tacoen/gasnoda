@@ -1,0 +1,39 @@
+title: sql
+'@extends':
+    type: default
+    context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        sql:
+          type: tab
+          title: SQL
+
+          fields:
+
+            header.sqlquery:  
+                type: textarea
+                label: SQL Query
+            header.crud:
+                type: checkbox
+                default: true
+                label: Enable CRUD Function
+            header.id:
+                type: text
+                label: id
+            header.class:
+                type: text
+                label: Class
+            header.query_select:
+                type: text
+                label: Query Selector
+                default: id
+            header.hidden:
+                type: text
+                label: Hide
+                default: id

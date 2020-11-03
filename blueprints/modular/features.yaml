@@ -1,0 +1,74 @@
+title: Features
+extends@: default
+
+form:
+  fields:
+    tabs:
+      fields:
+        advanced:
+          fields:
+            columns:
+              fields:
+                column1:
+                  fields:
+                    name:
+                      default: 'modular/features'
+                      data-options@: '\Grav\Common\Page\Pages::modularTypes'
+            overrides:
+              fields:
+                header.template:
+                  default: 'modular/features'
+                  data-options@: '\Grav\Common\Page\Pages::modularTypes'
+        features:
+          type: tab
+          title: Properties
+          fields:
+
+            header.layout:
+              name: layout
+              type: select
+              label: Layout
+              placeholder: 'Select...'
+              default: vertical
+              options:
+                vertical: vertical
+                horizontal: horizontal
+
+            header.blend:
+              type: select
+              label: Image Blend-Mode
+              placeholder: 'Select...'
+              default: soft-light
+              options:
+                normal: normal
+                soft-light: soft-light
+                hard-light: hard-light
+                overlay: overlay
+                darken: darken
+                multiply: multiply
+                screen: screen
+                lighten: lighten
+                color-burn: color-burn
+                color-dodge: color-dodge
+                saturation: saturation
+                hue: hue
+                color: color
+                luminosity: luminosity
+                difference: difference
+                auto: auto                
+          
+            header.features:
+              name: features
+              type: list
+              label: Features
+
+              fields:
+                .icon:
+                  type: text
+                  label: Icon
+                .header:
+                  type: text
+                  label: Header
+                .text:
+                  type: text
+                  label: Text
