@@ -1,0 +1,17 @@
+name: Page Title
+type: particle
+icon: fa-header
+
+configuration:
+  caching:
+    type: static
+
+form:
+  fields:
+    enabled:
+      type: input.checkbox
+      label: Enabled
+      description: Globally enable the particle.
+      default: true  
+
+ 

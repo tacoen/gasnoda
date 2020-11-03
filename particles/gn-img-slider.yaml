@@ -1,0 +1,47 @@
+name: Image Slider
+description: Displays Image Slider
+type: particle
+icon: fa-image
+
+configuration:
+  caching:
+    type: static
+
+form:
+  fields:
+    enabled:
+      type: input.checkbox
+      label: Enabled
+      description: Globally enable the particle.
+      default: true
+      
+    delay:
+      type: input.text
+      label: delay
+      default: 5
+
+    height:
+      type: input.text
+      label: Height
+      default: 200px
+      
+    images:
+      type: collection.list
+      array: true
+      label: Images
+      description: Create each item to appear in the content row.
+      value: title
+      ajax: true
+      overridable: false
+
+      fields:
+        .image:
+            type: input.imagepicker
+            label: Image
+
+        .caption:
+            type: input.text
+            label: caption
+            overridable: true
+
+          

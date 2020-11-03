@@ -1,0 +1,18 @@
+version: 2
+preset:
+  image: 'gantry-admin://images/layouts/2-col-left.png'
+  name: 2_column_left
+layout:
+  /navigation/: {  }
+  /container-main/:
+    -
+      -
+        'aside 20': {  }
+      -
+        'header 80' : {  }
+        'main 80': {  }
+        'footer 80': {  }
+  
+  floats:
+    -
+      - system-messages-6818

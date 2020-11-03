@@ -1,0 +1,39 @@
+{% extends "partials/page.html.twig" %}
+{% set do = uri.param('do') %}
+{% set qfile = uri.query('file') %}
+
+
+{% block content %}
+
+
+{% switch do %}
+
+
+  {% case 'edit' %}
+
+	<pre class='dummy'>{{ fileget(qfile) }}</pre>
+		
+    {% include "forms/form.html.twig" %}
+
+	{%-set inlinejs %}
+	
+	document.addEventListener('DOMContentLoaded', function () {
+		document.querySelector("textarea[name='data[text]'").innerHTML = document.querySelector('.dummy').innerHTML;
+	});
+	
+	{% endset -%}
+	{%- do gantry.document.addInlineScript(inlinejs, 0, 'footer') -%}
+		
+  {% default %}
+
+    {% set files =  filedir('/user/themes/noda/scss/nucleus-s/component','*.scss') %}
+    <ul class='filedir'>
+    {% for file in files %}
+      <li><a href= "{{uri.path()}}/do:edit/?file={{file}}">{{file}}</a></li>
+    {% endfor %}
+    </ul>
+    
+
+{% endswitch %}
+	
+{% endblock %}

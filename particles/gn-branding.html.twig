@@ -1,0 +1,57 @@
+{% extends '@nucleus/partials/particle.html.twig' %}
+
+{% set image = url(particle.logo) %}
+{% set icon = particle.icon|raw %}
+
+{% if particle.title %}
+    {%- set title = particle.twig ? gantry.theme.compile(particle.title) : particle.title -%}
+    {%- set stitle = (particle.filter ? gantry.platform.filter(title) : title)|html|raw %}
+{% endif %}
+
+{% if particle.height is not empty %}
+    {% set heights = "style=height:"~particle.height|raw~";" %}
+    {% set iconsize = (round(particle.height|raw|number_format/16)-1)~"rem" %}
+    {% set margin = (round(particle.height|raw|number_format/16)-1)/3~"rem" %}
+{% else %}
+    {% set heights = "" %}
+    {% set iconsize = "1rem" %}
+{% endif %}
+
+{% block particle %}
+
+    <div id="gn-branding" class="{{ particle.class|raw }}" >
+
+    <a href="/" title="{{ stitle }}">
+
+    {% if particle.svg is not empty %}
+        <div class='site-logo' {{ heights }} >{{ particle.svg|raw }}</div>
+    {% elseif image %}
+        <div class='site-logo' {{ heights }}><img src="{{ url(particle.logo) }}" alt="{{ particle.title }}"></div>
+    {% elseif icon %}
+        <div class='site-logo' {{ heights }}><i style="font-size:{{ iconsize }}; margin-right:{{ margin }}" class="icon {{ icon }}" title="{{ stitle }}"></i></div>
+    {% endif %}
+
+    {% if particle.title %}
+        {% set wrap = 1 %}
+        {% set wtitle = "<div class='site-title'>"~stitle~"</div>" %}
+    {% endif %}
+
+    {% if particle.html %}
+        {% set wrap = 1 %}
+        {% set wsubtext %}
+        <div class='subtext'>
+        {% set html = particle.twig ? gantry.theme.compile(particle.html) : particle.html %}
+        {{ (particle.filter ? gantry.platform.filter(html) : html)|html|raw }}
+        </div>
+        {% endset %}
+    {% endif %}
+
+    {% if wrap %} <div class='wrapper' {{ heights }}>{% endif %}
+        {{ wtitle }}
+        {{ wsubtext }}
+    {% if wrap %}</div>{% endif %}
+
+    </a>
+    </div>
+
+{% endblock %}

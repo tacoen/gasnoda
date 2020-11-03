@@ -1,0 +1,24 @@
+{% extends "partials/page.html.twig" %}
+
+
+{% block content %}
+
+{{ page.content|raw }}
+
+<ul class='page-staff'>
+{% for p in header.list %}
+	<li>
+	<div class='picture'>{{ page.media[p.picture]|raw }}</div>
+	<div class='data'>
+	{% if p.name %}<p><label>Name</label><span class='name value'>{{ p.name }}</span></p>{% endif %}
+	{% if p.field1 %}<p><label>{{ header.field1 }}</label><span class='value'>{{ p.field1 }}</span></p>{% endif %}
+	{% if p.field2 %}<p><label>{{ header.field2 }}</label><span class='value'>{{ p.field2 }}</span></p>{% endif %}
+	{% if p.field3 %}<p><label>{{ header.field3 }}</label><span class='value'>{{ p.field3 }}</span></p>{% endif %}
+	{% if p.desc %}<p><label></label><span class='desc value'>{{ p.desc }}</span></p>{% endif %}
+	</div>
+	</li>
+{% endfor %}
+</ul>
+
+
+{% endblock %}

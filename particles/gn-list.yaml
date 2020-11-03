@@ -1,0 +1,68 @@
+name: Gasnoda List
+type: particle
+icon: fa-list-ol
+
+
+configuration:
+  caching:
+    type: static
+
+form:
+  fields:
+    enabled:
+      type: input.checkbox
+      label: Enabled
+      description: Globally enable the particle.
+      default: true
+
+    layout:
+      type: select.selectize
+      label: Content Layout
+      overridable: false
+      placeholder: Select Layout...
+      options:
+        table: table
+        link-list: links
+        buttons: buttons
+        default: default
+
+    headline:
+      type: input.text
+      label: Headline
+      description: Customize the headline text.
+      placeholder: Enter headline
+      overridable: false
+
+    description:
+      type: textarea.textarea
+      label: Description
+      description: Customize the description.
+      placeholder: Enter short description
+      overridable: false
+
+    items:
+      type: collection.list
+      array: true
+      label: Sample Items
+      description: Create each item to appear in the content row.
+      value: title
+      ajax: true
+
+      fields:
+
+        .title:
+          type: input.text
+          label: Title
+
+        .image:
+            type: input.imagepicker
+            label: Image
+
+        .subtitle:
+          type: input.text
+          label: Sub Title
+
+        .link:
+            type: input.text
+            label: Link
+

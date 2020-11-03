@@ -1,0 +1,71 @@
+{% extends '@nucleus/partials/particle.html.twig' %}
+
+{% set layout %}
+{% include '@particles/gn-card/'~particle.layout~'.html.twig' ignore missing with particle %}
+{% endset %}
+
+{% if particle.color %}
+	{% set stylecolor = "style=--color:"~particle.color %}
+{% endif %}
+
+{% set uniqId = 'gn-card-'~random(100, 999) %}
+
+{% block particle %}
+
+
+	{% if layout %}
+
+		<div id='{{ uniqId }}'{{ stylecolor}} class="hsl-pal gn-card {{ particle.layout|e }} {{ particle.variations|e }}">
+		{{ layout }}
+		</div>
+
+	{% else %}
+
+		<div class="gn-card default {{ particle.variations|e }}">
+
+			{% if particle.image %}
+				<div class='image'>
+				<img src="{{ url(particle.image) }}" alt="{{ particle.headline|e }}" />
+				</div>
+			{% endif %}
+			{% if particle.headline %}
+				<div class='headline'>{{ particle.headline|raw }}</div>
+			{% endif %}
+			{% if particle.description %}
+				<div class="description">{{ particle.description|raw }}</div>
+			{% endif %}
+
+			{% if particle.link %}
+				<a class="button primary" href="{{ particle.link|raw }}">
+				{% if particle.linktext %}
+					{{ particle.linktext|raw }}
+				{% else %}
+					Link
+				{% endif %}
+				</a>
+			{% endif %}
+
+			{% if particle.items|length >0 %}
+				<ul class='items'>
+				{% for item in particle.items %}
+					<li class="item">
+					{% if item.title %}
+						<div class="item-title">{{ item.title|raw }}</div>
+					{% endif %}
+					{% if item.text %}
+						<div class='item-text'>{{ item.text|raw }}</div>
+					{% endif %}
+					</li>
+				{% endfor %}
+				</ul>
+			{% endif %}
+
+		</div>
+
+	{% endif %}
+
+
+
+{% endblock %}
+
+{% do gantry.document.addInlineScript('construct_SectionPallete("#'~uniqId~'")', 0, 'footer') %}

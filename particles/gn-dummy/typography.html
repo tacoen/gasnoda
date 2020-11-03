@@ -1,0 +1,160 @@
+<h1>Typography</h1>
+
+<div class="g-grid gn-flush">
+    <div class="g-block size-50">
+        <div class="g-content">
+            <h2>Line Height Issue</h2>
+            <p>
+                The style is <strong>strong</strong> while obilique is <i>italic</i> not <u>underline</u> nor <strike>strike</strike>. Strong? why not <b>Bold</b> or <em>Emphasis</em>. <big>Big</big> or <small>Small</small>. 
+				<code>&crarr;</code><br>In This Theme; we are using css var() for color palletes and things
+                like these: (<code>var(--txt-1);</code>) with a <span data-tooltip="Chrome, Edge, etc." data-flow="top">modern browser tricks</span> which you can customize. The css included <mark>Highlighted</mark> and <kbd>ctrl+b</kbd>.
+                Please Read all about it in <a href="//tacoen.github.io/Gasnoda-theme">GasnodaTheme's Page</a>, or just view the source. By the way, Who still use inline <a class="button">Button</a> inside a paragraph? 
+				<p>It's Line-height issue in general <abbr title='Hypertext markup language'>HTML</abbr>.</p> 
+            </p>
+
+			<p>That's some text with a footnote.<sup id="fnref1:1"><a href="#fn:1" class="footnote-ref">1</a></sup></p>
+
+            <p>Hey, how about Buttons in pairs?</p>
+            <div><a class="button secondary">Button 1</a><a class="button primary">Primary Button</a></div>
+
+            <h2>It's Grav (h2)</h2>
+
+            <p>
+                Grav is a modern open source flat-file CMS. Packed to the gills with amazing features and tools, coupled with heaps of detailed <a href="//learn.getgrav.org/">documentation</a>, Grav will make you look like a hero developer!
+            </p>
+
+            <ul>
+                <li>Flat-File Architecture</li>
+                <li>Smart caching</li>
+                <li>Awesome Technology</li>
+                <li>Powerful Configuration Overrides</li>
+                <li>And many more</li>
+            </ul>
+
+            <h3>It's Markdown (h3)</h3>
+
+            <ol>
+                <li>lightweight markup language, with</li>
+                <li>plain-text-formatting syntax</li>
+            </ol>
+
+            <p>Markdown is often used for formatting readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor.</p>
+        </div>
+    </div>
+    <div class="g-block size-50">
+        <div class="g-content">
+            <h4>Pre-code</h4>
+            <pre><code><%php
+	$a++;
+	echo 'Hello world ($a)';
+?%></code></pre>
+
+            <h5>Quote (h5)</h5>
+
+            <blockquote>
+                porttitor molestie ex proin facilisi
+                <cite>lorem quote</cite>
+            </blockquote>
+			
+			<hr>
+			<p>Sometext between <code>&lt;hr&gt;</code> horizontal lines</p>
+			<hr>
+
+            <h6>Table (h6)</h6>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Float</th>
+                        <th style="text-align: left;">Words</th>
+                        <th style="text-align: right;">Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.0</td>
+                        <td style="text-align: left;">Full</td>
+                        <td style="text-align: right;">100%</td>
+                    </tr>
+                    <tr>
+                        <td>0.9</td>
+                        <td style="text-align: left;">Near Full</td>
+                        <td style="text-align: right;">90%</td>
+                    </tr>
+                    <tr>
+                        <td>0.5</td>
+                        <td style="text-align: left;">Half</td>
+                        <td style="text-align: right;">50%</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+<h4>Forms</h4>
+			
+<form class='form-inline'>
+  
+  <fieldset>
+	<p><label for="name">Name</label>
+	<input name='name' type='text' placeholder='Some text...'>
+	</p>
+	<p class='inline'><label for="name">Anything</label>
+	<input name='name' type='text' placeholder='Some text...'>
+	<input type="submit" value="Submit">
+	</p>
+
+	<div class='value group'>
+	<h5>Gender</h5>
+	<input type="radio" id="male" name="gender" value="male">
+	<label for="male">Male</label>
+	<input type="radio" id="female" name="gender" value="female">
+	<label for="female">Female</label>
+	<input type="radio" id="other" name="gender" value="other">
+	<label for="other">Other</label>
+	</div>
+	<p>
+	<label for="cars">Choose a car:</label>
+	<select id="cars" name="cars">
+		<option value="volvo">Volvo</option>
+		<option value="saab">Saab</option>
+		<option value="fiat">Fiat</option>
+		<option value="audi">Audi</option>
+		</select>
+	</p>
+	
+	<p class='full'><label>Textarea</label>
+	<textarea name="message" rows="2" cols="30">The cat was playing in the garden.</textarea></P>
+
+	<p class='actions group'>
+	<input type="submit" class='primary align-right' value="Submit">
+	<input type="reset" class='secondary' value="Clear">
+	<input type="reset" class='toggle' value="Default">
+	</P>
+  
+  </fieldset>
+</form>			
+			
+
+			
+        </div>
+    </div>
+</div>
+
+<div class='notices yellow'>
+<p>This page was created inside markdown, saved as html, beautify by <a href='https://webformatter.com/html'>Webformater</a>, and here for design purpose.</p>
+</div>
+
+
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>And that's the footnote.</p>
+<p>That's the second paragraph.&nbsp;<a href="#fnref1:1" rev="footnote" class="footnote-backref"></a></p>
+</li>
+<li><p>
+<a href='https://01.org/clear-sans'>Clear Sans</a> is a versatile OpenType font for screen, print, and Web. We designed Clear Sans with on-screen legibility and glanceability in mind. It strikes a balance between contemporary, professional, and stylish expression and thoroughly functional purpose. It has a sophisticated and elegant personality at all sizes, and its thoughtful design becomes even more evident at the thin weight.
+</p>
+</li>
+</ol>
+</div>
+			

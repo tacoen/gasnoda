@@ -1,0 +1,138 @@
+{% extends "partials/page.html.twig" %}
+{% block content %}
+<div class='pg-header'>
+  <h2>{{ page.title|raw }}</h2>
+  <div class='metadata'>
+  <i class='fa fa-calendar-check-o'></i> Modifikasi: {{ page.date|date('d M yy') }}
+  <div class='tags'>
+  {% for tag in page.taxonomy.tag %}
+  <a href="search/tag:{{ tag }}">{{ tag }}</a>
+  {% endfor %}
+  </div>
+  </div>
+  <div class='tools'>
+  <a id='styetoggle' class='button' href='javascript:gdocu_toggle_style()'><i class='fa fa-css3'></i> All</a>
+  {% if config.gas.admin %}
+  <a class='button' href='/admin/pages{{uri.path}}'><i class="fa fa-edit"></i> Edit</a>
+  {% endif %}
+  </div>
+</div>
+{% if header.jsopt.toc==true %}
+  {% set hastoc = 'has-toc' %}
+  {% set pg_side %}
+    <div class='pg-side'>
+    <div class='toc deck-to-top'>
+    <h4>Content</h4>
+    <div id='gn-toc'></div>
+    </div>
+    </div>
+  {% endset %}
+  {%-set tocinlinejs %}
+  prepare_for_tocbot('.pg');
+  tocbot.init({
+    tocSelector: '#gn-toc',
+    contentSelector: '.pg',
+    headingSelector: 'h3, h4, h5',
+  });
+  {% endset -%}
+  {%- do gantry.document.addScript(url('gantry-theme://js/tocbot/tocbot.min.js'), 3, 'footer') -%}
+  {%- do gantry.document.addInlineScript(tocinlinejs, 0, 'footer') %}
+{% endif %}
+<div class='pg-grid {{hastoc}}'>
+  <div class='pg hsl-pal'>
+  <div class='main-content'>
+  {{ page.content|raw }}
+  </div>
+  {% if page.header.template_name %}
+    <h3>Template</h3>
+    {% set file = '/user/themes/noda/blueprints/'~page.header.template_name~'.yaml' %}
+    {% set tpl = filecontent(file) %}
+    {% if tpl != file %}
+      <h4>Blueprint</h4>
+      <pre class='click-copy full-height'>{{ tpl|raw|stripper|e }}</pre>
+    {% endif %}
+    {% set file = '/user/themes/noda/templates/'~page.header.template_name~'.html.twig' %}
+    {% set tpl = filecontent(file) %}
+    {% if tpl != file %}
+      <h4>Twig</h4>
+      <pre class='click-copy full-height'>{{ tpl|raw|stripper|e }}</pre>
+    {% endif %}
+  {% endif %}
+  {% if page.header.picon %}
+    <h3>Particle</h3>
+    <h6>Particles Button</h6>
+    <div class="g5-lm-particle-particle mb-1">
+    <span class="particle-icon"><i class="fa fa-fw {{page.header.picon}}" aria-hidden="true"></i></span>
+    <span class="particle-title">{{page.header.pname}}</span>
+    </div>
+  {% endif %}
+  {% if page.header.particle_skeleton %}
+    {% set raw_txt = filecontent('skeleton.txt') %}
+    {% if raw_txt != 'skeleton.txt' %}
+      <h4>SCSS Skeleton</h4>
+      <pre class='scss click-copy'>{{ raw_txt|stripper }}</pre>
+    {% endif %}
+  {% endif %}
+  {% if page.header.particle_name %}
+    {% set file = '/user/themes/noda/particles/'~page.header.particle_name~'.html.twig' %}
+    {% set tpl = filecontent(file) %}
+    {% if tpl != file %}
+      <h4>Twig</h4>
+      <pre class='click-copy full-height'>{{ tpl|raw|stripper|e }}</pre>
+    {% endif %}
+  {% endif %}
+  {% if page.header.items %}
+    <h3>Variasi</h3>
+    {% for item in page.header.items %}
+    <h4>{{item.name}}</h4>
+    {% if item.type =='markdown' %}
+      <div class='gn-col'>
+        <div>{{ gantry.platform.filter(item.txt|markdown|html)|raw }}</div>
+        <div class='code'><pre class='click-copy'>{{ item.txt|replace({"\n\r":""}) }}</pre></div>
+      </div>
+    {% elseif item.type == 'html' %}
+      <div class='gn-col'>
+        <div>{{ item.txt|raw }}</div>
+        <div class='code'><pre class='click-copy'>{{ item.txt|e }}</pre></div>
+      </div>
+    {% elseif item.type == 'twig' %}
+      {%- set item_txt =  gantry.theme.compile(item.txt) %}
+      <div class='gn-col'>
+        <div>{{ item_txt|html|raw }}</div>
+        <div class='code'><pre class='click-copy'>{{ item.txt|e }}</pre></div>
+      </div>
+    {% endif %}
+    {% endfor %}
+  {% endif %}
+  {% if header.content %}
+    {% set content_html = filecontent('content.html') %}
+    {% if content_html != 'content.html' %}
+	<div class='extend-content'>{{ content_html|stripper|raw }}</div>
+    {% endif %}
+  {% endif %}
+  </div>
+  {{ pg_side }}
+</div>
+<div class='pg-note'>
+<p class='client-info'>&#128187; {{ browser.platform}} - {{ browser.browser}} {{ browser.version}}</p>
+<p>Dalam situs ini, termuat penjelasan mengenai hal-hal yang digunakan/berhubungan dengan Tema "Gasnoda Noda" yang dibuat <b>Pakai Gantry Dengan Grav</b>. Gasnoda Noda adalah Tema yang dikembangkan oleh <a href='//tacoen.github.io'>tacoen</a>. Open source dan berlisensi MIT jika memungkinkan.</p>
+</div>
+{% if header.query %}
+  {% include "gdocu/code.html.twig" %}
+{% endif %}
+{% if header.jsopt.constructstyle==true %}
+  {% include "gdocu/color.html.twig" %}
+{% endif %}
+{% set gdocu_script %}
+  {%- if header.query %}gdocu_codebox_init('{{header.query}}');{% endif -%}
+  {%- if header.jsopt.toc %}gn_fixtop('.toc',false);{% endif -%}
+
+var s1 = document.querySelector("head link[href*='/gdocu']");
+var s2 = document.querySelector("head link[href*='theme_']");
+
+	
+  
+{% endset %}
+{%- do gantry.document.addScript(url('gantry-theme://js/gdocu.js'), 1, 'footer') -%}
+{%- do gantry.document.addInlineScript(gdocu_script|trim, 0, 'footer') -%}
+{% endblock %}

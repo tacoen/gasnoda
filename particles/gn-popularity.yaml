@@ -1,0 +1,27 @@
+name: Popularity
+description: Grav Popularity Stat
+type: particle
+icon: fa-square-o
+
+configuration:
+  caching:
+    type: config_matches
+    values:
+      twig: '1'
+      filter: '0'
+
+form:
+  fields:
+    enabled:
+      type: input.checkbox
+      label: Enabled
+      description: Globally enable the particle.
+      default: true
+    
+    title:
+      type: input.text
+      label: title
+      default: Visitor
+      description: Customize the headline text.
+      placeholder: Enter headline
+      overridable: false

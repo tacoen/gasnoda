@@ -1,0 +1,292 @@
+<h1>Creator Sandbox</h1>
+
+<div class='g-grid wfh panel'>
+	<div class='g-block size-40'>
+	<p><label>Color:</label><input class='fit' onchange='javascript:cocok("color")' type='text' value='' name='color'>
+	<button class='fit' onclick='javascript:randomcolor()'>Random</button></p>
+	</div>
+	<div class='g-block size-30'>
+	<p><label>Primary:</label><input onchange='javascript:cocok("primary")' type='text' value='' name='primary'></p>
+	</div>
+	<div class='g-block size-30'>
+	<p><label>Secondary:</label><input onchange='javascript:cocok("secondary")' type='text' value='' name='secondary'></p>
+	</div>
+</div>
+
+<div class='sandbox'>
+
+<div class='row'>
+
+<div class='colorbar main'>
+	<h3>Level</h3>
+	<input type="checkbox" id="chart-1">
+	<label for="chart-1">
+	<i class="off fa fa-toggle-off"></i> <i class="on fa fa-toggle-on"></i>
+	</label>
+	<div class="chart chart-1 main">
+		<div class='row'>
+		<div class='col'><div class='bg-b0'></div></div>
+		<div class='col'><div class='bg-b1'></div></div>
+		<div class='col'><div class='bg-d3'></div></div>
+		<div class='col'><div class='bg-d2'></div></div>
+		<div class='col'><div class='bg-d1'></div></div>
+		<div class='col'><div class='bg-bg'></div></div>
+		<div class='col'><div class='bg-l1'></div></div>
+		<div class='col'><div class='bg-l2'></div></div>
+		<div class='col'><div class='bg-l3'></div></div>
+		<div class='col'><div class='bg-w1'></div></div>
+		<div class='col'><div class='bg-w0'></div></div>
+	</div>
+	</div>
+</div>
+
+<div class='colorbar'>
+	<h3>Complement</h3>
+	<input type="checkbox" id="chart-4">
+	<label for="chart-4">
+	<i class="off fa fa-toggle-off"></i> <i class="on fa fa-toggle-on"></i>
+	</label>
+	<div class="chart chart-4 subs">
+		<div class='row'>
+		<div class='col'><div class='bg-bg'></div></div>
+		<div class='col'><div class='bg-co'></div></div>
+		</div>
+	</div>
+</div>
+
+<div class='colorbar'>
+	<h3>Analogus</h3>
+	<input type="checkbox" id="chart-2">
+	<label for="chart-2">
+	<i class="off fa fa-toggle-off"></i> <i class="on fa fa-toggle-on"></i>
+	</label>
+	<div class="chart chart-2 subs">
+		<div class='row'>
+		<div class='col'><div class='bg-a1'></div></div>
+		<div class='col'><div class='bg-bg'></div></div>
+		<div class='col'><div class='bg-a2'></div></div>
+		</div>
+	</div>
+</div>
+
+<div class='colorbar'>
+	<h3>Triadic</h3>
+	<input type="checkbox" id="chart-3">
+	<label for="chart-3">
+	<i class="off fa fa-toggle-off"></i> <i class="on fa fa-toggle-on"></i>
+	</label>
+	<div class="chart chart-3 subs">
+		<div class='row'>
+		<div class='col'><div class='bg-t1'></div></div>
+		<div class='col'><div class='bg-bg'></div></div>
+		<div class='col'><div class='bg-t2'></div></div>
+		</div>
+	</div>
+</div>
+
+</div>
+<div class='row'>
+
+
+<div class='colorbar main'>
+	<h3>Contrast Ratio</h3>
+	<input type="checkbox" id="chart-5">
+	<label for="chart-5">
+	<i class="off fa fa-toggle-off"></i> <i class="on fa fa-toggle-on"></i>
+	</label>
+	<div class="chart chart-5 subs">
+		<div class='row'>
+		<div class='col'><div class='bg-b0'>
+			</div></div>
+		<div class='col'><div class='bg-d2'>
+			</div></div>
+		<div class='col'><div class='bg-bg'>
+			</div></div>
+		<div class='col'><div class='bg-l2'>
+			</div></div>
+		<div class='col'><div class='bg-w0'>
+			</div></div>
+		</div>
+	</div>
+</div>
+
+
+<div class='colorbar'>
+	<h3>Accent</h3>
+	<input type="checkbox" id="chart-6">
+	<label for="chart-6">
+	<i class="off fa fa-toggle-off"></i> <i class="on fa fa-toggle-on"></i>
+	</label>
+	<div class="chart chart-6 subs">
+		<div class='row'>
+		<div class='col'><div class='bg-bg'></div></div>
+		<div class='col'><div class='bg-primary'></div></div>
+		<div class='col'><div class='bg-secondary'></div></div>
+		</div>
+	</div>
+</div>
+
+
+</div>
+
+<div class='g-grid'>
+<div class='g-block size-60'>
+<div class='sample-panel'>
+<h3>Sample</h3>
+<input type="checkbox" id="sample">
+<label for="sample">
+<i class="off fa fa-toggle-off"></i> <i class="on fa fa-toggle-on"></i>
+</label>
+<div class='sample'>
+
+<h2 style='margin-top:0'>Clear Sans</h2>
+<p>We designed Clear Sans with on-screen legibility and glanceability in mind. It strikes a balance between contemporary, professional, and stylish expression and thoroughly functional purpose.</p>
+
+<p style='text-align: right; padding-right: 3rem;'>
+	<input type="submit" class="primary align-right" value="Submit">
+	<input type="reset" class="secondary" value="Clear">
+	<input type="reset" class="toggle" value="Default">
+</p>
+
+<pre>:root { --black: #000; --pink: #fdd; }</pre>
+
+<blockquote>
+porttitor molestie ex proin facilisi 
+<cite>lorem quote</cite>
+</blockquote>
+
+<table>
+<thead>
+<tr>
+
+<th>Percentage</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tr>
+<td>50%</td>
+<td>0.5</td>
+<td>Half</td>
+</tr>
+<tr>
+<td>100%</td>
+<td>1.0</td>
+<td>Full</td>
+</tr>
+<tr>
+<td>25%</td>
+<td>0.25</td>
+<td>Quater</td>
+</tr>
+</table>
+
+</div>
+</div></div>
+<div class='g-block size-40'>
+<div class='g-content'>
+<div class='wfh'>
+	<p><label>Class:</label>
+	<input type='text' readonly value='' name='class'>
+	</p>
+	<p><label>CSS var:</label>
+	<input type='text' class='var' readonly value='' name='var'>
+	<span class='box1'></span>
+	</p>
+	<p><textarea readonly value='' name='cssvar' rows=5></textarea></p>
+</div>
+</div>
+
+</div>
+</div>
+
+
+
+
+
+</div><!-- eof sandbox -->
+
+<script>
+
+function randomcolor() {
+	var letters = '0123456789ABCDEF';
+	var color = '#';
+	for (var i = 0; i < 6; i++) {
+		color += letters[Math.floor(Math.random() * 16)];
+	}
+	document.querySelector("input[name='color']").value = color;
+	cocok("color");
+}
+
+
+function cocok(what) {
+	var i = document.querySelector("input[name='"+what+"']");
+	val = i.value
+	if (val=='') {
+		gas('.sandbox').cssvarRemove(what);
+	} else {
+		var val = document.querySelector("input[name='"+what+"']").value;
+		gas('.sandbox').cssvar(what,val)
+	}
+
+	construct_SectionPallete2(".sandbox");	
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+
+	construct_SectionPallete2(".sandbox");
+
+	//fill-in
+	
+	document.querySelector("input[name='color']").value =gas('.sandbox').cssvar('color');
+	document.querySelector("input[name='primary']").value =gas('.sandbox').cssvar('primary');
+	document.querySelector("input[name='secondary']").value =gas('.sandbox').cssvar('secondary');
+
+	document.querySelectorAll('.sandbox [class*=bg-]').forEach(
+	
+	
+		function(c) {
+
+			var bg = c.getAttribute('class').replace('bg-','');
+			bg.replace(/\s+/ig,'');
+			var cnote='';
+			var ori = c.innerHTML;
+			var bg_val= gas('.sandbox').cssvar(bg);
+			if (gas('.sandbox').cssvar('gray') == bg_val) { cnote ="<span class='sub'>gray</span>" }
+			
+			c.innerHTML = "<div class='name'>"+cnote+"<span>"+bg+"</span></div>"+ori;
+			
+			c.addEventListener("click", function(e) {
+				cl = 'bg-'+bg;
+				var ext ='';
+				var ext_txt ='';
+				var nd = '';
+				document.querySelector("input[name='class']").value = cl;
+				
+				if (bg=='primary') { 
+					ext = ", var(--co)"; 
+					ext_txt = ', var(--co-txt'; 
+					nd = ")";
+				}
+				
+				if (bg=='secondary') { 
+					ext = ", var(--a1)"; 
+					ext_txt = ', var(--a1-txt'; 
+					nd = ")";
+				}
+				
+				document.querySelector("input[name='var']").value = "var(--"+bg+ext+")";
+				document.querySelector(".box1").style.backgroundColor="var(--"+bg+ext+")";				
+
+				var css_str = 'background-color: var(--' + bg + ext +');\n';
+				    css_str += 'color: var(--'+bg+'-txt'+ext_txt+', var(--txt)'+nd+');';			
+
+			document.querySelector("textarea[name='cssvar']").innerHTML = css_str
+			
+			});
+
+		});
+		
+})
+
+</script>

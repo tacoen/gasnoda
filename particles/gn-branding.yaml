@@ -1,0 +1,76 @@
+name: Gasnoda Branding
+type: particle
+icon: fa-trademark
+
+configuration:
+  caching:
+    type: static
+
+form:
+  fields:
+
+    enabled:
+      type: input.checkbox
+      label: Enabled
+      description: Globally enable the particle.
+      default: true
+
+    _tabs:
+      type: container.tabs
+      fields:
+
+        _tab_title:
+          label: Title
+          overridable: false
+          fields:
+
+            title:
+                type: input.text
+                label: Site Title
+                default: "{{ config.site.title }}"
+
+            html:
+                type: textarea.textarea
+                label: Sub Text
+                default: "{{ config.site.metadata.description }}"
+
+            twig:
+                type: input.checkbox
+                label: Process Twig
+                default: '1'
+
+            filter:
+                type: input.checkbox
+                label: Process shortcodes
+                default: '0'
+
+            class:
+                type: input.selectize
+                label: CSS Classes
+                description: Set a specific CSS class for custom styling.
+
+        _tab_logo:
+          label: Logo
+          overridable: false
+          fields:
+
+            logo:
+                type: input.imagepicker
+                label: Image
+
+            svg:
+                type: textarea.textarea
+                label: Logo SVG Code
+                placeholder: 'Place your <svg> code here.'
+      
+            icon:
+                type: input.icon
+                label: Icon
+                default: "fa fa-grav"
+      
+            height:
+                type: input.text
+                label: Height
+                default: 48px
+                pattern: '\d+(\.\d+){0,1}(rem|em|ex|ch|vw|vh|vmin|vmax|%|px|cm|mm|in|pt|pc)'
+        

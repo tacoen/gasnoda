@@ -1,0 +1,37 @@
+name: Gasnoda PageTree
+type: particle
+icon: fa-tree
+
+configuration:
+  caching:
+    type: static
+
+form:
+  fields:
+
+    enabled:
+      type: input.checkbox
+      label: Enabled
+      description: Globally enable the particle.
+      default: true  
+
+    pagekey:
+        type: input.text
+        label: Branch
+        overrideable: True
+        default: 
+
+    layout:
+        type: select.selectize
+        label: Layout
+        default: tree
+        options:
+            tree: tree
+            collapse: collapse
+            block: block
+            
+    expand:
+        type: input.checkbox
+        label: Show Child
+        default: 0
+ 

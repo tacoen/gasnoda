@@ -1,0 +1,11 @@
+{% block particle %}
+
+<div class='popularity line-data'>
+{% if particle.title %}<h4>{{ particle.title|raw }}</h4>{% endif %}
+<div class='daily'>Daily<span class="stat">{{ gantry.global.stat_daily }}</span></div>
+<div class='monthly'>Monthly<span class="stat">{{ gantry.global.stat_monthly }}</span></div>
+<div class='total'>Totals<span class="stat">{{ gantry.global.stat_total }}</span></div>
+</div>
+
+
+{% endblock %}

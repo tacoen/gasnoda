@@ -1,0 +1,42 @@
+
+<form name="txt-form" action="/form" method="post" id="txt-form">
+<div class="form-field">
+<div class="form-label"><label class="inline">Name <span class="required">*</span></label></div>
+<div class="form-data" data-grav-field="text" data-grav-disabled="" data-grav-default="null">
+<div class="form-input-wrapper"><input name="data[name]" value="" type="text" class="" placeholder="Enter your name" required="required"></div>
+</div>
+</div>
+<div class="form-field">
+<div class="form-label"><label class="inline"></label></div>
+<div class="form-data" data-grav-field="checkbox" data-grav-disabled="" data-grav-default="true">
+<div class="form-input-wrapper"><input name="data[var1]" value="1" type="checkbox" checked="checked" id="var1" class=""> <label style="display:inline;" class="inline" for="var1">I am checkbox</label></div>
+</div>
+</div>
+<div class="form-field">
+<div class="form-label"><label class="inline">Choice</label></div>
+<div class="form-data" data-grav-field="radio" data-grav-disabled="" data-grav-default="&quot;markdown&quot;">
+<div class="radio"><input type="radio" value="markdown" id="prefer-markdown" name="data[prefer]" class="" checked="checked"> <label style="display: inline" class="inline" for="prefer-markdown">Markdown</label></div>
+<div class="radio"><input type="radio" value="twig" id="prefer-twig" name="data[prefer]" class=""> <label style="display: inline" class="inline" for="prefer-twig">Twig</label></div>
+</div>
+</div>
+<div class="form-field">
+<div class="form-label"><label class="inline">Device</label></div>
+<div class="form-data" data-grav-selectize="[]" data-grav-field="select" data-grav-disabled="" data-grav-default="&quot;mobile&quot;">
+<div class="form-select-wrapper"><select name="data[device]" class="">
+<option selected="selected" value="mobile">Mobile</option>
+<option value="tablet">Tablet</option>
+<option value="desktop">Desktop</option>
+<option value="large">Large Desktop</option>
+</select></div>
+</div>
+</div>
+<div class="form-field">
+<div class="form-label"><label class="inline">Message <span class="required">*</span></label></div>
+<div class="form-data" data-grav-field="textarea" data-grav-disabled="" data-grav-default="null">
+<div class="form-textarea-wrapper">
+<textarea name="data[message]" class="" placeholder="Enter your message" autofocus="autofocus" required="required"></textarea></div>
+</div>
+</div>
+<input data-grav-field="hidden" data-grav-disabled="false" type="hidden" class="input" name="data[something]" value=""> <input type="hidden" name="__form-name__" value="txt-form"> <input type="hidden" name="__unique_form_id__" value="owlbhmuoeicys6ct9ypn"> <input type="hidden" name="form-nonce" value="be53f3d1f9c72dfe999925006db85279">
+<div class="buttons"><button type="submit" class="button">Insert</button> <button type="reset" class="button">Reset</button></div>
+</form>

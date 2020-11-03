@@ -1,0 +1,11 @@
+version: 2
+preset:
+  image: 'gantry-admin://images/layouts/offline.png'
+
+layout:
+  /header/: { }
+  /navigation/: { }
+  /main/:
+    - system-messages
+  /footer/: { } 
+  /floats/: { }

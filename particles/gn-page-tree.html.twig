@@ -1,0 +1,73 @@
+{% extends '@nucleus/partials/particle.html.twig' %}
+
+{% block particle %}
+
+{% if particle.pagekey is empty %}
+	{% set colm = page.slug() %}
+{% elseif particle.pagekey == "/" %}
+	{% set colm = "home" %}
+{% else %}
+	{% set colm = particle.pagekey %}
+{% endif %}
+
+{% if colm == "home" %}
+	{% set pagecol = pages.children.visible %}		
+{% else %}
+	{% set pagecol = pages.find('/'~colm).children.visible %}
+{% endif %}
+
+<div class='gn-tree {{ particle.layout }}' data-slug="{{ colm }}">
+<ol class="gatree toplevel">
+	
+	{% for page in pagecol %}
+
+		{% if particle.expand == 0  %}
+            <li class="item"><a href="{{ page.url }}">{{ page.title }}</a>		
+		{% else %}
+			{% if page.children.visible is empty %}
+				<li class="item">
+				<a class='link' href="{{ page.url }}">{{ page.title }}</a>
+			{% else %}
+				<li class="parent">
+				{% if page.content is empty %}
+					<a class='fold' href="javascript:void(0);">{{ page.title }}</a>
+				{% else %}
+					<a class='link' href="{{ page.url }}">{{ page.title }}</a>
+				{% endif %}
+				<ol>
+					{% for child in page.children.visible %}
+						{% if child.children.visible is empty %}
+							<li class="item">
+							<a class='link' href="{{ child.url }}">{{ child.title }}</a>
+						{% else %}
+							<li class="parent">
+								{% if page.content is empty %}
+									<a class='fold' href="javascript:void(0);">{{ child.title }}</a>
+								{% else %}
+									<a class='link' href="{{ child.url }}">{{ child.title }}</a>
+								{% endif %}
+							<ol>
+								{% for subchild in child.children.visible %}
+									<li class='item'><a class='link' href="{{ subchild.url }}">{{ subchild.title }}</a></li>
+								{% endfor %}
+							</ol>
+						{% endif %}
+						</li>
+					{% endfor %}
+				</ol>
+			{% endif %}
+		{% endif %}
+		
+		</li>
+		
+		{% endfor %}
+</ol>
+</div>
+
+{% endblock %}
+
+
+{% block javascript_footer %}
+	<script src="{{ url('gantry-theme://js/tree.js') }}"></script>
+{% endblock %}
+

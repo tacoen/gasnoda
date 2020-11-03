@@ -1,0 +1,107 @@
+{% set tag_type = segment.subtype|default('section') %}
+{% set attr_id = segment.attributes.id ?: 'g-' ~ segment.id %}
+{% set attr_class = segment.attributes.class
+	~ ' section-'~segment.id 
+    ~ (segment.attributes.variations ? ' ' ~ segment.attributes.variations|join(' ')) %}
+{% set attr_extra = segment.attributes.extra|attribute_array %}
+{% set boxed = segment.attributes.boxed %}
+{% if boxed is not null %}
+    {% set boxed = boxed|trim == '' ? gantry.config.page.body.layout.sections : boxed %}
+{% endif %}
+
+{%- set html %}
+
+	{% if segment.id == 'floats' %}
+		{% for segment in segments %}
+			{% if segment.children %}
+				{% for block in segment.children %}
+					{% for content in block.children %}
+						{% if content.content %}
+							<div class='{{content.subtype}} size-{{content.attributes.size}}'>
+							{{ content.content|raw }}
+							</div>
+						{% endif %}
+					{% endfor %}
+				{% endfor %}
+			{% endif %}
+		{% endfor %}
+
+    {% else %}
+	
+		{% if segment.children %}
+			{% for segment in segments %}
+				{% include '/layout/' ~ segment.type ~ '.html.twig' with { 'segments':segment.children } %}
+			{% endfor %}
+		{% endif %}
+
+    {% endif %}
+
+{% endset %}
+
+{%- if segment.attributes.sticky or html|trim %}
+    {%- if boxed is not null and (boxed == 0 or boxed == 2) %}
+        {% set html %}
+        <div class="g-container">{{ html|raw }}</div>
+        {% endset %}
+    {% endif %}
+
+    {% set html %}
+
+	{%if segment.attributes.blockcolor %}
+		{% set attr_class = attr_class ~ ' bcolors' %}
+	{% endif %}
+    
+	{% if boxed == 2 %}
+		{% set attr_class = attr_class ~ ' g-flushed' %}
+	{% endif %}
+
+	{%if segment.id != 'main' %}
+	{%if segment.attributes.res_enable %}
+
+		{% set attr_class = attr_class ~ ' res' %}
+
+
+		{%if segment.attributes.res_opt_always %}
+			{% set attr_class = attr_class ~ ' res-hide' %}
+		{% endif %}
+
+		{%if segment.attributes.res_opt_swipe %}
+			{% set attr_class = attr_class ~ ' swipe' %}
+		{% endif %}
+
+		{% set attr_class = attr_class ~ ' '~ segment.attributes.res_offcanvas %}
+
+	{% endif %}
+	{% endif %}
+
+	
+	{% set attr_class = attr_class ? ' class="' ~ attr_class|trim ~ '"' -%}
+	
+	{%if segment.attributes.res_enable %}
+	
+		{% pageblock body_top  %}
+
+		<div id="res-ctl-{{segment.id}}" 
+			class="res-ctl {{ segment.attributes.res_offcanvas }}
+			{%if segment.attributes.res_opt_fixed %} fixed{% endif %}
+			{%if segment.attributes.res_opt_always %} show{% endif %}"
+			data-section='#{{attr_id}}'>
+		<i class='{{segment.attributes.res_icon}}'></i>
+		{%if segment.attributes.res_title %}<span>{{segment.attributes.res_title}}</span>{% endif %}
+		</div>
+
+		{% endpageblock %}	
+
+	{% endif %}
+
+    <{{ tag_type }} id="{{ attr_id }}" {{- attr_class|raw }} {{- attr_extra|raw }}>
+		{{ html|raw }}
+    </{{ tag_type }}>
+    {%- endset %}
+
+    {%- if boxed == 1 %}
+    <div class="g-container">{{ html|raw }}</div>
+    {% else %}
+    {{ html|raw }}
+    {% endif %}
+{% endif %}

@@ -1,0 +1,29 @@
+<textarea rows=14>
+preset-name: 'thename'
+  image: 'gantry-admin://images/preset1.png'
+  description: preset-name-description
+  colors:
+{% if dump.header['background'] %}
+	- '{{ dump.header['background'] }}'
+{% endif %}
+{% if dump.navigation['background'] %}
+	- '{{ dump.navigation['background'] }}'
+{% endif %}
+	- '{{ dump.base['background'] }}'
+	- '{{ dump.base['text-color'] }}'
+{% if dump.footer['background'] %}
+	- '{{ dump.footer['background'] }}'
+{% endif %}
+
+  styles:
+{% for style,data in dump %}
+{% if style != 'preset' %}
+    {{style|raw}}:
+{% for field,val in data %}
+{% if val != null %}
+	{{field|raw}}: '{{val|raw}}'
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}
+</textarea>

@@ -1,0 +1,23 @@
+name: Theme Dev
+description: Display Lorem Ipsum in style
+type: particle
+icon: fa-asterisk
+
+configuration:
+  caching:
+    type: config_matches
+    values:
+      twig: '0'
+      filter: '0'
+
+form:
+  fields:
+    enabled:
+      type: input.checkbox
+      label: Enabled
+      default: true
+
+    _info:
+      type: separator.note
+      class: alert alert-danger
+      content: Theme Dev, a content particle for theme developer. Don't, use this particle in production site.

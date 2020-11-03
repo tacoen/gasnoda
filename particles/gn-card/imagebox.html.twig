@@ -1,0 +1,50 @@
+{% if particle.link %}
+	{% set link_prefix	= "<a class='pin'
+	href='"~particle.link|raw~"'>" %}
+	{% set link_suffix	= "</a>" %}
+{% else %}
+	{% set link_prefix	= "" %}
+	{% set link_suffix	= "" %}
+{% endif %}
+
+<div class='content'
+	{% if particle.image %}style="background-image: url('{{ url(particle.image) }}')"{% endif %} >
+
+<div class='overlay'>
+
+{{ link_prefix|raw }}{{ particle.linktext }}{{ link_suffix|raw }}
+
+<div class='normal'>
+	{% if particle.headline %}
+		<h3 class='headline'>{{ particle.headline|raw }}</h3>
+	{% endif %}
+	{% if particle.description %}
+		<div class="description">{{ particle.description|raw }}</div>
+	{% endif %}
+</div>
+
+<div class='hover'>
+	{% if particle.headline %}
+		<h3 class='headline'>{{ particle.headline|raw }}</h3>
+	{% endif %}
+	{% if particle.items|length >0 %}
+		<ul class='items'>
+		{% for item in particle.items %}
+			<li class="item">
+			{% if item.title %}
+				<h4>{{ item.title|raw }}</h4>
+			{% endif %}
+			{% if item.text %}
+				<div class='text'>{{ item.text|raw }}</div>
+			{% endif %}
+			</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+</div>
+
+</div>	
+
+
+</div>
+

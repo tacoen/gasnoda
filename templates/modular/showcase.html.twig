@@ -1,0 +1,73 @@
+{% if (page.header.layout == 'none') %}
+	{% set layout = "" %} 
+{% else %}
+	{% set layout = page.header.layout %} 
+{% endif %}
+
+
+{% if page.media.images|length > 1 %}
+	{% set img_list = "data-image=" %}
+	{% for img in page.media.images %}
+		{% if loop.last %}
+			{% set img_list = img_list~img.url|e %}
+		{% else %}
+			{% set img_list = img_list~img.url|e~"," %}
+		{% endif %}
+	
+	{% endfor %}
+	
+	{% set img_list = img_list|rtrim %}
+	
+{% endif %}
+
+
+{% if (page.header.blend == 'auto') %}
+
+	{% set showcase_image = page.media.images|first.grayscale().contrast(20).brightness(-125).colorize(-35,81,122) %}
+	
+	{% set blend="normal" %}
+
+{% else %}
+
+	{% set showcase_image = page.media.images|first %}
+	{% set blend="background-blend-mode:"~page.header.blend~";" %}
+
+{% endif %}
+
+{% if showcase_image %}
+	{% if page.header.timeout > 0 %}
+		{% set anim_duration = "animation-duration:"~page.header.timeout~"s;" %}
+		{% set anim_name = "animation-name:"~page.header.animation~";" %}
+	{% else %}
+		{% set anim_duration = "" %}
+		{% set anim_name = "" %}
+	{% endif %}
+	
+	{% set image = "background-image: url("~showcase_image.url ~");" %}
+	
+	{% set style = image~blend~anim_name~anim_duration %}
+
+{% else %}
+
+	{% set style = '' %}
+
+{% endif %}
+
+	
+	<div class="modular-row showcase {{layout}}" style="{{style}}" {{img_list}}  
+	data-delay={{page.header.timeout}}>
+
+    <div class='content'>
+	{{ content|raw }}
+	</div>
+
+	{% if page.header.buttons|length %}
+    <div>
+	{% for button in page.header.buttons %}
+        <a class="button{% if button.primary %} primary{% endif %}" href="{{ button.url }}">{{ button.text }}</a>
+    {% endfor %}
+	</div>
+	{% endif %}
+
+</div>
+

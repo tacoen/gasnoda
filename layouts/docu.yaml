@@ -1,0 +1,32 @@
+version: 2
+preset:
+  image: 'gantry-admin://images/layouts/column-right.png'
+  name: docu
+  timestamp: 1602128339
+layout:
+  /container-page/:
+    -
+      -
+        'aside 20':
+      -
+        'main 80':
+
+structure:
+  aside:
+    attributes:
+      variations: ''
+      blockcolor: '1'
+      class: ''
+      res_enable: '1'
+      res_title: ''
+      res_offcanvas: left
+      res_icon: 'fa fa-bars'
+      res_opt_swipe: '1'
+      res_opt_fixed: '1'
+      res_opt_always: '0'
+  container-page:
+    attributes:
+      boxed: '3'
+      class: ''
+      extra: {  }
+

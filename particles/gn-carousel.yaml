@@ -1,0 +1,66 @@
+name: Gasnoda Carousel
+description: Displays Carousel Content
+type: particle
+icon: fa-tv
+
+configuration:
+  caching:
+    type: static
+
+form:
+  fields:
+    enabled:
+      type: input.checkbox
+      label: Enabled
+      description: Globally enable the particle.
+      default: true
+
+    layout:
+      type: select.select
+      label: Layout
+      default: ''
+      options:
+          frames: Frames
+          '': Slides
+      overridable: false      
+
+    height:
+      type: input.text
+      label: height
+      default: 60vh
+
+    delay:
+      type: input.text
+      label: delay
+      default: 10
+      
+    items:
+      type: collection.list
+      array: true
+      label: Carousel Items
+      description: Create each item to appear in the content row.
+      value: title
+      ajax: true
+      overridable: false
+
+      fields:
+        .image:
+            type: input.imagepicker
+            label: Image
+
+        .html:
+            type: textarea.textarea
+            label: HTML
+
+        .button:
+            type: input.text
+            label: button
+            default: 'Read More'
+
+        .url:
+            type: input.text
+            label: url
+
+        .variations:
+          type: input.selectize
+          label: CSS Class
