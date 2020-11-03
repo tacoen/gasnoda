@@ -1,13 +1,40 @@
-# Gasnoda!
+# Gasnoda
 
-<div style='text-align:center'>
-<img src='thumbnail.jpg' alt='Noda!' style='width:100%'>
-</div>
+Gasnoda is a merge of Gaskeun and Noda Grav Theme.
 
-Gasnoda! (Noda/Gaskan) is [Grav](http://getgrav.org/) Theme.  
-Gasnoda developed using [Gantry 5 Framework](http://gantry.org/).
+## Requirement
 
-&#128213; [Wiki](https://github.com/tacoen/Gasnoda/wiki)
+ * Error
+ * Problems
+ * Shortcode core
+ * Gaskeun Function
 
-&#128444;&#65039;[Generated Demo Page](https://tacoen.github.io/Gasnoda/)
+## Gasnoda Features
 
+* Particles
+  * Branding
+  * Listing
+  * Carousel
+  * TOC
+  * Page Tree (Page Menu)
+   
+* Template
+  * g-docu
+  * crud
+
+* scss
+  * normalize
+  * css variables
+
+* js
+  * tocbot
+  * w3color
+
+## Instalation
+
+### Manual Installation
+
+To install this theme, just download the zip version of this repository and unzip it under `/your/site/grav/user/themes`. 
+Then, rename the folder to "noda". You should now have Gasnoda theme files under
+
+`/your/site/grav/user/themes/noda`
