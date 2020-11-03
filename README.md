@@ -4,7 +4,7 @@ Gasnoda is a merge of Gaskeun and Noda Grav Theme.
 
 ## Requirement
 
- * Error
+ * [Error](https://github.com/getgrav/grav-plugin-problems)
  * Problems
  * Shortcode core
  * Gaskeun Function
