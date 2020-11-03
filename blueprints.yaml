@@ -1,0 +1,40 @@
+name: Noda
+version: "2.0"
+description: "Gasnoda Noda Grav theme using Gantry 5."
+icon: html5
+author:
+  name: tacoen
+  email: tacoen@gmail.com
+  url: https://tacoen.github.io/
+homepage: https://tacoen.github.io/noda/
+readme: https://github.com/tacoen/noda/blob/master/README.md
+keywords: gantry5, css3, theme
+bugs: https://github.com/tacoen/noda/issues
+license: MIT
+
+dependencies:
+  - { name: grav, version: '>=1.5.10' }
+
+
+form:
+  validation: loose
+  fields:
+    
+    note:
+        type: section
+        title: Options
+        size: small
+
+    owner:
+        size: long
+        type: textarea
+        readyonly: true
+        label: <b>Owner Information</b> 
+
+    links:
+        type: array
+        size: long
+        label: Add Links to Admin Navigation
+
+
+    

@@ -1,0 +1,4 @@
+widget:
+  areas: [top,bottom,content-top,content-bottom]
+  
+enabled: true
