@@ -37,3 +37,5 @@ Then, rename the folder to "noda". You should now have Gasnoda theme files under
 `/your/site/grav/user/themes/noda`
 
 # It limitless!
+
+![theme-dev-screenshoot](screenshoot.jpg)
