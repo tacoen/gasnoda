@@ -35,3 +35,5 @@ To install this theme, just download the zip version of this repository and unzi
 Then, rename the folder to "noda". You should now have Gasnoda theme files under
 
 `/your/site/grav/user/themes/noda`
+
+# It limitless!
