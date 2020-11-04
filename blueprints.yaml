@@ -28,7 +28,7 @@ form:
     owner:
         size: long
         type: textarea
-        readyonly: true
+        readonly: true
         label: <b>Owner Information</b> 
 
     links:

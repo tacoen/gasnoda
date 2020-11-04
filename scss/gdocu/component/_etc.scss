@@ -1,3 +1,48 @@
+.h-watch {
+  padding: 2rem 0;
+  *:hover {
+  	   .dem { display: block }
+  	   .dem2 { display: block }
+  }
+  
+  .dem { 
+      display:none;
+      outline: 1px dashed #c005; 
+      outline-offset: -1px;
+      position: absolute;
+      top:0;
+      left:0;
+      width: 50%;
+ }
+ .dem2 { 
+      display:none;
+      outline: 1px dotted #0009; 
+      outline-offset: -1px;
+      position: absolute;
+      left:0;
+      width: 50%;
+ }
+
+  > * { 
+      color: #000 !important; 
+      border:none !important; 
+      position: relative;
+      padding-right: 40%; 
+  }
+  > *:after { 
+    content: attr(data-content); 
+    position: absolute;
+    font-size: .75rem; 
+    font-weight: normal;
+    top:0;
+    right:0;
+	text-transform: lowercase;
+	color: var(--red);
+  }
+
+}
+
+
 .pg .g-content {
 	margin: 0 .5em;
 }	

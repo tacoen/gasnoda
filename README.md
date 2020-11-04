@@ -2,12 +2,11 @@
 
 Gasnoda is a merge of Gaskeun and Noda Grav Theme.
 
-## Requirement Plugins
+## Requirement
 
- * [Error](https://github.com/getgrav/grav-plugin-error)
- * [Problems](https://github.com/getgrav/grav-plugin-problems)
- * [Shortcode core](https://github.com/getgrav/grav-plugin-shortcode-core)
- * [Gaskeun Function](https://github.com/tacoen/gaskeun)
+ * [Grav CMS](https://getgrav.org/downloads)
+ * [Gantry 5](http://gantry.org/downloads)
+ * [Shortcode core Plugins](https://github.com/getgrav/grav-plugin-shortcode-core)
 
 ## Gasnoda Features
 

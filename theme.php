@@ -40,9 +40,15 @@ class Noda extends Theme
 		if (isset($this->grav['theme']->config()['links'])) {
 			
 			foreach ($this->grav['theme']->config()['links'] as $key => $val) {
-
+				
+				if (substr($val, 0, 4) == 'http') {
+					$link = $val;
+				} else {
+					$link = "../".$val;
+				}
+				
 				$this->grav['twig']->plugins_hooked_nav[$key] = [
-					'route' => "..".$val, 
+					'route' => $link, 
 					'icon' => 'fa-link'
 				];
 		
