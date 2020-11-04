@@ -1,40 +1,22 @@
 {% extends '@nucleus/partials/particle.html.twig' %}
-
-
 {% block particle %}
-
 	{% if particle.title %}
 		<h3>{{ particle.title }}</h3>
 	{% else %}
 		<h3>Content</h3>
 	{% endif %}
-
 	<div id="gn-toc"></div>
-
 {% endblock %}
-
 {%if particle.index %}
-
 {%set inlinejs %}
-
-
 	prepare_for_tocbot('main');
-
 	tocbot.init({
 		tocSelector: '#gn-toc',
 		contentSelector: 'main',
 		headingSelector: 'h2, h3, h4, h5',
 	});
-
-
 {% endset %}
-
 {%- do gantry.document.addScript(url('gantry-theme://js/tocbot/tocbot.min.js'), 3, 'footer') -%}
 {%- do gantry.document.addScript(url('gantry-theme://js/toc.js'), 2, 'footer') -%}
 {%- do gantry.document.addInlineScript(inlinejs, 0, 'footer') %}
-
 {% endif %}
-
-
-
-

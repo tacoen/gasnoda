@@ -1,16 +1,12 @@
 {% extends '@nucleus/partials/particle.html.twig' %}
-
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="gantry-theme://workspace/css/themedev.css" /> 
+    <link rel="stylesheet" type="text/css" href="gantry-theme://workspace/css/themedev.css" />
 {% endblock %}
-
 {% block javascript_footer %}
     <script src="{{ url('gantry-theme://workspace/js/themedev.js') }}"></script>
-{% endblock %} 
-
+{% endblock %}
 {% set page = uri.param('page') %}
 {% set dump = gantry.config.get('styles') %}
-
 {% set style %}
 /* from gantry.config.get('styles') */
 {% spaceless %}
@@ -30,11 +26,9 @@
 	--footer: {{ dump.footer['background'] }};
 	--aside: {{ dump.aside['background'] }};
 }
-
 {% endspaceless %}
 {% endset %}
 {% do gantry.document.addInlineStyle(style, 0) %}
-
 {% switch page %}
 	{% case 'scssdefault' %}
 		{% set content %}
@@ -42,71 +36,71 @@
 		<div class='theme-dev hsl-pal'>
 		{% include '@particles/gn-themedev/scss-default.html.twig' %}
 		</div>
-		{% endset %}	
+		{% endset %}
 	{% case 'preset' %}
 		{% set content %}
 		<h1 class='td-title'>Preset BluePrint</h1>
 		<div class='theme-dev hsl-pal'>
 		{% include '@particles/gn-themedev/preset.html.twig' %}
 		</div>
-		{% endset %}	
+		{% endset %}
 	{% case 'typograph' %}
 		{% set content %}
 		<h1 class='td-title'>Typograph</h1>
 		<div class='theme-dev hsl-pal'>
 		{% include '@particles/gn-themedev/typograph.html.twig' %}
 		</div>
-		{% endset %}	
+		{% endset %}
 	{% case 'grid' %}
 		{% set content %}
 		<h1 class='td-title'>Layout Grid</h1>
 		<div class='theme-dev hsl-pal'>
 		{% include '@particles/gn-themedev/grid.html.twig' %}
 		</div>
-		{% endset %}	
+		{% endset %}
 	{% case 'fontsize' %}
 		{% set content %}
 		<h1 class='td-title'>Font Size</h1>
 		<div class='theme-dev hsl-pal'>
 		{% include '@particles/gn-themedev/fontsize.html.twig' %}
 		</div>
-		{% endset %}	
+		{% endset %}
 	{% case 'sections' %}
 		{% set content %}
 		<h1 class='td-title'>Section Colors</h1>
 		<div class='theme-dev hsl-pal'>
 		{% include '@particles/gn-themedev/sections.html.twig' %}
 		</div>
-		{% endset %}	
+		{% endset %}
 	{% case 'form' %}
 		{% set content %}
 		<h1 class='td-title'>Forms</h1>
 		<div class='theme-dev hsl-pal'>
 		{% include '@particles/gn-themedev/form.html.twig' %}
 		</div>
-		{% endset %}	
+		{% endset %}
 	{% case 'colors' %}
 		{% set content %}
 		<h1 class='td-title'>Colors</h1>
 		{% include '@particles/gn-themedev/colors.html.twig' %}
-	{% endset %}	
+	{% endset %}
 	{% case 'he' %}
 		{% set content %}
 		<h1 class='td-title'>HTML Entities</h1>
 		{% include '@particles/gn-themedev/he.html' %}
-	{% endset %}	
+	{% endset %}
 	{% case 'fa' %}
 		{% set content %}
 		<h1 class='td-title'>Font Awesome</h1>
 		{% include '@particles/gn-themedev/fa.html' %}
-	{% endset %}	
+	{% endset %}
 	{% case 'phparray' %}
 		{% set content %}
 		<h1 class='td-title'>PHP array</h1>
 		<div class='theme-dev hsl-pal'>
 		<pre>{{ dump|print_r }}</pre>
 		</div>
-		{% endset %}	
+		{% endset %}
 	{% default %}
 		{% set content %}
 		<h1 class='td-title'>Hello!</h1>
@@ -114,18 +108,12 @@
 		{% include '@particles/gn-themedev/howto.html.twig' %}
 		</div>
 		{% endset %}
-	
 {% endswitch %}
-
-
 {% block particle %}
-
 	<div id='gn-theme-dev'>
-	
 	<div class='header'>
 	<h1 class='td-title'>Gasnoda Theme-Dev Particle</h1>
 	</div>
-	
 	<div class='side'>
 	<ul class='menu'>
 	<li><a href='{{ uri.path()}}'>Home</a></li>
@@ -156,11 +144,9 @@
 	<li><a href='//getgrav.org'>Grav</a></li>
 	<li><a href='//gantry.org/'>Gantry 5</a></li>
 	</ul>
-
 	</div>
 	<div class='content'>
 	{{ content|raw }}
 	</div>
 	</div>
-
 {% endblock %}

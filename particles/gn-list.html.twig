@@ -1,25 +1,19 @@
 {% extends '@nucleus/partials/particle.html.twig' %}
-
 {% block particle %}
-
 	<div class="gn-list {% if particle.layout %}{{ particle.layout|e }}{% endif %}">
 			{% if particle.headline %}
 				<div class='title'>{{ particle.headline|raw }}</div>
 			{% endif %}
-
 			{% if particle.description %}
 				<div class="description">
 				{{ particle.description|raw }}
 				</div>
 			{% endif %}
-
 			{% if particle.items|length >0 %}
-
 			<ul class='items'>
 			{% for item in particle.items %}
 				<li class="item {{ item.class }} {{ item.variations }}"
 				{% if item.id %}id="{{ item.id|e }}"{% endif %}">
-
 					{% if item.link %}
 						{% set pre = "<a class='link' href='"~item.link~"'>" %}
 						{% set suf = "</a>" %}
@@ -27,7 +21,6 @@
 						{% set pre = "" %}
 						{% set suf = "" %}
 					{% endif %}
-
 					{% if item.image %}
 						{% set image %}
 						<span class='item-image'>
@@ -36,37 +29,28 @@
 						</span>
 						{% endset %}
 					{% endif %}
-
 					{% if item.title %}
 						{% set title = "<span class='subtitle'>"~item.title|raw~"</span>" %}
 					{% else %}
 						{% set title = "" %}
 					{% endif %}
-
 					{% if item.subtitle %}
 						{% set subtitle = "<span class='text'>"~item.subtitle|raw~"</span>" %}
 					{% else %}
 						{% set subtitle = "" %}
 					{% endif %}
-
 					{{ pre|raw }}
 					{{ image|raw }}
 					<div>{{ title|raw }}{{ subtitle|raw }}</div>
 					{{ suf|raw }}
-
 				</li>
 			{% endfor %}
-
 			</ul>
 			{% endif %}
-
-
 			{% if particle.linktext %}
 				<div class='link'>
 				<a href="{{ particle.link|e }}">{{ particle.linktext|e }}</a>
 				</div>
 			{% endif %}
-
 	</div><!--- eof list-->
-
 {% endblock %}

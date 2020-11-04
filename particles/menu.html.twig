@@ -3,20 +3,14 @@
 {% catch %}
     <div class="alert alert-error">{{ e.getMessage }}</div>
 {% endtry %}
-
 {% set ticon = gantry.config.get('styles.menu.icon') %}
 {% set ticon_position = gantry.config.get('styles.menu.icon-position') %}
-
 {% set menu_colwidth = gantry.config.get('styles.menu.col-width') %}
 {% set menu_animation = gantry.config.get('styles.menu.animation') %}
 {% set menu_breakpoint = gantry.config.get('styles.menu.mobile-menu-breakpoint') %}
-
-
 {% set menu_w = gantry.config.get('styles.menu.icon-w') %}
 {% set menu_h = gantry.config.get('styles.menu.icon-h') %}
 {% set menu_hide = gantry.config.get('styles.menu.hide-on-mobile') %}
-
-
 {% macro getCustomWidth(item, menu, mode, dropdown_type) -%}
     {%- if (item.width|default('auto') != 'auto') and not (dropdown_type == 'fullwidth' and item.level > 1) -%}
         {%- if mode == 'item' %} style="position: relative;"
@@ -24,7 +18,6 @@
         {%- endif %}
     {%- endif %}
 {%- endmacro %}
-
 {% macro displayParticle(item, context) %}
     {% set context = context|merge({ particle: item.options.particle }) %}
     {% set classes = item.options.block.class %}
@@ -33,7 +26,6 @@
         ignore missing with context only %}
     </div>
 {% endmacro %}
-
 {% macro displayTitle(item) %}
     {% if not item.icon_only or not (item.image or item.icon) %}
         <span class="nav-item-title">{{ item.title }}</span>
@@ -42,7 +34,6 @@
         {% endif %}
     {% endif %}
 {% endmacro %}
-
 {% macro displayItem(item, menu, context, dropdown_type) %}
     {% import _self as self %}
     {% if item.type == 'particle' and not item.options.particle.enabled %}
@@ -56,7 +47,6 @@
         {% set parent = item.children ? ' g-parent' %}
         {% set target = (item.target != '_self' or context.particle.forceTarget) ? ' target="' ~ item.target|e ~ '"' %}
         {% set rel = item.rel %}
-
         {% if item.target == '_blank' %}
             {% if 'noopener' not in rel %}
                 {% set rel = rel ? rel ~ ' ' : rel %}
@@ -67,10 +57,8 @@
                 {% set rel = rel ~ 'noreferrer' %}
             {% endif %}
         {% endif %}
-
         {% set listAttributes = item.attributes|attribute_array %}
         {% set linkAttributes = '' %}
-
         {% if item.link_attributes %}
             {% for attribute in item.link_attributes %}
                 {% for key, value in attribute %}
@@ -87,14 +75,10 @@
                 {% endfor %}
             {% endfor %}
         {% endif %}
-
         {% set rel = rel ? ' rel="' ~ rel|e('html_attr') ~ '"' %}
-
         <li class="nav-item type-{{ item.type }} {{ item.id }}
-
 			{% if item.icon %} has-icon {% endif %}
 		    {% if item.image %} has-image {% endif %}
-
 			{% if not item.dropdown_hide %}{{ parent }}{% endif %}
 			{{ active }}
 			{{ dropdown }}
@@ -105,7 +89,6 @@
                 {{- self.getCustomWidth(item, menu, 'item', dropdown) }}
             {%- if context.particle.renderTitles|default(0) %} title="{{ item.title }}"{% endif %}
 			{{listAttributes|raw}} >
-
             {% if item.url %}
 				<a class="nav-item-container{{ item.anchor_class ? ' ' ~ item.anchor_class }}" href="{{ item.url }}{{ item.hash }}"{{ (title ~ label ~ target ~ rel ~ linkAttributes)|raw }}>
             {% else %}
@@ -145,7 +128,6 @@
         </li>
     {% endif %}
 {% endmacro %}
-
 {% macro displayContainers(item, menu, context, dropdown_type) %}
     {% import _self as self %}
         {% set groups = item.getDropdown() == 'standard' ? [item] : item.groups %}
@@ -158,7 +140,6 @@
             </ul>
         {% endfor %}
 {% endmacro %}
-
 {% macro displayItems(items, menu, context, dropdown_type) %}
     {% import _self as self %}
     {% for item in items %}
@@ -166,31 +147,23 @@
         {{ self.displayItem(item, menu, context, dropdown_type) }}
     {% endfor %}
 {% endmacro %}
-
 {% macro displaySubmenu(item, menu, context, dropdown_type) %}
     {% import _self as self %}
     {% if not item.dropdown_hide %}
         {% set animation = context.gantry.config.get('styles.menu.animation')|default('g-fade') %}
         {% if ((item.groups|length == 1 and not dropdown_type == 'fullwidth') or dropdown_type == 'standard') or (item.width|default('auto') != 'auto' and dropdown_type == 'fullwidth')%}{% set dropdown_dir = 'g-dropdown-' ~ item.dropdown_dir|default('right') %}{% endif %}
-
 		<input type="checkbox" id="{{item.id}}">
-
         <div class="dropdown-menu {{ animation }} {{ dropdown_dir }}"
 		{{ self.getCustomWidth(item, menu, 'submenu', dropdown_type) }}>
                 {{ self.displayContainers(item, menu, context, dropdown_type) }}
         </div>
     {% endif %}
 {% endmacro %}
-
 {% import _self as macro %}
-
 {% if menu.root.count() %}
-
     <nav role='navigation' class="menucan "
 		{{ particle.mobileTarget ? ' data-g-mobile-target(' : '' }}
-
 		data-g-hover-expand="{{ particle.hoverExpand|default('true') ? 'true': 'false' }}">
-
 		<ul class="toplevel">
             {{ macro.displayItems(menu.root, menu, _context) }}
         </ul>

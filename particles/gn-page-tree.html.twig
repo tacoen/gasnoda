@@ -1,7 +1,5 @@
 {% extends '@nucleus/partials/particle.html.twig' %}
-
 {% block particle %}
-
 {% if particle.pagekey is empty %}
 	{% set colm = page.slug() %}
 {% elseif particle.pagekey == "/" %}
@@ -9,18 +7,14 @@
 {% else %}
 	{% set colm = particle.pagekey %}
 {% endif %}
-
 {% if colm == "home" %}
 	{% set pagecol = pages.children.visible %}
 {% else %}
 	{% set pagecol = pages.find('/'~colm).children.visible %}
 {% endif %}
-
 <div class='gn-tree {{ particle.layout }}' data-slug="{{ colm }}">
 <ol class="gatree toplevel">
-
 	{% for page in pagecol %}
-
 		{% if particle.expand == 0  %}
             <li class="item"><a href="{{ page.url }}">{{ page.title }}</a>
 		{% else %}
@@ -57,17 +51,11 @@
 				</ol>
 			{% endif %}
 		{% endif %}
-
 		</li>
-
 		{% endfor %}
 </ol>
 </div>
-
 {% endblock %}
-
-
 {% block javascript_footer %}
 	<script src="{{ url('gantry-theme://js/tree.js') }}"></script>
 {% endblock %}
-
