@@ -45,7 +45,7 @@ form:
                         type: section
                         title: Extend
 
-                    header.sample:
+                    header.content:
                         type: toggle
                         label: Include content.html
                         default: 1

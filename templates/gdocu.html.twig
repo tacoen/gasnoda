@@ -108,7 +108,7 @@
   {% if header.content %}
     {% set content_html = filecontent('content.html') %}
     {% if content_html != 'content.html' %}
-	<div class='extend-content'>{{ content_html|stripper|raw }}</div>
+	<div class='extend-content'> {{ gantry.theme.compile(content_html)|html|raw }}</div>
     {% endif %}
   {% endif %}
   </div>

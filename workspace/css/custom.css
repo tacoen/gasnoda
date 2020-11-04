@@ -55,4 +55,31 @@ aside a.active {
 .pg h4:not(:first-child) {
   margin-top: 3rem; }
 
+.doc {
+  margin: 2rem 0 1rem 0;
+  border-top: 1px solid #0002;
+  padding-top: 1rem; }
+  .doc div {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+    flex-wrap: wrap; }
+  .doc label {
+    flex: 0 0 15%; }
+  .doc span {
+    flex: 0 85%; }
+  .doc .syntax label {
+    color: var(--red); }
+  .doc .syntax span {
+    font-family: monospace;
+    font-weight: 700; }
+  .doc .type {
+    line: 1.15;
+    font-size: 0.9rem; }
+  .doc .desc {
+    font-size: 0.9rem; }
+  .doc .prop {
+    color: var(--blue); }
+
 /*# sourceMappingURL=custom.css.map */

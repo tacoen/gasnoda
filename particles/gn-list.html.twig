@@ -6,15 +6,15 @@
 			{% if particle.headline %}
 				<div class='title'>{{ particle.headline|raw }}</div>
 			{% endif %}
-			
+
 			{% if particle.description %}
 				<div class="description">
 				{{ particle.description|raw }}
 				</div>
 			{% endif %}
-			
+
 			{% if particle.items|length >0 %}
-			
+
 			<ul class='items'>
 			{% for item in particle.items %}
 				<li class="item {{ item.class }} {{ item.variations }}"
@@ -27,11 +27,11 @@
 						{% set pre = "" %}
 						{% set suf = "" %}
 					{% endif %}
-					
+
 					{% if item.image %}
 						{% set image %}
 						<span class='item-image'>
-						<img 
+						<img
 							alt="{{ item.title|raw }}" src="{{ item.image|url }}">
 						</span>
 						{% endset %}
@@ -58,9 +58,9 @@
 			{% endfor %}
 
 			</ul>
-			{% endif %}			
-		
-			
+			{% endif %}
+
+
 			{% if particle.linktext %}
 				<div class='link'>
 				<a href="{{ particle.link|e }}">{{ particle.linktext|e }}</a>

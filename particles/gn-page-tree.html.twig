@@ -11,18 +11,18 @@
 {% endif %}
 
 {% if colm == "home" %}
-	{% set pagecol = pages.children.visible %}		
+	{% set pagecol = pages.children.visible %}
 {% else %}
 	{% set pagecol = pages.find('/'~colm).children.visible %}
 {% endif %}
 
 <div class='gn-tree {{ particle.layout }}' data-slug="{{ colm }}">
 <ol class="gatree toplevel">
-	
+
 	{% for page in pagecol %}
 
 		{% if particle.expand == 0  %}
-            <li class="item"><a href="{{ page.url }}">{{ page.title }}</a>		
+            <li class="item"><a href="{{ page.url }}">{{ page.title }}</a>
 		{% else %}
 			{% if page.children.visible is empty %}
 				<li class="item">
@@ -57,9 +57,9 @@
 				</ol>
 			{% endif %}
 		{% endif %}
-		
+
 		</li>
-		
+
 		{% endfor %}
 </ol>
 </div>

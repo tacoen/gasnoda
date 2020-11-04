@@ -40,7 +40,7 @@ gas.prototype = {
 		} 
 		return this.ele.getAttribute(what);
 	},
-	offset: function(what) {
+	offset: function() {
 			return [ this.ele.offsetTop, this.ele.offsetLeft, this.ele.offsetWidth, this.ele.offsetHeight];
 	},
 	class: function() {

@@ -70,7 +70,7 @@
 
         {% set listAttributes = item.attributes|attribute_array %}
         {% set linkAttributes = '' %}
-        
+
         {% if item.link_attributes %}
             {% for attribute in item.link_attributes %}
                 {% for key, value in attribute %}
@@ -89,23 +89,23 @@
         {% endif %}
 
         {% set rel = rel ? ' rel="' ~ rel|e('html_attr') ~ '"' %}
-        
+
         <li class="nav-item type-{{ item.type }} {{ item.id }}
-		    
+
 			{% if item.icon %} has-icon {% endif %}
 		    {% if item.image %} has-image {% endif %}
-            
+
 			{% if not item.dropdown_hide %}{{ parent }}{% endif %}
 			{{ active }}
-			{{ dropdown }} 
+			{{ dropdown }}
 			{% if item.url and item.children %}
 				{% if not item.dropdown_hide %}nav-item-dropdown menu-hasdropdown{% endif %}
-			{% endif %} 
+			{% endif %}
 			{{ item.class|default('') }}"
                 {{- self.getCustomWidth(item, menu, 'item', dropdown) }}
             {%- if context.particle.renderTitles|default(0) %} title="{{ item.title }}"{% endif %}
 			{{listAttributes|raw}} >
-			
+
             {% if item.url %}
 				<a class="nav-item-container{{ item.anchor_class ? ' ' ~ item.anchor_class }}" href="{{ item.url }}{{ item.hash }}"{{ (title ~ label ~ target ~ rel ~ linkAttributes)|raw }}>
             {% else %}
@@ -123,7 +123,7 @@
                     {% if (item.children) and not item.dropdown_hide -%}
 						<label for="{{ item.id }}" class="menu-parent-indicator" data-g-menuparent="">
 						<i class="fa fa-caret-down"></i>
-						</label>					
+						</label>
                     {%- endif %}
                 {% else %}
                     {% if item.type == 'particle' %}
@@ -173,7 +173,7 @@
         {% set animation = context.gantry.config.get('styles.menu.animation')|default('g-fade') %}
         {% if ((item.groups|length == 1 and not dropdown_type == 'fullwidth') or dropdown_type == 'standard') or (item.width|default('auto') != 'auto' and dropdown_type == 'fullwidth')%}{% set dropdown_dir = 'g-dropdown-' ~ item.dropdown_dir|default('right') %}{% endif %}
 
-		<input type="checkbox" id="{{item.id}}">			
+		<input type="checkbox" id="{{item.id}}">
 
         <div class="dropdown-menu {{ animation }} {{ dropdown_dir }}"
 		{{ self.getCustomWidth(item, menu, 'submenu', dropdown_type) }}>
@@ -187,10 +187,10 @@
 {% if menu.root.count() %}
 
     <nav role='navigation' class="menucan "
-		{{ particle.mobileTarget ? ' data-g-mobile-target(' : '' }} 
-	
+		{{ particle.mobileTarget ? ' data-g-mobile-target(' : '' }}
+
 		data-g-hover-expand="{{ particle.hoverExpand|default('true') ? 'true': 'false' }}">
-	
+
 		<ul class="toplevel">
             {{ macro.displayItems(menu.root, menu, _context) }}
         </ul>

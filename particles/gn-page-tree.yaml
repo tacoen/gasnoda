@@ -13,13 +13,13 @@ form:
       type: input.checkbox
       label: Enabled
       description: Globally enable the particle.
-      default: true  
+      default: true
 
     pagekey:
         type: input.text
         label: Branch
         overrideable: True
-        default: 
+        default:
 
     layout:
         type: select.selectize
@@ -29,9 +29,9 @@ form:
             tree: tree
             collapse: collapse
             block: block
-            
+
     expand:
         type: input.checkbox
         label: Show Child
         default: 0
- 
+
