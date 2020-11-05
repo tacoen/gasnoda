@@ -19,22 +19,36 @@ dependencies:
 form:
   validation: loose
   fields:
-    
-    note:
+
+    _note:
         type: section
         title: Options
-        size: small
 
     owner:
         size: long
         type: textarea
-        readonly: true
-        label: <b>Owner Information</b> 
+        label: <b>Owner Information</b>
 
     links:
         type: array
         size: long
         label: Add Links to Admin Navigation
 
+    _note2:
+        type: section
+        title: Generate Static Page
+        
+    static_path:
+        type: text
+        default: 'static'
+        label: Static Path (static root)
 
-    
+    rewrite:
+        type: checkbox
+        default: false
+        label: Rewrite everything
+
+    static:
+        type: checkbox
+        default: false
+        label: Check this to generate static copies of each pages

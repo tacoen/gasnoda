@@ -4,6 +4,9 @@ namespace Grav\Theme;
 use Gantry\Framework\Gantry;
 use Gantry\Framework\Theme as GantryTheme;
 use Grav\Common\Theme;
+use Grav\Common\Plugin;
+use RocketTheme\Toolbox\Event\Event;
+
 use RocketTheme\Toolbox\ResourceLocator\UniformResourceLocator;
 
 class Noda extends Theme
@@ -23,11 +26,16 @@ class Noda extends Theme
         return [
             'onThemeInitialized' => ['onThemeInitialized', 0],
             'onAdminMenu' => ['onAdminMenu', 0],
+			'onGetPageTemplates' => ['onGetPageTemplates', 0],
+			'onGetPageBlueprints' => ['onGetPageBlueprints', 0],					
+			'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
 			'onShortcodeHandlers' => ['onShortcodeHandlers', 0],			
 			'onTwigSiteVariables' => ['onTwigSiteVariables', 0],
-			'onTwigExtensions' => ['onTwigExtensions', 0],			
-            'onFormProcessed' => ['onFormProcessed', 0],			
-        ];
+			'onTwigExtensions' => ['onTwigExtensions', 0],
+			'onOutputGenerated' => ['onOutputGenerated', 0],
+			
+//             'onFormProcessed' => ['onFormProcessed', 0],			
+		];
     }
 
     public function onAdminMenu()
@@ -92,7 +100,6 @@ class Noda extends Theme
         // Define the template.
         require $locator('theme://includes/theme.php');
 
-
         // Define Gantry services.
  
 		$gantry['theme'] = function ($c) {
@@ -137,6 +144,34 @@ class Noda extends Theme
         require_once(__DIR__.'/php/ColorMixerTwigExtension.php');
         $this->grav['twig']->twig->addExtension(new ColorMixerTwigExtension());
     }		
+
+
+	/* 
+	 * So you can make templae outside the theme for a client needs 
+	 */
+	
+    public function onTwigTemplatePaths()
+    {
+		$locator = $this->grav['locator'];
+		$tdir = $locator('user://').'/templates';
+		if (! file_exists($tdir) ) { mkdir($tdir); }
+		$bdir = $locator('user://').'/blueprints';
+		if (! file_exists($tdir) ) { mkdir($bdir); }
+		
+        $this->grav['twig']->twig_paths[] = $locator('user://templates');
+    }
+
+	public function onGetPageTemplates(Event $event)
+    {
+        $types = $event->types;
+        $types->scanTemplates('user://templates');
+    }
+	
+    public function onGetPageBlueprints(Event $event)
+    {
+        $types = $event->types;
+        $types->scanBlueprints('user://blueprints');
+    }	
 	
     public function onFormProcessed(Event $event)
     {
@@ -151,6 +186,46 @@ class Noda extends Theme
 				$file = $path ."/". $data['file'];
 				file_put_contents($file,$data['text']);
 				break;
+		}
+	}
+	
+
+    public function onOutputGenerated()
+    {
+
+		function createPath($path) {
+			if (is_dir($path)) return true;
+			$prev_path = substr($path, 0, strrpos($path, '/', -2) + 1 );
+			$return = createPath($prev_path);
+			return ($return && is_writable($prev_path)) ? mkdir($path) : false;
+		}
+
+        if (! $this->isAdmin()) {
+
+	
+			if ($this->config['theme']['static']) {
+				
+				$locator = $this->grav['locator'];
+				$tdir = $_SERVER['DOCUMENT_ROOT'].'/'. $this->config['theme']['static_path'];
+			
+				if (! file_exists($tdir)) { mkdir($tdir); }
+
+				$file = $tdir.$this->grav['uri']->path();
+				createPath($file);
+				$filepath = $file."/index.html";
+				$st_content = $this->grav->output."";
+			
+				$st_content = preg_replace('#href="\/#','href="/static/',$st_content);
+				$st_content = preg_replace('#link href="\/static#','link href="',$st_content);
+				if ($this->config['theme']['rewrite']) {
+					file_put_contents($filepath, $st_content); 
+				} else {
+					if (! file_exists($filepath) ) {
+						file_put_contents($filepath, $st_content); 
+					}
+				}
+
+			}
 		}
 	}
 	

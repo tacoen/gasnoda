@@ -110,3 +110,6 @@ font-size: .8em;
 .pages-list .row:hover {
 	outline: 1px solid #0092;
 }
+
+
+.CodeMirror pre { font-family: monospace !important; }

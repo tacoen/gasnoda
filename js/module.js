@@ -1,4 +1,4 @@
-/* Compile Time: 11/03/20 13:05:34 */
+/* Compile Time: 11/04/20 22:25:20 */
 /* w3color.js ver.1.18 by w3schools.com (Do not remove this line)*/
 (function () {
 function w3color(color, elmnt) {
@@ -690,7 +690,7 @@ gas.prototype = {
 		} 
 		return this.ele.getAttribute(what);
 	},
-	offset: function(what) {
+	offset: function() {
 			return [ this.ele.offsetTop, this.ele.offsetLeft, this.ele.offsetWidth, this.ele.offsetHeight];
 	},
 	class: function() {
@@ -783,6 +783,45 @@ function cssvar_input(what,value) { return "--"+what+":"+value+";" }
 function cssvar_hsl(what,h,s,l) { return "--"+what+":hsl("+h+","+percent(s)+","+percent(l)+");" }
 function trim(x) { return x.replace(/^\s+|\s+$/g, ''); }
 function safe_str(x) { return x.replace(/^\s+|\s+$|\W/g, '').toLowerCase(); }
+
+/* gasnoda/ajax-form.js */
+
+function gn_ajaxform(qform,qresult) {
+    const form = document.querySelector(qform);
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const result = document.querySelector(qresult);
+        const action = form.getAttribute('action');
+        const method = form.getAttribute('method');
+
+        fetch(action, {
+            method: method,
+            body: new FormData(form)
+        })
+        .then(function(response) {
+            if (response.ok) {
+                return response.text();
+            } else {
+                return response.json();
+            }
+        })
+        .then(function(output) {
+            if (result) {
+                result.innerHTML = output;
+            }
+        })
+        .catch(function(error) {
+            if (result) {
+                result.innerHTML = 'Error: ' + error;
+            }
+
+            throw new Error(error);
+        });
+    });
+	
+}
+
 
 /* gasnoda/consctruct_style.js */
 
@@ -983,23 +1022,18 @@ function gn_breakpoint_tagging() {
 
 function gn_searchbox_toggle(th) {
 	
-	event.preventDefault();
-	console.log(th);
-	var search = document.querySelector('#gn-search-box');
-	gas(th).data('html',th.innerHTML)
+	event.preventDefault()
+	var gas = document.querySelector('#gn-search-box');
+	//gas(th).data('html',th.innerHTML)
 	
-	if (! search.classList.contains('active')) {
-		search.classList.add('active')
-		th.innerHTML = '<i class="fa fa-chevron-right"></i>'
+	if (! gas.classList.contains('active')) {
+		gas.classList.add('active')
+		//th.innerHTML = '<i class="fa fa-chevron-right"></i>'
 	} else {
-		search.classList.remove('active')
-		th.innerHTML = gas(th).data('html')
+		gas.classList.remove('active')
+		//th.innerHTML = gas(th).data('html')
 	}
 }
-
-/* gasnoda/module */
-
-
 
 /* gasnoda/noda.js */
 
