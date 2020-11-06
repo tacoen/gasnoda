@@ -1,75 +1,54 @@
 @import "function.scss";
 
 
+.page-gallery {
+    @extend %reset-list;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
 
-.menu-parent-indicator { transition: all .5s linear; opacity: .5; }
-.menu-parent-indicator:hover { opacity: 1 }
+    .item { 
+        flex: 0 1 25%; 
 
-.g-block .fixed {
-    overflow: auto;
-    position: fixed;
-    width: inherit;
-    height: 100vh;
-}
-
-
-.gn-col > div.shrink {flex: 0 1 25%;}
-
-.main-content pre { line-height: 1.2 }
-
-#gn-branding a { 
-    text-align: center;display: flex;
-    width: 100%;justify-content: center;align-items: center;
-    padding: 1rem;
-}
-
-
-aside a.active { color: var(--yellow); }
-
-.chapter-header { 
-
-    border-top: 1px solid #0002;
-    text-align: center;
-    margin: 0 -1.5rem;
-    padding: 1.5rem;
-    @include flex(column,center,center);
-    min-height: 80vh;
-
-    h2 { font-size: 5rem; font-weight: 300; margin: 0;}
-
-    .main-content { width: 55%; text-align: left; }
-
-}
-
-.client-info { margin-bottom: 1rem !important; }
-   
-
-.pg {
-    h3,h4 { text-transform: capitalize; }
-	h4:not(:first-child) { margin-top: 3rem; }
-}
-
-
-.doc {
+        .image-surround { 
+            border: 1px solid #0002;  
+            padding: 1rem; 
+            margin: .5rem;
+        }
     
-    margin: 2rem 0 1rem 0;
-    border-top: 1px solid #0002;
-    padding-top: 1rem;
-
-    div { @include flex(row,start,start ) }
-    
-    label { flex: 0 0 15%; }
-    span { flex: 0 085% }
-    
-    .syntax {
-        label { color: var(--red) }
-        span { font-family: monospace; font-weight: 700 }
+        img { 
+            width: 100%; 
+            }
     }
+}
 
-    .type { line: 1.15; font-size: .9rem }
-    .desc { font-size: .9rem }
+#page-gallery-modal {
+    @include flex(row,center,center);
+    background: #000d;
+    position: fixed;
+    top:0; width: 100%;
+    left:0; height:100%;
+    display:none;
 
-    .prop { color: var(--blue); }
+    &.show { display: flex; }
+
+   figure { 
+        max-height: 95%; 
+        padding: 1rem;
+        background:#fff;
+        border: 1px solid #0009;
+        position: relative;
+        img { height: 90vh; }
+
+        .caption {
+            position: absolute;
+            bottom: 1rem;
+            width: calc(100% - (4 * var(--padding)));
+            background:#000c;
+            color:#fff;
+            padding: var(--padding);
+        }
+    }
 
 
 }

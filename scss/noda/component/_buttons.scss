@@ -16,7 +16,7 @@ textarea, select[multiple=multiple], #{$all-text-inputs} {
 	background-color: var(--button);
 	padding: varc('padding',.5,2);	
 	border: 1px solid var(--border);
-	color: var(--txt);
+	color: var(--txt,#000);
 
 	&:hover {
 		background-color: var(--hover);

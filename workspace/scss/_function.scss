@@ -1,3 +1,10 @@
+%reset-list {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+
+
 @mixin flex($direction: row, $align-item: center, $justify-content: flex-start, $wrap: wrap) {
 	display: flex;
 	flex-direction: $direction;

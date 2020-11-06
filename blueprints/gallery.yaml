@@ -1,0 +1,33 @@
+title: Gallery
+'@extends':
+    type: default
+    context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        gallery:
+          type: tab
+          title: Gallery
+
+          fields:
+
+            header.gallery_items:  
+                type: list
+                label: Gallery Item
+                fields:
+                    .image:
+                        preview_images: true
+                        type: pagemediaselect
+                        label: image
+                    .title:
+                        type: text
+                        label: title
+                    .text:
+                        type: textarea
+                        label: Description
+                        

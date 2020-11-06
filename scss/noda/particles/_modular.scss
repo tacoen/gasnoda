@@ -30,7 +30,7 @@
 	overflow: hidden;
     min-height: var(--box-height);
 	
-	padding: calc(6 * var(--lead)); 
+	padding: calc(6 * var(--margin)); 
     text-align: center;
 
     background-size: cover;
@@ -67,7 +67,7 @@
 	}
 	
     background-color:var(--b0, #0009);
-    color:var(--w1);
+    color:var(--w1,#fff, #fff);
 
     flex-direction:column;
     justify-content: space-between;
@@ -115,7 +115,7 @@
 
 
     background-color:var(--b0, #0009);
-    color:var(--w1);
+    color:var(--w1,#fff);
 
     background-position: 50% 40%;
     flex-direction:column;
