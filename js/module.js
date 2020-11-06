@@ -1,4 +1,4 @@
-/* Compile Time: 11/04/20 22:25:20 */
+/* Compile Time: 11/06/20 11:09:52 */
 /* w3color.js ver.1.18 by w3schools.com (Do not remove this line)*/
 (function () {
 function w3color(color, elmnt) {
@@ -1158,6 +1158,33 @@ function noda_sectioncolor() {
 		
 	})
 }
+
+/* gasnoda/page_lightbox.js */
+
+function page_lightbox(img,title='',text='') {
+
+	var modal = document.getElementById('page-gallery-modal');
+	
+	if (!img) {
+		modal.children[0].innerHTML = ''
+		modal.classList.remove('show'); 
+	} else {
+	
+		if (! modal.classList.contains('show')) { 
+			var content = "<figure><img src='"+img+"'>";
+			if (title) {
+				content += "<div class='caption'><h5>"+title+"</h5>"+"<p>"+title+"</p></div>"
+			}
+			content += "</figure>"
+			modal.children[0].innerHTML=content
+			modal.classList.add('show'); 
+		} else {
+			modal.children[0].innerHTML = ''
+			modal.classList.remove('show'); 
+		}
+	}
+	
+}	
 
 /* gasnoda/toc.js */
 
