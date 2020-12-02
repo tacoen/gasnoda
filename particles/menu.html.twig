@@ -3,14 +3,17 @@
 {% catch %}
     <div class="alert alert-error">{{ e.getMessage }}</div>
 {% endtry %}
+
 {% set ticon = gantry.config.get('styles.menu.icon') %}
 {% set ticon_position = gantry.config.get('styles.menu.icon-position') %}
+
 {% set menu_colwidth = gantry.config.get('styles.menu.col-width') %}
 {% set menu_animation = gantry.config.get('styles.menu.animation') %}
 {% set menu_breakpoint = gantry.config.get('styles.menu.mobile-menu-breakpoint') %}
 {% set menu_w = gantry.config.get('styles.menu.icon-w') %}
 {% set menu_h = gantry.config.get('styles.menu.icon-h') %}
 {% set menu_hide = gantry.config.get('styles.menu.hide-on-mobile') %}
+
 {% macro getCustomWidth(item, menu, mode, dropdown_type) -%}
     {%- if (item.width|default('auto') != 'auto') and not (dropdown_type == 'fullwidth' and item.level > 1) -%}
         {%- if mode == 'item' %} style="position: relative;"
@@ -161,11 +164,19 @@
 {% endmacro %}
 {% import _self as macro %}
 {% if menu.root.count() %}
-    <nav role='navigation' class="menucan "
-		{{ particle.mobileTarget ? ' data-g-mobile-target(' : '' }}
-		data-g-hover-expand="{{ particle.hoverExpand|default('true') ? 'true': 'false' }}">
+	
+	<div class='block-ctl'>
+	<button class='res-ctl naked' data-target='#{{ id }}-particle'
+		style='
+		--ctl-width: {{particle.icon_width}}; 
+		--ctl-height: {{particle.icon_height}};
+		'>
+	<i class="{{particle.icon}}"></i></button>
+	</div>
+	<nav role='navigation' class="menucan">
 		<ul class="toplevel">
             {{ macro.displayItems(menu.root, menu, _context) }}
         </ul>
     </nav>
+
 {% endif %}

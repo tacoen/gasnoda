@@ -1,0 +1,17 @@
+name: Scheme Switch
+description: Neoca Scheme Switch
+type: particle
+icon: fa-toggle-off
+
+configuration:
+  caching:
+    type: config_matches
+
+form:
+  fields:
+    
+    title:
+      type: input.text
+      label: Button Text
+      default: Dark Mode
+      overridable: false

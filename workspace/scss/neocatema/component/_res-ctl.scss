@@ -1,0 +1,109 @@
+#g-page-surround {
+	display: flow-root;
+}
+
+#section-ctl {
+
+
+	button {
+	    --center: calc( (100% / 2) - (var(--margin) / 2) );
+        z-index: 1009;
+		position: absolute;
+		left: initial; right: initial; top:initial; bottom: initial;
+		min-width: var(--ctl-width);
+		min-height: var(--ctl-width);
+		@extend %vcenter;
+		i { font-size: calc( var(--ctl-width) / 2) }
+		span { margin-left: calc(var(--margin) /2 ) }
+
+		&.left { left: var(--margin) }
+		&.right { right: var(--margin); }
+		&.top { top: calc(var(--margin)/2); left: var(--center); }
+		&.bottom { bottom: calc(var(--margin)/2); left: var(--center); }
+	}
+
+
+}
+
+.nanti .res {
+
+    opacity: 0;
+	visibility: hidden;
+	transition: all .25s ease-in-out, height 0.025s linear;
+
+	&.left { transform: translateX(-100%); height: 100%; }
+	&.right {  transform: translateX(100%); height: 100%; }
+	&.top {  transform: translateY(-100%); width: 100%;  }
+	&.bottom {  transform: translateY(100%); width: 100%; }
+
+	&.res-show {
+		transition: all .25s ease-in-out, height 0.025s linear;
+		visibility: visible;
+		opacity:1;
+		z-index: 9;
+		transform: translate(0) !important;
+	}
+
+    &.swipe { position: fixed;  }
+    &.touched { opacity: .4; }
+
+	@include breakpoint(mobile-only) {
+        opacity: 0;
+		visibility: hidden;
+	}
+
+	@include breakpoint(not-mobile) {
+		visibility: visible;
+		opacity:1;
+		z-index: 9;
+		transform: translateX(0) !important;
+	}
+
+}
+
+.nanti .res-ctl {
+
+    min-width: var(--ctl-width);
+    min-height: var(--ctl-height);
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    display: none;
+    padding: calc(var(--ctl-height) / 6);
+    z-index: 99;
+    transition: all .25s ease;
+
+    i {
+        transition: inherit;
+        font-size: calc(var(--ctl-height) / 2);
+        }
+
+    span { font-size: .9rem; margin-left: .5rem; }
+
+    &.active {
+    	i { transform: rotate(180deg); }
+    }
+
+    &.active.right {
+    	i { transform: rotate(90deg); }
+    }
+
+    &.active.left {
+    	i { transform: rotate(-90deg); }
+    }
+
+
+    &.show { display: flex; }
+    &.fixed { position: fixed; }
+    &.left { left: var(--margin); }
+    &.right { right: var(--margin); }
+    &.bottom { bottom: var(--margin); }
+    &.top { top: 0 }
+
+	@include breakpoint(mobile-only) {
+		display: flex;
+	}
+
+
+}
+

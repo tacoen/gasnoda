@@ -1,0 +1,44 @@
+$base-margin: 1rem !default;
+$base-padding: 1rem !default;
+$base-font-size: 1rem !default;
+$base-line-height: 1.8 !default;
+$base-font-base: sans-serif !default;
+$base-font-alter: serif !default;
+$base-font-head: sans-serif !default;
+$base-font-mono: monospace !default;
+$base-background: #fff !default;
+$base-text-color: #000 !default;
+$base-bradius: 0.25rem !default;
+$base-hrsep: 1px !default;
+
+$light-background-color: #f6f6f6 !default;
+$light-text-color: #111 !default;
+$light-surface-color: #345 !default;
+$light-button-color: #ddd !default;
+$light-accent-color: #911 !default;
+$light-success-color: #33bb33 !default;
+$light-warning-color: #ffcc33 !default;
+$light-error-color: #cc3333 !default;
+$light-info-color: #336699 !default;
+
+$light-shade-color: #0003 !default;
+$light-border-color: #0004 !default;
+$light-hilite-color: #fff9 !default;
+$light-shadow-color: #0002 !default;
+
+$dark-background-color:invert($light-background-color) !default; 
+$dark-text-color: invert($light-text-color) !default; 
+$dark-surface-color: invert($light-surface-color) !default; 
+$dark-button-color: invert($light-button-color) !default; 
+$dark-accent-color: invert($light-accent-color) !default; 
+$dark-success-color: darken($light-success-color,20%) !default; 
+$dark-warning-color: darken($light-warning-color,20%) !default; 
+$dark-error-color: darken($light-error-color,20%) !default; 
+$dark-info-color: darken($light-info-color,20%) !default; 
+
+$dark-shade-color: #0003 !default;
+$dark-border-color: #fff4 !default;
+$dark-hilite-color: #fff9 !default;
+$dark-shadow-color: #0002 !default;
+$dark-bradius: 0.25rem !default;
+$dark-hrsep: 1px !default;

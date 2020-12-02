@@ -1,0 +1,80 @@
+<div id='ncc-page'>
+
+{% set para1 = randomwords(1)|capitalize %}
+{% set para2 = randomwords(5)|capitalize %}
+{% set para3 = randomwords(5)|capitalize %}
+{% set para4 = randomwords(3)|capitalize %}
+
+
+<div mb-1 class='section-title'>Preview (Instant)</div>
+
+<div class='dummy-preview' ml-1 outlined flex style='width: 500px; height: 400px'>
+
+<div class='light-scheme'>
+	<div class='pv-body'>
+		<div>
+		<div p-1 spaced class='ncc-surface bg-d2'>
+			<i class='ncico-menu'></i>neocatema
+		</div>
+		<div p-2 border-bottom class='ncc-surface bg-w'>
+			<h4 center class='ncc-accent color-d'>{{ para1 }}</h4>
+		</div>
+		<div p-1 small-text>
+			<p>{{ para2 }}.</p>
+			<div mt-1 p-1 class='ncc-surface bg-l'>
+			<p>{{ para3 }}.</p>
+			<p><button>Button</button></p>
+			</div>
+		</div>
+		</div>
+		<div p-1 small-text class='ncc-button bg-l'>
+		{{ para4 }}
+		</div>
+	</div>
+</div>
+
+<div class='dark-scheme'>
+	<div class='pv-body'>
+		<div>
+		<div p-1 spaced class='ncc-surface bg-d2'>
+			<i class='ncico-menu'></i>neocatema
+		</div>
+		<div p-2 border-bottom class='ncc-surface bg-w'>
+			<h4 center class='ncc-accent color-d'>{{ para1 }}</h4>
+		</div>
+		<div p-1 small-text>
+			<p>{{ para2 }}.</p>
+			<div mt-1 p-1 class='ncc-surface bg-l'>
+			<p>{{ para3 }}.</p>
+			<p><button>Button</button></p>
+			</div>
+		</div>
+		</div>
+		<div p-1 small-text class='ncc-button bg-l'>
+		{{ para4 }}
+		</div>
+	</div>
+</div>
+
+
+</div>
+
+<div mt-2 class='section-title'>Gantry5 Preset YAML</div>
+
+<form style='height: 50vh;'>
+<textarea ml-1 style='height: 100%' class='text_yaml'></textarea>
+</form>
+
+<div mt-2 class='section-title'>scss variable</div>
+
+<form style='height: 50vh;'>
+<textarea ml-1 style='height: 100%' class='text_scss'></textarea>
+</form>
+
+
+
+
+</div>
+
+
+

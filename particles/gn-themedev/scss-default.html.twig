@@ -1,9 +1,0 @@
-<textarea rows='12'>
-{%- for style,data in dump %}
-{% for field,val in data %}
-{% if ((val == null) or (val=='')) %}{% set val='false' %}{% endif %}
-${{style|raw}}-{{field|raw}}: {{val|raw}} !default;
-{% endfor %}
-
-{% endfor -%}
-</textarea>

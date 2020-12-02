@@ -3,6 +3,28 @@
   margin: 0;
   padding: 0; }
 
+.fa-index span {
+  margin: 0 1rem 0 0;
+  padding: 1rem;
+  flex: 0 0 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; }
+  .fa-index span i {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 2rem;
+    margin-bottom: 1rem; }
+  .fa-index span input {
+    width: 5rem;
+    font-size: .8rem !important; }
+
 .page-gallery {
   display: flex;
   flex-flow: row;

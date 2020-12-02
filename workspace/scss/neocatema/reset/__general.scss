@@ -1,0 +1,18 @@
+*,
+*:before,
+*:after { box-sizing:border-box; }
+
+
+tfoot,
+thead,
+tbody {
+	background-color: inherit;
+}
+
+// Known vertical section/container
+
+main,
+aside {
+    min-height: 100%;
+}
+

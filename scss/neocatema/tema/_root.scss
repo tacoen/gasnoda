@@ -1,0 +1,35 @@
+:root {
+
+	// base on root
+	@each $var, $val in $base {
+		
+		@if str-index($var, 'font-') {
+			@if $var != "font-size" {
+				--#{$var}: #{get-font-family($val)};
+			} @else {
+				--#{$var}: #{$val};
+			}
+		} @else {
+			--#{$var}: #{$val};
+		}
+	}
+
+	// from configuration
+	
+	--line-margin: calc(var(--line-height) * var(--font-size));
+    --ctl-height: $menu-icon-h;
+    --ctl-width: $menu-icon-w;
+	--menu-width: $menu-col-width;
+	--mobile-breakpoint: $menu-mobile-breakpoint;
+	
+//	@include schemer($light);
+	
+//	@media (prefers-color-scheme: dark) {
+//		@include schemer($dark);
+//	}
+
+
+	@include schemer($custome);
+
+	
+}

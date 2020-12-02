@@ -1,6 +1,0 @@
-
-nav.menucan  { 
-	@include hsl-var($navigation-background,$navigation-text-color);
-	@if ($navigation-active) { --active: $navigation-active; } 
-	@if ($navigation-hover) { --hover: $navigation-hover; }
-}

@@ -1,0 +1,50 @@
+%no-margin-top {
+	margin-top:0;
+}
+
+// content: block that content
+
+$contents-list: [
+	'address',
+	'blockquote',
+	'canvas',
+	'dl',
+	'figcaption',
+	'figure',
+	'form',
+	'ol',
+	'p',
+	'pre',
+	'section',
+	'table',
+	'ul',
+	'video'
+];
+
+
+$contents: assign-inputs($contents-list);
+$contents-firstchild: assign-inputs($contents-list,first-child);
+
+#{$contents} {
+	margin-top: var(--line-margin);
+	margin-bottom: 0;
+}
+
+#{$contents-firstchild} {
+	@extend %no-margin-top;
+}
+
+// child-content: content inside content
+
+$child-content-list: [
+	'dd',
+	'dt',
+	'li',
+];
+
+
+$child-content: assign-inputs($child-content-list);
+
+#{$child-content} {
+	@extend %no-margin-top;
+}

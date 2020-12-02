@@ -1,0 +1,110 @@
+body.has-res {
+	main {
+        padding-top: var(--ctl-height); 
+    }
+}
+
+@mixin responsive-transform {
+    &.left { 
+        transform: translateX(-100%); 
+        border-right: 1px solid var(--border);
+    }
+    &.right { 
+        transform: translateX(100%);
+        border-left: 1px solid var(--border);
+    }
+    &.top { transform: translateX(-100vh);}
+    &.bottom { transform: translateX(100vh); }
+}
+
+button.res-ctl {
+    border: none;
+    outline: none;
+    position:absolute;
+    i { font-size: calc(var(--ctl-width) / 2); }
+    &.text {
+    	i { font-size: 1rem; }
+    }
+}
+
+
+.responsive {
+
+    position: absolute;
+
+	.res-ctl { 
+	    position: absolute;
+	    z-index: 1002; 
+	    cursor:pointer; 
+	    padding: var(--padding);
+	    display: inline-flex;
+	    align-items: center;
+	    span { margin-left: calc(var(--padding) / 2)}
+	    background-color: var(--c-n) !Important;
+	}
+
+    .res-content {
+        z-index: 1001; 
+        padding-top: var(--ctl-height);
+        transition: all .15s linear,  transform .25s ease-in-out;
+        opacity:0;
+        @include responsive-transform;
+    }
+
+
+    &.show {
+    	position: relative;
+    	.res-content {
+    		opacity:1;
+    		transform:translate(0);
+    	}
+    }
+
+}
+
+.kkresponsive {
+
+
+    .kk {
+
+        opacity: 1;
+        transform: translate(0);         
+    }
+
+    &.hide {
+
+        position: absolute;
+
+       .res-content {
+			opacity: 0;
+        }
+
+        @include responsive-transform;
+    }
+
+    @include breakpoint(mobile-only) {
+
+        position: absolute;
+
+       .res-content {
+            opacity: 0;
+            transition: all .15s linear,  transform .25s ease-in-out;
+
+       }
+
+       @include responsive-transform;
+
+       &.hide {
+
+        position: relative;
+
+       .res-content {
+			opacity: 1;
+            transform: translate(0); 
+       }       	
+
+       }
+
+    }
+
+}

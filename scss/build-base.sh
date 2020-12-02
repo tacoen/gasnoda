@@ -1,5 +1,11 @@
+
 echo "function"
 cd function
+./base.sh
+cd ..
+
+echo "neoca-grav"
+cd neoca-grav
 ./base.sh
 cd ..
 

@@ -1,41 +1,77 @@
-name: Main
-type: main
+name: Common Base
+type: neocatema
 
 form:
   fields:
 
-    background:
-      type: input.colorpicker
-      label: Background Color
-      default: "#f7f7f7"
+    _note1:
+        type: separator.note
+        class: opt-note header
+        content: Content
 
-    neutral:
-      type: input.colorpicker
-      label: Neutral Color
-      default: "#dddddd"
+    padding:
+        type: input.text
+        label: Horizontal
+        default: "0.5rem"
+        placeholder: 0.5rem (default) 
+        pattern: '\d+(\.\d+){0,1}(rem|em|%|px)'
+
+    margin:
+        type: input.text
+        label: Horizontal
+        default: "1rem"
+        placeholder: 1rem (default) 
+        pattern: '\d+(\.\d+){0,1}(rem|em|%|px)'
+        
+    bradius:
+        type: input.text
+        label: Border Radius
+        default: "0.25rem"
+        placeholder: 0.25rem (default) 
+        pattern: '\d+(\.\d+){0,1}(rem|em|px)'
+
+    hrsep:
+        type: input.text
+        label: Border Size
+        default: "1px"
+        placeholder: 1px (default) 
+        pattern: '\d+(\.\d+){0,1}(rem|em|px)'
+
+    _note1:
+        type: separator.note
+        class: opt-note header
+        content: Typeface
+
+    font-base:
+        type: input.fonts
+        label: Base Font
+        default: 'clearsans, sans-serif'
+
+    font-head:
+        type: input.fonts
+        label: Heading Font
+
+    font-alter:
+        type: input.fonts
+        label: Heading Font
+        default: 'serif'
+
+    font-mono:
+        type: input.fonts
+        label: Heading Font
+        default: 'monospace'
+        
+    font-size:
+        type: input.text
+        label: Font Size
+        pattern: '\d+(\.\d+){0,1}(rem|em|px)'
+        placeholder: 1.5rem(default)
+        default: 1rem
     
-    primary:
-      type: input.colorpicker
-      label: Primary Color
-      default: "#ffcc33"
+    line-height:
+        type: input.text
+        label: Line Height
+        pattern: '\d+(\.\d+){0,1}'
+        placeholder: Font-size + 0.5 (default) 
+        default: "1.5"
 
-    secondary:
-      type: input.colorpicker
-      label: Secondary Color
-      default: "#dd2222"
-      
-    offwhite:
-      type: input.colorpicker
-      label: Off Content
-      default: "#ffffff"
-    fnote4:
-      type: separator.note
-      class: sf
-      content: <div class='sf-note'><a onclick='javascript:poko_direct_modif(this,"light")' data-ref='[base][background]' data-dst='[base][offwhite]'>Lighter Background</a></div>
-
-    text-color:
-      type: input.colorpicker
-      label: Text Color
-      default: "#222222"
-
-      

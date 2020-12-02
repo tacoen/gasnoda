@@ -3,9 +3,6 @@ preset:
   image: 'gantry-admin://images/layouts/offline.png'
 
 layout:
-  /header/: { }
-  /navigation/: { }
   /main/:
+    - system-content
     - system-messages
-  /footer/: { } 
-  /floats/: { }

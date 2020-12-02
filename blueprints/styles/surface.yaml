@@ -1,0 +1,21 @@
+name: Surfaces
+type: variations
+
+form:
+  fields:
+
+    header:
+      type: input.colorpicker
+      label: Header
+      
+    navigation:
+      type: input.colorpicker
+      label: Navigation
+
+    aside:
+      type: input.colorpicker
+      label: Aside
+
+    footer:
+      type: input.colorpicker
+      label: Footer

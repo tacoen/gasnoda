@@ -1,23 +1,39 @@
 {% set attr_extra = segment.attributes.extra|attribute_array %}
-
-{% set class = 'g-block ' ~ segment.attributes.size|toGrid
-    ~ (segment.attributes.variations ? ' ' ~ segment.attributes.variations|join(' '))
+{% set responsive_block = segment.attributes.responsive %}
+{% set responsive_hide = segment.attributes.res_always %}
+{% set class = 'g-block ' ~ (section_noblock ? '': segment.attributes.size|toGrid)
+	~ (segment.attributes.variations ? ' ' ~ segment.attributes.variations|join(' '))
     ~ (segment.attributes.class ? ' ' ~ segment.attributes.class|join(' ')) %}
+
+{%if segment.attributes.responsive %}
+	{% set class = class ~ " responsive" ~
+		( segment.attributes.res_always ? '': ' show' )
+	%}
+{% endif %}	
 
 {% set html %}
     {% if segment.children %}
         {% for segment in segments %}
-            {% if segment.content %}
-                {{ segment.content|raw }}
-            {% else %}
-                {% include ['/content/' ~ segment.type ~ '.html.twig', '/layout/' ~ segment.type ~ '.html.twig'] with { 'segments': segment.children } %}
-            {% endif %}
+                {% include [
+					'/content/' ~ segment.type ~ '.html.twig', 
+					'/layout/' ~ segment.type ~ '.html.twig'] 
+					with { 'segments': segment.children } 
+				%}
         {% endfor %}
     {% endif %}
 {% endset %}
 
+
 {%- if html|trim %}
-        <div {% if segment.attributes.id %}id="{{ segment.attributes.id }}" {% endif %}class="{{ class }}" {{- attr_extra|raw }}>
-             {{ html|trim|raw }}
-        </div>
+
+		{%if offcanvas_flag %}
+			{{ html|trim|raw }}
+		{% else %}
+			<div 
+			{% if segment.attributes.id %}id="{{ segment.attributes.id }}" {% endif %}
+			class="{{ class }}" {{- attr_extra|raw }}>
+			{{ html|trim|raw }}
+			</div>
+		{% endif -%}
+
 {% endif -%}

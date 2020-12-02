@@ -120,7 +120,7 @@ aside a.active { color: var(--yellow); }
     text-align: center;
     margin: 0 -1.5rem;
     padding: 1.5rem;
-    @include flex(column,center,center);
+    @include flex-div(column,center,center);
     min-height: 80vh;
 
     h2 { font-size: 5rem; font-weight: 300; margin: 0;}
@@ -144,7 +144,7 @@ aside a.active { color: var(--yellow); }
     border-top: 1px solid #0002;
     padding-top: 1rem;
 
-    div { @include flex(row,start,start ) }
+    div { @include flex-div(row,start,start ) }
     
     label { flex: 0 0 15%; }
     span { flex: 0 085% }

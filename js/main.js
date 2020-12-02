@@ -1,3 +1,5 @@
+var scheme = 'light';
+
 window.addEventListener('resize', function() {
 
 	gn_breakpoint_tagging();
@@ -6,11 +8,16 @@ window.addEventListener('resize', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-
+	
+	var scheme = gn_scheme();
+	
 	gn_breakpoint_tagging();
+	
 	var dt = gn_fixtop('.dock-top',false); 
 
-	noda_responsive_function();
+	//var rt = gn_fixtop('.res.top',false); 
+	
+	//noda_responsive_function();
 	noda_attr_utilities();
 
 	//noda_sectioncolor();

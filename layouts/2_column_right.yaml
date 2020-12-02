@@ -2,6 +2,7 @@ version: 2
 preset:
   image: 'gantry-admin://images/layouts/2-col-right.png'
   name: 2_column_right
+
 layout:
   /navigation/: {  }
   /container-main/:
@@ -13,6 +14,6 @@ layout:
       -
         'aside 20': {  }
   
-  floats:
-    -
-      - system-messages-6818
+  /offcanvas/:
+    - system-messages
+

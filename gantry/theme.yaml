@@ -50,16 +50,30 @@ configuration:
       - gantry-theme://scss
       - gantry-engine://scss
     files:
-      - nucleus-s
       - theme
-      - gdocu
-      - custom
     persistent:
-      - nucleus-s
+     
     overrides:
       - theme
-      - gdocu
-      - custom    
+    
+  block-variations:
+
+    floats:
+        float-left: position-left
+        float-right: position-right
+
+    alignment:
+        top: top
+        middle: middle
+        bottom: bottom
+        left: left
+        center: center
+        right: right
+        
+    resize:
+        grow: grow
+        shrink: shrink
+
   
   section-variations:
 
@@ -78,14 +92,21 @@ configuration:
       mobile-only: Mobile Only
 
     Styles Color:
-      bg-color-accent-1: accent-1
-      bg-color-accent-2: accent-2
-      bg-color-accent-3: accent-3
-      bg-color-accent-4: accent-4
-      bg-color-yellow: yellow
-      bg-color-red: red
-      bg-color-blue: blue
-      bg-color-green: green
+      ncc-surface: surface-color
+      ncc-accent: accent-color
+      ncc-button: button-color
+      ncc-info: blue-color
+      ncc-error: red-color
+      ncc-warning: yellow-color
+      ncc-success: green-color
+
+    Custom Color:
+        ncc-color1: custom-color-1
+        ncc-color2: custom-color-2
+        ncc-color3: custom-color-3
+        ncc-color4: custom-color-4
+
+    Background Cover:
       cover-1: Cover 1
       cover-2: Cover 2
       cover-3: Cover 3
@@ -95,62 +116,25 @@ configuration:
       shadow: Shadow 1
       shadow2: Shadow 2
       rounded: Rounded
-      square: Square
-    
-  block-variations:
-
-    Utility:
-      disabled: Disabled
-      align-right: Align Right
-      align-left: Align Left
-      center: Center
-      nomarginall: No Margin
-      nopaddingall: No Padding
-      hide-mobile: Hide on small
-      
-    Transition:
-      banim-fade: fade
-      banim-slide-l: slide-left
-      banim-slide-r: slie-right
-      banim-bounce: bounce
-      
-    Styles Color:
-      bg-accent-1: accent-1
-      bg-accent-2: accent-2
-      bg-accent-3: accent-3
-      bg-accent-4: accent-4
-      bg-yellow: yellow
-      bg-red: red
-      bg-blue: blue
-      bg-green: green
-      cover-1: Cover 1
-      cover-2: Cover 2
-      cover-3: Cover 3
-      cover-4: Cover 4      
-      
+      square: Square      
   dependencies:
     gantry: 5.4.0
 
 admin:
   styles:
 
-    main:
-      - base
-      - font
-      - content
-
-    sections:
-      - navigation
-      - aside
-      - header
-      - footer
-
-    variations:
-      - accent
-      - cover
-      - color
-
     configuration:
       - menu
       - breakpoints
       - option
+
+    neocatema:
+      - light
+      - base
+      - dark
+
+    variations:
+      - accent
+      - cover
+      - surface
+

@@ -12,14 +12,14 @@
 
     {% set html %}
         {% if enabled and (segment.attributes.enabled is null or segment.attributes.enabled) %}
-            {% include ['particles/' ~ segment.subtype ~ '.html.twig',
+            {% include ['@particles/' ~ segment.subtype ~ '.html.twig',
             'particles/' ~ segment.subtype ~ '.html.twig',
             '/content/missing.html.twig'] %}
         {% endif %}
     {% endset %}
     {% set html = html|trim %}
 
-    {% set classes = ((not inContent ? 'g-content g-particle ' : 'g-particle ') ~ segment.classes|join(' '))|trim %}
+    {% set classes = ((not inContent ? (section_nocontent ? '': 'g-content')~'  g-particle ' : 'g-particle ') ~ segment.classes|join(' '))|trim %}
     {%- if html -%}
             {% if gantry.debug %}<!-- START PARTICLE {{ id }} -->{% endif %}
 

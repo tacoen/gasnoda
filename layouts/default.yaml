@@ -2,12 +2,11 @@ version: 2
 preset:
   image: 'gantry-admin://images/layouts/default.png'
   name: default
-  timestamp: 1602128313
 
 layout:
-  /header/: { }
   /navigation/: { }
+  /header/: { }
   /main/: {  }
   /footer/: { } 
-  /floats/:
+  /offcanvas/:
     - system-messages

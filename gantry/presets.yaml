@@ -1,8 +1,52 @@
 base:
-  image: 'gantry-admin://preset/default.png'
+  image: 'gantry-admin://preset/necotema1.png'
   description: Default
   colors:
-        - '#304055'
-        - '#991111'
-        - '#ffffff'
-        - '#222222'
+    - '#334455'
+    - '#991111'
+    - '#dddddd'
+    - '#f6f6f6'
+    - '#ccbbaa'
+    - '#ff9911'
+    - '#999999'
+    - '#090909'
+  styles:
+    base:
+      bradius: "0.25rem"
+      font-alter: "serif"
+      font-base: "'clearsans', sans-serif"
+      font-head: "'clearsans', sans-serif"
+      font-mono: "monospace"
+      font-size: "1rem"
+      hrsep: "1px"
+      line-height: "1.5"
+      margin: "1rem"
+      padding: "0.5rem"
+    dark:
+      accent-color: "#ff9911"
+      background-color: "#090909"
+      border-color: "#fff4"
+      button-color: "#999999"
+      error-color: "#7a1f1f"
+      hilite-color: "#fff9"
+      info-color: "#1a334d"
+      shade-color: "#0003"
+      shadow-color: "#fff5"
+      success-color: "#1d6b1d"
+      surface-color: "#ccbbaa"
+      text-color: "#eeeeee"
+      warning-color: "#cc9900"
+    light:
+      accent-color: "#991111"
+      background-color: "#f6f6f6"
+      border-color: "#0004"
+      button-color: "#dddddd"
+      error-color: "#cc3333"
+      hilite-color: "#fff9"
+      info-color: "#336699"
+      shade-color: "#0003"
+      shadow-color: "#0005"
+      success-color: "#33bb33"
+      surface-color: "#334455"
+      text-color: "#111111"
+      warning-color: "#ffcc33"

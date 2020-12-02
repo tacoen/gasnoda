@@ -1,0 +1,19 @@
+
+<div class='section-title'>SCSS Variables</div>
+
+<p>Sorted from <var>gantry.config.get('styles')</var>:</p>
+
+<pre>
+{%- for style,data in dump %}
+{% for field,val in data %}
+{% if ((val == null) or (val=='')) %}{% set val='false' %}{% endif %}
+${{style|raw}}-{{field|raw}}: {{val|raw}};
+{% endfor %}
+{% endfor -%}
+</pre>
+
+<div class='section-title'>Twig Example</div>
+
+<p><code>gantry.config.get('styles.base.font-base')</code> return <var>{{ gantry.config.get('styles.base.font-base') }}</var></p>
+<p><code>gantry.config.get('styles.menu.icon')</code> return <var>{{ gantry.config.get('styles.menu.icon') }}</var></p>
+

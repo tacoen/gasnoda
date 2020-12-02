@@ -2,7 +2,7 @@ version: 2
 preset:
   image: 'gantry-admin://images/layouts/column-right.png'
   name: docu
-  timestamp: 1602128339
+
 layout:
   /container-page/:
     -
@@ -10,7 +10,9 @@ layout:
         'aside 20':
       -
         'main 80':
-
+  /offcanvas/:
+    - system-messages
+    
 structure:
   aside:
     attributes:

@@ -1,0 +1,27 @@
+[class*='section-'] {
+
+    --text: var(--t);
+    --background: hsl(var(--h), var(--s), var(--l));
+    --hover: hsl(var(--h), var(--s), calc(var(--l) + 5%));
+    --active: hsl(var(--h), var(--s), calc(var(--l) - 5%));
+    --active-hover: hsl(var(--h), var(--s), calc(var(--l) + 8%));
+
+
+    &:not(.section-main) {
+
+        a:not(.button) { color: var(--text); }
+
+        .g-grid,
+        .g-block,
+        .g-particle {
+            display: flex;
+            height: 100%;
+        }
+    }
+}
+
+
+.g-particle {
+    width: 100%;
+}
+

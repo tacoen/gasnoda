@@ -1,0 +1,102 @@
+.fixed .gn-tree {
+	padding-top: 1rem;
+}
+
+.gn-tree {
+	width: 100%;
+
+}
+
+.gn-tree.block {
+
+	ol.gatree {
+		margin: 0;
+		display: block;
+
+		ol,li {
+			padding: 0;
+			margin: 0;
+			display: block;
+			list-style: none;
+		}
+
+		li.parent > a { font-weight: bold }
+	}
+
+}
+
+.gn-tree.tree {
+
+	ol.gatree {
+		margin: 0
+	}
+
+	ol.gatree {
+		font-size: .9rem;
+
+		li li { list-style-type: lower-alpha; }
+		li li li { list-style-type: disc; }
+
+		> li > ol { margin-bottom: 1rem; }
+
+		li {
+			position: relative;
+		}
+
+	}
+
+}
+
+.gn-tree.collapse {
+
+	ol.gatree {
+
+		a { color: var(--txt); }
+		a.active { color: var(--red); }
+
+		margin: 0;
+
+		&.toplevel > li {
+			border-bottom: 1px dotted var(--border);
+		}
+
+		padding: 0;
+		margin: 0;
+		display: block;
+
+		li {
+			position: relative; cursor: pointer;
+			list-style: none;
+			line-height: 1.8;
+
+			&.parent {
+				border-top: 1px dotted var(--border);
+			}
+
+			ol {
+				padding: 0;
+				margin: 0;
+				display: none;
+			}
+
+			.indicator:before {
+				font-family: 'FontAwesome';
+				position: absolute;
+				content: "\f196";
+				right: 0;
+				display:inline-block;
+			}
+
+			&.open {
+
+				> ol { display: block; z-index: 8; }
+				> .indicator:before { content: "\f147";  }
+
+			}
+
+
+
+		}
+	}
+}
+

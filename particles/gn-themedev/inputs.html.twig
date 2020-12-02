@@ -1,0 +1,179 @@
+<div id='ncc-panel'>
+<button id='ncc-panel-ctl' naked spaced onclick="gn_toggle('#ncc-panel','open')">
+<i class='ncico-sliders'></i>Theme Dev
+</button>
+
+<div class='content'>
+<div class='set'>
+
+<div class='accordion'>
+<input toggle id='item1' type='checkbox'>
+<label for='item1'>Theme Colors</label>
+<div toggle-content>
+
+<form class="color-input">
+	<div><input type="color" id="background-color" class="background-color" data-color="background" name="background-color" value="#ffffff" onchange="javascript:change_color(this);" data-value="#090909" style="--text:#fff;"></div>
+	<div><input type="color" id="text-color" class="text-color" data-color="text" name="text-color" value="#ffffff" onchange="javascript:change_color(this);" data-value="#eeeeee" style="--text:#000;"></div>
+	<div><input type="color" id="surface-color" class="surface-color" data-color="surface" name="surface-color" value="#ffffff" onchange="javascript:change_color(this);" data-value="#ccbbaa" style="--text:#000;"></div>
+	<div><input type="color" id="accent-color" class="accent-color" data-color="accent" name="accent-color" value="#ffffff" onchange="javascript:change_color(this);" data-value="#66eeee" style="--text:#000;"></div>
+	<div><input type="color" id="button-color" class="button-color" data-color="button" name="button-color" value="#ffffff" onchange="javascript:change_color(this);" data-value="#222222" style="--text:#fff;"></div>
+</form>
+	
+</div>
+</div>
+
+<div class='accordion'>
+<input toggle id='item5' type='checkbox'>
+<label for='item5'>System Colors</label>
+<div toggle-content>
+
+<form class="color-input">
+	<div><input type="color" id="warning-color" class="warning-color" data-color="warning" name="warning-color" value="#ffffff" onchange="javascript:change_color(this);"></div>
+	<div><input type="color" id="error-color" class="error-color" data-color="error" name="error-color" value="#ffffff" onchange="javascript:change_color(this);"></div>
+	<div><input type="color" id="info-color" class="info-color" data-color="info" name="info-color" value="#ffffff" onchange="javascript:change_color(this);"></div>
+	<div><input type="color" id="success-color" class="success-color" data-color="success" name="success-color" value="#ffffff" onchange="javascript:change_color(this);"></div>
+</form>
+	
+</div>
+</div>
+
+
+<div class='accordion'>
+<input toggle id='item2' type='checkbox'>
+<label for='item2'>Typography</label>
+<div toggle-content>
+
+	<form class='inline-form'>
+
+	<div class='form-field'>
+	<div class='form-label'>Font Size</div>
+	<div class='form-data'><input onchange="nc_cssvar('font-size','base',this.value)" type='text' value='' name='font-size'></div>
+	</div>
+	<div class='form-field'>
+	<div class='form-label'>Line Height</div>
+	<div class='form-data'><input onchange="nc_cssvar('line-height','base',this.value)" type='text' value='' name='line-height'></div>
+	</div>
+
+	<p class='sep'>Font</p>
+	
+	<div class='form-field'>
+	<div class='form-label'>Base</div>
+	<div class='form-data'><input onchange="nc_cssvar('font-base','base',this.value)"type='text' value='' name='font-base'></div>
+	</div>
+
+	<div class='form-field'>
+	<div class='form-label'>Alternate</div>
+	<div class='form-data'><input onchange="nc_cssvar('font-alter','base',this.value)"type='text' value='' name='font-alter'></div>
+	</div>
+
+	<div class='form-field'>
+	<div class='form-label'>Heading</div>
+	<div class='form-data'><input onchange="nc_cssvar('font-head','base',this.value)"type='text' value='' name='font-head'></div>
+	</div>
+
+	<div class='form-field'>
+	<div class='form-label'>Monotype</div>
+	<div class='form-data'><input onchange="nc_cssvar('font-mono','base',this.value)"type='text' value='' name='font-mono'></div>
+	</div>
+
+	</form>
+
+</div>
+</div>
+
+<div class='accordion'>
+<input toggle id='item3' type='checkbox'>
+<label for='item3'>Page Setting</label>
+<div toggle-content>
+
+
+	<form class='inline-form'>
+
+	<div class='form-field'>
+	<div class='form-label'>Padding</div>
+	<div class='form-data'><input onchange="nc_cssvar('padding','base',this.value)" type='text' value='' name='padding'></div>
+	</div>
+	
+	<div class='form-field'>
+	<div class='form-label'>Margin</div>
+	<div class='form-data'><input onchange="nc_cssvar('margin','base',this.value)" type='text' value='' name='margin'></div>
+	</div>
+
+	</form>
+
+
+</div>
+</div>
+
+
+<div class='accordion'>
+<input toggle id='item4' type='checkbox'>
+<label for='item4'>Decorant</label>
+<div toggle-content>
+
+
+	<form class='inline-form'>
+
+	<div class='form-field'>
+	<div class='form-label'>Shade</div>
+	<div class='form-data'><input onchange="nc_cssvar('shade',false,this.value)" type='text' value='' name='shade'></div>
+	</div>
+
+	<div class='form-field'>
+	<div class='form-label'>Border</div>
+	<div class='form-data'><input onchange="nc_cssvar('border',false,this.value)" type='text' value='' name='border'></div>
+	</div>
+	
+	<div class='form-field'>
+	<div class='form-label'>Highlight</div>
+	<div class='form-data'><input onchange="nc_cssvar('hilite',false,this.value)" type='text' value='' name='hilite'></div>
+	</div>
+
+	<div class='form-field'>
+	<div class='form-label'>Shadow</div>
+	<div class='form-data'><input onchange="nc_cssvar('shadow',false,this.value)" type='text' value='' name='shadow'></div>
+	</div>
+
+	<div class='form-field'>
+	<div class='form-label'>B-Radius</div>
+	<div class='form-data'><input onchange="nc_cssvar('bradius','base',this.value)" type='text' value='' name='bradius'></div>
+	</div>
+
+	<div class='form-field'>
+	<div class='form-label'>Separator</div>
+	<div class='form-data'><input onchange="nc_cssvar('hrsep','base',this.value)" type='text' value='' name='hrsep'></div>
+	</div>
+
+	</form>
+
+
+</div>
+</div>
+
+</div><!--set-->
+
+<p class='tools'>
+<button title='variables' id='ncc-page-ctl' naked onclick="gn_toggle('#ncc-page','open');nc_variables();">
+<i class='ncico-download'></i></button>
+
+<button title='colors' id='ncc-chart-ctl' naked onclick="gn_toggle('#ncc-chart','open');nc_variables();">
+<i class='ncico-eye'></i></button>
+
+<a class='button toggle' naked href='https://github.com/tacoen/neocatema/wiki'>
+<i class='ncico-github'></i></a>
+
+<button title='reset' id='ncc-panel-reset' naked right onclick="localStorage.clear();location.reload();">
+<i class='ncico-slash'></i>
+</button>
+
+</p>
+</div><!--content-->
+
+</div>
+{% set inline_js %}
+
+gas('#g-page-surround').addClass('theme-set');
+
+{% endset %}
+
+{% do gantry.document.addInlineScript(inline_js, 0, 'footer') %}

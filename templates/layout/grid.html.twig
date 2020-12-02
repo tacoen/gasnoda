@@ -1,5 +1,6 @@
 {% set attr_extra = segment.attributes.extra|attribute_array %}
-{% set class = 'g-grid' ~ (segment.attributes.class ? ' ' ~ segment.attributes.class|join(' ')) %}
+
+{% set class = (section_nogrid ? 'no-grid': 'g-grid') ~' '~(segment.attributes.class ? ' ' ~ segment.attributes.class|join(' ')) %}
 
 {%- set html %}
     {% if segment.children %}
@@ -10,7 +11,15 @@
 {% endset %}
 
 {%- if html|trim %}
-        <div {% if segment.attributes.id %}id="{{ segment.attributes.id|e }}" {% endif %}class="{{ class }}" {{- attr_extra|raw }}>
-          {{- html|raw -}}
-        </div>
+
+	{%if offcanvas_flag %}
+		{{- html|raw -}}
+	{% else %}
+		<div 
+		{% if segment.attributes.id %}id="{{ segment.attributes.id|e }}" {% endif %}
+		class="{{ class }}" {{- attr_extra|raw }}>
+		{{- html|raw -}}
+		</div>
+	{% endif %}
+
 {% endif %}

@@ -10,12 +10,28 @@
     {% endif %}
 {% endset -%}
 
+
 {%- set offcanvas = null -%}
+{%- for segment in segments if segment.type == 'offcanvas' %}
+    {%- set offcanvas = segment -%}
+{% endfor -%}
+
+{%- set page_offcanvas %}
+    {% block page_offcanvas %}
+        {% if offcanvas %}
+            {% include 'layout/' ~ offcanvas.type ~ '.html.twig' with { 'segment': offcanvas } -%}
+        {% endif %}
+    {% endblock %}
+{% endset -%}
+
+{%- set page_offcanvas = page_offcanvas|trim ?: '' %}
+{%- set offcanvas_position = page_offcanvas ? offcanvas.attributes.position|default('g-offcanvas-left') : '' -%}
 
 {%- set page_layout %}
     {% block page_layout %}
+
     {% for segment in segments if segment.type != 'offcanvas' %}
-        {% include '/layout/' ~ segment.type ~ '.html.twig' with { 'segments': segment.children } %}
+        {% include 'layout/' ~ segment.type ~ '.html.twig' with { 'segments': segment.children } %}
     {% endfor %}
     {% endblock %}
 {% endset -%}
@@ -44,6 +60,14 @@
     {{ gantry.document.getHtml('body_bottom')|join("\n    ")|raw }}
 {% endset -%}
 
+{%- set coba %}
+    {{ gantry.document.getHtml('myclass')|join("\n    ")|raw }}
+{% endset -%}
+
+{%- set menucan_ctl %}
+    {{ gantry.document.getHtml('menucan_ctl')|join("\n    ")|raw }}
+{% endset -%}
+
 {# Head and footer needs to come last because of any of the above blocks may have CSS or JavaScript in them #}
 
 {# Gasnoda //------- #}
@@ -55,16 +79,22 @@
 		{%- do gantry.document.addStyle(url('gantry-assets://vendors/animate.min.css')) -%}
 	{% endif %}
 
+	{%- do gantry.document.addStyle(url('gantry-assets://css/neocatema-icon.css')) -%}
+
+	{%- do gantry.document.addStyle(url('gantry-assets://workspace/css/neocatema.css')) -%}
+
 	{% if gantry.config.get('styles.option.devinchrome') -%}
 		{%- do gantry.document.addStyle(url('gantry-assets://workspace/css/style.css')) -%}
 		{%- do gantry.document.addStyle(url('gantry-assets://workspace/css/custom.css')) -%}
 		{%- do gantry.document.addScript(url('gantry-assets://workspace/js/script.js'), 10, 'footer') -%}
 	{% endif %}
-	
-	{%- set media_breakpoint%}
-	var gn_media_breakpoint = {'wide':{{ 16*gantry.config.get('styles.breakpoints.large-desktop-container')|number_format }},'desktop':{{ 16*gantry.config.get('styles.breakpoints.desktop-container')|number_format}},'tablet':{{ 16*gantry.config.get('styles.breakpoints.tablet-container')|number_format}},'mobile':{{ 	16*gantry.config.get('styles.breakpoints.large-mobile-container')|number_format}}}
-	{% endset -%}
-	{% do gantry.document.addInlineScript(media_breakpoint|spaceless, 0, 'footer') %}
+
+{%-set inline_js %}
+var disable_scheme = {{ (gantry.config.get('styles.option.disable_scheme') ? 'true': 'false')|raw }};
+var gn_media_breakpoint = {'wide':{{ 16*gantry.config.get('styles.breakpoints.large-desktop-container')|number_format }},'desktop':{{ 16*gantry.config.get('styles.breakpoints.desktop-container')|number_format}},'tablet':{{ 16*gantry.config.get('styles.breakpoints.tablet-container')|number_format}},'mobile':{{ 	16*gantry.config.get('styles.breakpoints.large-mobile-container')|number_format}}};
+{% endset -%}
+
+	{% do gantry.document.addInlineScript(inline_js|spaceless, 0, 'footer') %}
 
 {# //------- #}
 
@@ -87,10 +117,13 @@
 <html {{ gantry.page.htmlAttributes|raw }}>
     {{ page_head|raw }}
     {% block page_body -%}
-    <body{{ gantry.page.bodyAttributes({'class': [offcanvas_position, 
-	'page-'~page.slug(), 
-	gantry.page.preset, 
-	'g-style-' ~ gantry.theme.preset]})|raw }}>
+    <body{{ gantry.page.bodyAttributes({'class': [
+		coba,
+		offcanvas_position, 
+		'page-'~page.slug(), 
+		gantry.page.preset, 
+		'g-style-' ~ gantry.theme.preset]
+	})|raw }}>
         {{ gantry.config.page.body.body_top|raw }}
         {{ body_top|raw }}
         {{ page_offcanvas|raw }}

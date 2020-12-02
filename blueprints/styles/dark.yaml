@@ -1,0 +1,70 @@
+
+name: Dark Scheme
+type: neocatema
+
+form:
+  fields:
+
+    _note1:
+        type: separator.note
+        class: opt-note header
+        content: Theme Color
+
+    background-color:
+        type: input.colorpicker
+        label: Background Color
+    text-color:
+        type: input.colorpicker
+        label: Text Color
+
+    surface-color:
+        type: input.colorpicker
+        label: Surface Color
+    accent-color:
+        type: input.colorpicker
+        label: Accent Color
+        default: "#ff9911"
+    button-color:
+        type: input.colorpicker
+        label: Button Color
+        default: "#999999"
+
+    _note3:
+        type: separator.note
+        class: opt-note header
+        content: Additional UI
+
+    warning-color:
+        type: input.colorpicker
+        label: Warning
+    error-color:
+        type: input.colorpicker
+        label: Error
+    info-color:
+        type: input.colorpicker
+        label: Info
+    success-color:
+        type: input.colorpicker
+        label: Success
+
+    _note4:
+        type: separator.note
+        class: opt-note header
+        content: Decorant
+
+    border-color:
+        type: input.text
+        label: Border Color
+        default: "#fff4"
+    hilite-color:
+        type: input.text
+        label: Hilite
+        default: "#fff9"
+    shade-color:
+        type: input.text
+        label: Shade
+        default: "#0003"
+    shadow-color:
+        type: input.text
+        label: Shadow
+        default: "#fff5"

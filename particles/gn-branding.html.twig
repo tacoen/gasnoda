@@ -21,7 +21,7 @@
     {% elseif image %}
         <div class='site-logo' {{ heights }}><img src="{{ url(particle.logo) }}" alt="{{ particle.title }}"></div>
     {% elseif icon %}
-        <div class='site-logo' {{ heights }}><i style="font-size:{{ iconsize }}; margin-right:{{ margin }}" class="icon {{ icon }}" title="{{ stitle }}"></i></div>
+        <div class='site-logo' {{ heights }}><i style="font-size:{{ iconsize }};" class="icon {{ icon }}" title="{{ stitle }}"></i></div>
     {% endif %}
     {% if particle.title %}
         {% set wrap = 1 %}
@@ -37,8 +37,8 @@
         {% endset %}
     {% endif %}
     {% if wrap %} <div class='wrapper' {{ heights }}>{% endif %}
-        {{ wtitle }}
-        {{ wsubtext }}
+        {{ wtitle|raw }}
+        {{ wsubtext|raw }}
     {% if wrap %}</div>{% endif %}
     </a>
     </div>

@@ -1,0 +1,120 @@
+/* move to main */
+
+/* themedev */
+
+@import "function.scss";
+
+#ncc-page,
+#ncc-panel {
+	--panel: #cecede;
+	--text:#333;
+	--label: #f91;
+	--shade: #0001;
+    background: var(--panel);
+    color: var(--text);
+	border: 1px solid var(--border);
+
+	z-index: 202;
+
+}
+
+#ncc-panel {
+
+    input[type="checkbox"] { display: none; }	
+
+    transition: height .25s ease;
+	position: fixed;
+	width: 210px;
+	height: 2.2rem;
+	bottom: .25rem;
+	right: .25rem;
+	font-size: .9rem;
+	@include ncc-scrollbars(.25rem,#fffc,#0003);	
+	
+	form {
+		padding: .5rem;
+		font-size: .8rem;
+		
+		.sep { font-weight:700; margin: 1rem 0; }
+	}
+	
+	button {
+		padding: .5rem;
+		text-align: left;
+	}
+	
+	&.open {
+		height: calc(100vh - .5rem);
+		overflow-y: auto;
+	}
+	
+
+    .color-input {
+        width: 100%;
+    }
+    
+
+   .tools {
+    	margin:0;
+    }
+
+    [naked] {
+    	color: var(--text);
+    }
+}
+
+.dark-scheme {
+
+    #ncc-page,
+	#ncc-panel {
+		--text: #eee;
+    	--shade: #fff1;
+		--panel: #3a3a4a;
+		--label: #c33;
+	}
+}
+
+#ncc-page {
+    transition:all .25s ease;
+	opacity: 0;
+	transform: translateX(100%);
+	position: fixed;
+	left: .25rem;
+	width: calc(100vw - .5rem - 230px);
+	height: calc(100% - 5rem);
+	overflow-y: scroll;
+	padding-bottom: 6rem;
+	@include ncc-scrollbars(.25rem,#fffc,#0003);	
+
+	form {
+		width: calc(100% - 2rem);
+	}
+
+	&.open {
+    	top: .25rem;
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+#ncc-panel .content {
+	display: flex;
+	height: calc(100vh - 42px);
+	flex-flow: column nowrap;
+	justify-content: space-between;
+	.set {
+        overflow-y:auto;
+    	background:var(--shade);
+    	@include ncc-scrollbars(.25rem,#fffc,#0003);
+	}
+}
+
+#ncc-chart {
+	@extend #ncc-page;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	color: var(--text);
+	background: var(--background);
+
+}

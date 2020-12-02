@@ -6,6 +6,8 @@ function gatree_init() {
 	tree.forEach( function(c) {
 		var parent = c.parentElement;
 		var parent_class = c.parentElement.classList;
+		
+		/*
 			if (c.closest('li.parent')) {
 				if (uri.includes(c.getAttribute('href'))) {
 					c.closest('li.parent').classList.add('open');
@@ -14,7 +16,8 @@ function gatree_init() {
 					}
 				}
 			}
-
+		*/
+		
 		if (parent_class.contains('parent')) {
 			var indicator = document.createElement("span");
 			indicator.classList.add('indicator')

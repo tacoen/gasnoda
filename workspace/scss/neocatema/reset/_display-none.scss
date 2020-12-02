@@ -1,0 +1,13 @@
+[hidden] {
+	display: none;
+}
+
+$display-none-list: [
+	'#g-offcanvas',
+];
+
+$display-none: assign-inputs($display-none-list);
+
+#{$display-none} {
+	@extend [hidden];
+}

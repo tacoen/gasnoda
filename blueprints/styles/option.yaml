@@ -1,44 +1,26 @@
-name: Developer Options
+name: Options
 description: Style Option
 type: configuration
 
 form:
   fields:
-    
-    _info2:
-      type: separator.note
-      class: opt-note header
-      content: <b>Turnable</b>
 
-      
-    nucleus_css:
+    disable_scheme:
       type: input.checkbox
-      label: Compile Nucleus
-      default: false
-
-    grav_css:
-      type: input.checkbox
-      label: Grav Asset
-      default: false
-      
-    hydrogen_css:
-      type: input.checkbox
-      label: Hydrogen Style
-      default: false
-
-
-    _info3:
-      type: separator.note
-      class: opt-note header
-      content: <b>Modules</b>
+      label: Disable Scheme
+      default: '0'
 
     devinchrome:
       type: input.checkbox
       label: Enable Workspaces
-      default: true      
+      default: '1'
+
+    _info4:
+      type: separator.note
+      class: opt-note header
+      content: <b>Modules</b>
 
     animate_css:
       type: input.checkbox
-      label: animate.css
-      default: false
-    
+      label: Animate.css
+      default: '0'

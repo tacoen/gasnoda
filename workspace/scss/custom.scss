@@ -1,6 +1,26 @@
 @import "function.scss";
 
 
+.fa-index {
+
+	span {
+   		margin: 0 1rem 0 0;
+   		padding: 1rem;
+   		flex: 0 0 6rem;
+        @include flex-div(column,center,center);
+        
+		i { 
+    		text-align: center;
+            @include flex-div(column,center,center);
+    		font-size: 2rem; 
+    		margin-bottom: 1rem;
+    	}
+
+    	input { width: 5rem; font-size: .8rem !important; }
+	}
+}
+
+
 .page-gallery {
     @extend %reset-list;
     display: flex;
@@ -23,7 +43,7 @@
 }
 
 #page-gallery-modal {
-    @include flex(row,center,center);
+    @include flex-div(row,center,center);
     background: #000d;
     position: fixed;
     top:0; width: 100%;
@@ -52,3 +72,4 @@
 
 
 }
+

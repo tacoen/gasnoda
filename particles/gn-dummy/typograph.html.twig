@@ -1,0 +1,128 @@
+<h2 class='title'>Typography</h2>
+
+<p>
+{{ randomwords(1)|capitalize }} 
+{{ randomwords(19) }}
+<kbd>ctl-c</kbd>
+{{ randomwords(3) }}
+<strong>strong</strong>
+{{ randomwords(1) }}  
+<b>bold</b>
+{{ randomwords(1) }}  
+<i>italic</i>
+{{ randomwords(1) }}  
+<em>{{ randomwords(1) }}</em>
+{{ randomwords(3) }}  
+<a href='page:inline'>links</a>
+{{ randomwords(3) }}  
+<abbr title='hyper text markup langugage'>HTML</abbr>
+{{ randomwords(5) }}.
+<mark>{{ randomwords(1)|capitalize }}</mark>
+{{ randomwords(5) }}
+<code>var(--text);</code> 
+{{ randomwords(9) }}
+period.
+</p>
+
+<ul>
+<li>{{ randomwords(4)|capitalize }}</li>
+<li>{{ randomwords(4)|capitalize }}
+	<ul>
+	<li>{{ randomwords(4)|capitalize }}</li>
+	<li>{{ randomwords(4)|capitalize }}</li>
+	</ul></li>
+<li>{{ randomwords(4)|capitalize }}</li>
+</ul>
+
+
+<ol>
+<li>{{ randomwords(4)|capitalize }}</li>
+<li>{{ randomwords(4)|capitalize }}
+	<ol>
+	<li>{{ randomwords(4)|capitalize }}</li>
+	<li>{{ randomwords(4)|capitalize }}</li>
+	</ol></li>
+<li>{{ randomwords(4)|capitalize }}</li>
+</ol>
+
+<blockquote>{{randomwords(1)|capitalize }}  {{ randomwords(4) }}</blockquote>
+
+<p>{{randomwords(20)|capitalize }}.</p>
+
+<pre>
+console.log('Hi World');
+var dt = 1;
+noda_responsive_function({
+	gn_fixtop('.dock-top',false); 
+	gn_attr_utilities();
+});
+</pre>
+
+<p>{{randomwords(1)|capitalize }} {{ randomwords(7) }}.</p>
+
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Float</th>
+                        <th style="text-align: left;">Words</th>
+                        <th style="text-align: right;">Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.0</td>
+                        <td style="text-align: left;">Full</td>
+                        <td style="text-align: right;">100%</td>
+                    </tr>
+                    <tr>
+                        <td>0.9</td>
+                        <td style="text-align: left;">Near Full</td>
+                        <td style="text-align: right;">90%</td>
+                    </tr>
+                    <tr>
+                        <td>0.5</td>
+                        <td style="text-align: left;">Half</td>
+                        <td style="text-align: right;">50%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+<hr>
+
+<div flex>
+
+<div third pr-1 mv-1>
+block + p
+</div>
+
+<div third pr-1 mv-1>
+div + p
+</div>
+
+<div third mv-1>
+div + div
+</div>
+
+<div third pr-1>
+{% for i in 1..6 %}
+<h{{ i }}>Heading {{ i }}</h{{ i }}>
+<p>{{randomwords(5)|capitalize}}</p>
+{% endfor %}
+</div>
+
+<div third pr-1>
+{% for i in 1..6 %}
+<div class='h{{ i }}'>Heading {{ i }}</div>
+<p>{{randomwords(5)|capitalize}}</p>
+{% endfor %}
+</div>
+
+<div third>
+{% for i in 1..6 %}
+<div class='h{{ i }}'>Heading {{ i }}</div>
+<div>{{randomwords(5)|capitalize}}</div>
+{% endfor %}
+</div>
+
+</div>

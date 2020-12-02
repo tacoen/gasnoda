@@ -1,0 +1,137 @@
+/* move to main */
+/* themedev */
+#ncc-page, #ncc-chart,
+#ncc-panel {
+  --panel: #cecede;
+  --text:#333;
+  --label: #f91;
+  --shade: #0001;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  z-index: 202; }
+
+#ncc-panel {
+  transition: height .25s ease;
+  position: fixed;
+  width: 210px;
+  height: 2.2rem;
+  bottom: .25rem;
+  right: .25rem;
+  font-size: .9rem; }
+  #ncc-panel input[type="checkbox"] {
+    display: none; }
+  #ncc-panel::-webkit-scrollbar {
+    width: 0.25rem;
+    height: 0.25rem; }
+  #ncc-panel::-webkit-scrollbar-thumb {
+    background: #fffc;
+    border: 1px outset #0006;
+    border-top: 1px outset #0003;
+    border-left: 1px outset #0003;
+    border-radius: .25rem; }
+  #ncc-panel::-webkit-scrollbar-track {
+    box-shadow: inset -1px 0 3px #0009;
+    background: #0003; }
+  #ncc-panel::-webkit-scrollbar-thumb:hover {
+    background: #fffd;
+    box-shadow: 0 2px 6px #0005; }
+  #ncc-panel {
+    scrollbar-face-color: #fffc;
+    scrollbar-track-color: #0003; }
+  #ncc-panel form {
+    padding: .5rem;
+    font-size: .8rem; }
+    #ncc-panel form .sep {
+      font-weight: 700;
+      margin: 1rem 0; }
+  #ncc-panel button {
+    padding: .5rem;
+    text-align: left; }
+  #ncc-panel.open {
+    height: calc(100vh - .5rem);
+    overflow-y: auto; }
+  #ncc-panel .color-input {
+    width: 100%; }
+  #ncc-panel .tools {
+    margin: 0; }
+  #ncc-panel [naked] {
+    color: var(--text); }
+
+.dark-scheme #ncc-page, .dark-scheme #ncc-chart,
+.dark-scheme #ncc-panel {
+  --text: #eee;
+  --shade: #fff1;
+  --panel: #3a3a4a;
+  --label: #c33; }
+
+#ncc-page, #ncc-chart {
+  transition: all .25s ease;
+  opacity: 0;
+  transform: translateX(100%);
+  position: fixed;
+  left: .25rem;
+  width: calc(100vw - .5rem - 230px);
+  height: calc(100% - 5rem);
+  overflow-y: scroll;
+  padding-bottom: 6rem; }
+  #ncc-page::-webkit-scrollbar, #ncc-chart::-webkit-scrollbar {
+    width: 0.25rem;
+    height: 0.25rem; }
+  #ncc-page::-webkit-scrollbar-thumb, #ncc-chart::-webkit-scrollbar-thumb {
+    background: #fffc;
+    border: 1px outset #0006;
+    border-top: 1px outset #0003;
+    border-left: 1px outset #0003;
+    border-radius: .25rem; }
+  #ncc-page::-webkit-scrollbar-track, #ncc-chart::-webkit-scrollbar-track {
+    box-shadow: inset -1px 0 3px #0009;
+    background: #0003; }
+  #ncc-page::-webkit-scrollbar-thumb:hover, #ncc-chart::-webkit-scrollbar-thumb:hover {
+    background: #fffd;
+    box-shadow: 0 2px 6px #0005; }
+  #ncc-page, #ncc-chart {
+    scrollbar-face-color: #fffc;
+    scrollbar-track-color: #0003; }
+  #ncc-page form, #ncc-chart form {
+    width: calc(100% - 2rem); }
+  #ncc-page.open, .open#ncc-chart {
+    top: .25rem;
+    transform: translateX(0);
+    opacity: 1; }
+
+#ncc-panel .content {
+  display: flex;
+  height: calc(100vh - 42px);
+  flex-flow: column nowrap;
+  justify-content: space-between; }
+  #ncc-panel .content .set {
+    overflow-y: auto;
+    background: var(--shade); }
+    #ncc-panel .content .set::-webkit-scrollbar {
+      width: 0.25rem;
+      height: 0.25rem; }
+    #ncc-panel .content .set::-webkit-scrollbar-thumb {
+      background: #fffc;
+      border: 1px outset #0006;
+      border-top: 1px outset #0003;
+      border-left: 1px outset #0003;
+      border-radius: .25rem; }
+    #ncc-panel .content .set::-webkit-scrollbar-track {
+      box-shadow: inset -1px 0 3px #0009;
+      background: #0003; }
+    #ncc-panel .content .set::-webkit-scrollbar-thumb:hover {
+      background: #fffd;
+      box-shadow: 0 2px 6px #0005; }
+    #ncc-panel .content .set {
+      scrollbar-face-color: #fffc;
+      scrollbar-track-color: #0003; }
+
+#ncc-chart {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  color: var(--text);
+  background: var(--background); }
+
+/*# sourceMappingURL=ncc-themedev.css.map */

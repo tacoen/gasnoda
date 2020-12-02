@@ -1,0 +1,28 @@
+{% extends '@nucleus/partials/particle.html.twig' %}
+{% set page = uri.param('page') %}
+{% set dump = gantry.config.get('styles') %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="gantry-theme://workspace/css/dummy.css" />
+{% endblock %}
+
+{% block particle %}
+
+<div flex class='theme-dummy'>
+
+<div half grow>
+
+{%if page%}
+	{% include '@particles/gn-dummy/'~page~'.html.twig' %}
+{% else %}
+	{% include '@particles/gn-dummy/howto.html.twig' %}
+{% endif %}
+
+</div>
+<div quater shrink pl-2>
+	{% include '@particles/gn-dummy/menu.html.twig' %}
+</div>
+
+
+</div>
+{% endblock %}

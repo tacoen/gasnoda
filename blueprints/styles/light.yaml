@@ -1,0 +1,77 @@
+
+name: Light Scheme
+type: neocatema
+
+form:
+  fields:
+
+    _note1:
+        type: separator.note
+        class: opt-note header
+        content: Theme Color
+
+    background-color:
+        type: input.colorpicker
+        label: Background Color
+        default: "#f6f6f6"
+    text-color:
+        type: input.colorpicker
+        label: Text Color
+        default: "#111111"
+
+    surface-color:
+        type: input.colorpicker
+        label: Surface Color
+        default: "#334455"
+    accent-color:
+        type: input.colorpicker
+        label: Accent Color
+        default: "#991111"
+    button-color:
+        type: input.colorpicker
+        label: Button Color
+        default: "#dddddd"
+
+    _note3:
+        type: separator.note
+        class: opt-note header
+        content: Additional UI
+
+    warning-color:
+        type: input.colorpicker
+        label: Warning
+        default: "#ffcc33"
+    error-color:
+        type: input.colorpicker
+        label: Error
+        default: "#cc3333"
+    info-color:
+        type: input.colorpicker
+        label: Info
+        default: "#336699"
+    success-color:
+        type: input.colorpicker
+        label: Success
+        default: "#33bb33"
+
+    _note4:
+        type: separator.note
+        class: opt-note header
+        content: Decorant
+
+    border-color:
+        type: input.text
+        label: Border Color
+        default: "#0004"
+    hilite-color:
+        type: input.text
+        label: Hilite
+        default: "#fff9"
+    shade-color:
+        type: input.text
+        label: Shade
+        default: "#0003"
+    shadow-color:
+        type: input.text
+        label: Shadow
+        default: "#0005"

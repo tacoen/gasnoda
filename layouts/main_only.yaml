@@ -6,6 +6,4 @@ preset:
 
 layout:
   /main/: { }
-  floats:
-    -
-      - system-messages
+    - system-messages

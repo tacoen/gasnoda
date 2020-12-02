@@ -1,0 +1,26 @@
+name: Custome Colors
+type: variations
+
+form:
+  fields:
+
+    color-1:
+      type: input.colorpicker
+      label: Color 1
+      default:
+
+    color-2:
+      type: input.colorpicker
+      label: Color 2
+      default:
+
+    color-3:
+      type: input.colorpicker
+      label: Color 3
+      default:
+
+    color-4:
+      type: input.colorpicker
+      label: Color 4
+      default:
+
