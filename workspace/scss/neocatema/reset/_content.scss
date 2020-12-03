@@ -11,16 +11,12 @@ $contents-list: [
 	'dl',
 	'figcaption',
 	'figure',
-	'form',
 	'ol',
 	'p',
-	'pre',
 	'section',
-	'table',
 	'ul',
 	'video'
 ];
-
 
 $contents: assign-inputs($contents-list);
 $contents-firstchild: assign-inputs($contents-list,first-child);
@@ -32,6 +28,14 @@ $contents-firstchild: assign-inputs($contents-list,first-child);
 
 #{$contents-firstchild} {
 	@extend %no-margin-top;
+}
+
+
+
+pre,
+form,
+table {
+    margin-bottom: var(--line-margin);
 }
 
 // child-content: content inside content

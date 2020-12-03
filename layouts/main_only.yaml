@@ -6,4 +6,3 @@ preset:
 
 layout:
   /main/: { }
-    - system-messages

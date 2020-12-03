@@ -2,7 +2,12 @@
 {% set attr_id = segment.attributes.id ?: 'g-' ~ segment.id %}
 {% set variations = (segment.attributes.variations ? ' ' ~ segment.attributes.variations|join(' ')) %}
 {% set attr_class = segment.attributes.class
-	~ ' section-'~segment.id ~ variations %}
+	~ ' section-'~segment.id ~ variations 
+	~ (segment.attributes.no_sizes ? ' no-size': '')
+	%}
+
+{% set nogrid = segment.attributes.no_grid %}
+
 {% set attr_extra = segment.attributes.extra|attribute_array %}
 {% set boxed = segment.attributes.boxed %}
 {% if boxed is not null %}
@@ -38,10 +43,6 @@
 
 	{% endif %}
 {% endif %}
-
-{% set section_nogrid = segment.attributes.no_grid %}
-{% set section_noblock = segment.attributes.no_block %}
-{% set section_nocontent = segment.attributes.no_content %}
 
 {# Gasnoda //------- #}	
 	

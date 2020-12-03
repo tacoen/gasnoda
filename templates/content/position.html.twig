@@ -16,7 +16,7 @@
     {%- if html|trim %}
         {% if gantry.debug and segment.attributes.key %}<!-- START POSITION {{ segment.attributes.key }} -->{% endif %}
 
-        {% set class = (section_nocontent ? '': 'g-content ') ~ (segment.classes ? segment.classes|join(' ')|e)%}
+        {% set class = (nogcontent ? '': 'g-content') ~ (segment.classes ? segment.classes|join(' ')|e)%}
 		<div {% if class %}class="{{ class }}"{% endif %}>
             {{ html|raw }}
         </div>

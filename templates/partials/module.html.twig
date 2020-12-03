@@ -17,6 +17,12 @@
         '/content/' ~ segment.type ~ '/' ~ segment.options.type|default('default') ~ '.html.twig',
         '/content/' ~ segment.type ~ '.html.twig',
         '/content/unknown.html.twig']
-        with { segment: {id: id, type: segment.type, subtype: segment.options.type, options: segment.options, attributes: segment.options.attributes }} %}
+        with { segment: {
+			id: id, 
+			type: segment.type, 
+			subtype: segment.options.type, 
+			options: segment.options, 
+			attributes: segment.options.attributes 
+			}} %}
     {% endif %}
 {% endblock %}

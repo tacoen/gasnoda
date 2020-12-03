@@ -1,7 +1,7 @@
 {% extends '@nucleus/partials/particle.html.twig' %}
 {% block particle %}
 <div class="gn-search-wrapper" id='gn-search-box'>
-<form name="search" data-simplesearch-form="" id="search" class="gn-search-modal">
+<form name="search" data-simplesearch-form="" id="gn-search" class="gn-search-modal">
 <input name="searchfield" class="search-input" aria-label="search" type="text" data-min="3" required="" placeholder="Search …" value="" data-search-invalid="Please add at least 3 characters" data-search-separator=":" data-search-input="/search/query">
 </form>
 <button aria-label='Search' style='{% if particle.height !='0px' %}height:{{particle.height|e}};{% endif %}{% if particle.width != '0px' %}width:{{particle.width|e}};{% endif %}' onclick='javascript:gn_searchbox_toggle(this)' class='toggle'><i class='fa fa-flip-horizontal fa-search'></i></button>

@@ -27,8 +27,13 @@ mark,em {
 
 code {
 	display:inline-block;
-	padding: 1px 3px;
+	padding: 1px 4px;
 	border-radius: 3px;
+	background: #{unquote("hsla(var(--surface_h), var(--surface_s), 85%,.7)")};
+	color: #{unquote("hsl(var(--surface_h), var(--surface_s), 30%)")}
+}
+
+.dark-scheme code {
 	background: #{unquote("hsla(var(--surface_h), var(--surface_s), 15%,.7)")};
 	color: #{unquote("hsl(var(--surface_h), var(--surface_s), 90%)")}
 }
@@ -59,4 +64,9 @@ dfn[title] {
 	text-decoration: none;
 	border-bottom: 1px dotted var(--accent);
 	cursor: help;
+}
+
+cite:before {
+	content: "\2014\2002";
+	color: var(--border);
 }

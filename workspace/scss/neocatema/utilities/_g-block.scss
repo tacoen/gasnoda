@@ -10,8 +10,7 @@
     &.grow { flex: 1 0 auto !important; width: auto !important }
     &.shrink { flex: 0 1 auto !important;  width: auto !important }
 
-    &.no-gcontent > .g-content { padding: 0; margin: 0; width: 100%; }
-    &.no-g-content > .g-content { padding: 0; margin: 0; width: 100%; }
+    &.flush > .g-content { padding: 0; margin: 0; width: 100%; }
 
     &.block-ctl,.block-ctl { 
         display:none !important;

@@ -1,9 +1,14 @@
 {% extends '@nucleus/partials/particle.html.twig' %}
 {% block particle %}
 {% if particle.images|length > 0 %}
-{% set id = 'image_slider'~random(100, 999)  %}
+
+
+{% set idimg = 'image_slider'~random(100, 999)  %}
+
+{{ idimg }}
+
 <div class='img-slider-container' style='height:{{particle.height|e}};'>
-<div id='{{ id }}' class='slide' style='width:{{ (100*particle.images|length) }}%'>
+<div id='{{ idimg }}' class='slide' style='width:{{ (100*particle.images|length) }}%'>
 {% set n = 0 %}
 {% for item in particle.images %}
 	<div {% if item.image %}style='background-image: url({{ item.image|e }});'{% endif %} class='image'>
@@ -17,7 +22,8 @@
     <script src="{{ url('gantry-theme://js/slider.js') }}"></script>
 {% endblock %}
 {% set slider_inject %}
-image_slider('{{ id }}',{{ particle.images|length }}, {{ particle.delay }},0);
+var ini=1;
+image_slider('{{ idimg }}',{{ particle.images|length }}, {{ particle.delay }},0);
 {% endset %}
 {% do gantry.document.addInlineScript(slider_inject, 0, 'footer') %}
 {% endif %}

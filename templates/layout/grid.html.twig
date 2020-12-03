@@ -1,6 +1,8 @@
 {% set attr_extra = segment.attributes.extra|attribute_array %}
 
-{% set class = (section_nogrid ? 'no-grid': 'g-grid') ~' '~(segment.attributes.class ? ' ' ~ segment.attributes.class|join(' ')) %}
+{% set class = 'g-grid '
+	~(segment.attributes.class ? ' ' ~ segment.attributes.class|join(' ')) 
+	%}
 
 {%- set html %}
     {% if segment.children %}
@@ -12,7 +14,7 @@
 
 {%- if html|trim %}
 
-	{%if offcanvas_flag %}
+	{%if offcanvas_flag or nogrid %}
 		{{- html|raw -}}
 	{% else %}
 		<div 

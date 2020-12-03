@@ -88,16 +88,12 @@ form:
 
             no_grid:
                 type: input.checkbox
-                label: Disable grid
-                default: false
-            no_block:
-                type: input.checkbox
-                label: Disable sizes
-                default: false
-            no_content:
-                type: input.checkbox
-                label: Disable content-boxes
+                label: Disable Grid
                 default: false
 
+            no_sizes:
+                type: input.checkbox
+                label: Flush sizes
+                default: false
 
 

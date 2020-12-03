@@ -22,7 +22,12 @@ form:
                   label: CSS ID
                   description: 'Enter the ID for the block without the hash (#) (ie. <code>your-id</code>. You can then reference the element via CSS as <code>#your-id</code>'
                   default:
-
+                  
+                no_gcontent:
+                  type: input.checkbox
+                  label: Flush g-content
+                  default: false
+                
                 class:
                   type: input.selectize
                   label: CSS Classes

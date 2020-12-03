@@ -1,7 +1,9 @@
 {% set attr_extra = segment.attributes.extra|attribute_array %}
 {% set responsive_block = segment.attributes.responsive %}
 {% set responsive_hide = segment.attributes.res_always %}
-{% set class = 'g-block ' ~ (section_noblock ? '': segment.attributes.size|toGrid)
+
+{% set class = 'g-block ' ~ segment.attributes.size|toGrid
+	~ (segment.attributes.no_gcontent ? ' flush')
 	~ (segment.attributes.variations ? ' ' ~ segment.attributes.variations|join(' '))
     ~ (segment.attributes.class ? ' ' ~ segment.attributes.class|join(' ')) %}
 
@@ -12,13 +14,26 @@
 {% endif %}	
 
 {% set html %}
+
     {% if segment.children %}
+	
         {% for segment in segments %}
-                {% include [
+
+            {% if segment.content %}
+
+                {{ segment.content|raw }}
+				
+            {% else %}
+
+                
+				{% include [
 					'/content/' ~ segment.type ~ '.html.twig', 
 					'/layout/' ~ segment.type ~ '.html.twig'] 
-					with { 'segments': segment.children } 
+					with { 
+						'segments': segment.children,
+						} 
 				%}
+			{% endif %}
         {% endfor %}
     {% endif %}
 {% endset %}

@@ -2,3 +2,30 @@ main {
   content-visibility: auto;
   contain-intrinsic-size: 100vh;
 }
+
+
+.modules {
+
+    .g-content { 
+      display: flex;
+      flex-flow: row wrap; 
+      margin:0; 
+      padding: 0;
+    }
+
+    .moduletable { 
+
+      .g-title { 
+        font-size:var(--font-size); 
+        margin-bottom: var(--line-margin); 
+      }
+      
+      padding: var(--padding);
+      width: 100%; 
+    }
+
+    &.half .moduletable { width: 50%; }
+    &.third .moduletable { width: 33.3%; }
+    &.quater .moduletable { width: 25%; }
+
+}

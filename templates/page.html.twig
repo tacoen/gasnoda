@@ -31,7 +31,8 @@
     {% block page_layout %}
 
     {% for segment in segments if segment.type != 'offcanvas' %}
-        {% include 'layout/' ~ segment.type ~ '.html.twig' with { 'segments': segment.children } %}
+        {% include 'layout/' ~ segment.type ~ '.html.twig' with { 
+			'segments': segment.children } %}
     {% endfor %}
     {% endblock %}
 {% endset -%}

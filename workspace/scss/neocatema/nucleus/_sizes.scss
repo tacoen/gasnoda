@@ -269,3 +269,8 @@
 .g-block[class*='size-']:last-child { flex-grow: 1 }
 
 
+html .no-size .g-block {
+	&[class*='size-'] {
+	    @extend [size-100];
+    }
+}

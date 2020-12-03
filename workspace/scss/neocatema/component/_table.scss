@@ -37,8 +37,10 @@ table {
         vertical-align: middle;
     }
 
-    tr:nth-child(even) td { background: var(--shade) }
-
+    &.stripes {
+        tr:nth-child(even) td { background: var(--shade) }
+    }
+    
 }
 
 
