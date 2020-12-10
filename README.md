@@ -8,23 +8,23 @@ Gasnoda is a merge of Gaskeun and Noda Grav Theme.
  * [Gantry 5](http://gantry.org/downloads)
  * [Shortcode core Plugins](https://github.com/getgrav/grav-plugin-shortcode-core)
 
-## Gasnoda Features
+## Features
 
+* Styles
+  * Normalize with css variables
+  * Dark Scheme Enable
+  * Colours Palete*
+* User/Site Template and Blueprints
+* Nucleus/Gantry5 Template
 * Gantry Particles
   * Branding
   * Listing
   * Carousel
   * TOC
   * Page Tree (Page Menu)
-   
-* Grav Template
-  * g-docu
-  * crud
-
-* normalize
-* css variables
-* tocbot
-* w3color
+* Javascript
+  * tocbot
+  * w3color
 
 ## Instalation
 
