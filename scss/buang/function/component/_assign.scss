@@ -1,0 +1,24 @@
+$all-buttons: assign-inputs([
+	'button',
+	'a.button',
+	'input[type="submit"]',
+	'input[type="reset"]',
+	'input[type="button"]'
+]);
+
+$all-heading: assign-inputs(['h1','h2','h3','h4','h5','h6']);
+
+$heading-firstchild: assign-inputs(['h1','h2','.title'],'first-child');
+
+$sections: assign-inputs([
+	'article',
+	'aside',
+	'details',
+	'footer',
+	'header',
+	'hgroup',
+	'main',
+	'nav',
+	'section',
+	'summary'
+	]);

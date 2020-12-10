@@ -42,8 +42,8 @@ $tones: (
 			
 				@include hsl-var-name($var);
 
-				--uf: calc((#{$white}-var(--l)) / 5);
-				--df: calc((var(--l)-#{$black}) / 5);
+				--uf: calc((#{$white} - var(--l)) / 5);
+				--df: calc((var(--l) - #{$black}) / 5);
 			}
 			
 			.ncc-#{$var} {
@@ -57,6 +57,17 @@ $tones: (
 					background-color: var(--c-n);
 					color: var(--t);
 				}
+
+				&.co, .co {
+					@if $l > 50% {
+						--t: var(--c-b);
+					} @else {
+						--t: var(--c-w);
+					}
+					background-color: var(--c-co);
+					color: var(--t);
+				}
+
 				
 				@each $name,$step in $tones {
 

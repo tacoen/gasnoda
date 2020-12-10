@@ -1,0 +1,61 @@
+#gn-branding {
+
+	display: flex;
+
+	a {
+		border: none; outline: none;
+		position: relative;
+		@include flex-div(row, center, flex-start);
+		color: var(--text);
+	}
+
+	.site-logo {
+
+		@include flex-div(row, center, center);
+
+		flex-shrink: 1;
+
+		i.icon,
+		svg,
+		img {
+			height: 100%;
+		}
+
+		i.icon {
+    		@include flex-div(row, center, center);
+		}
+	}
+
+	.wrapper {
+		@include flex-div(column,start,center,initial);
+		flex: 1 0;
+		font-weight: 300;
+		line-height: 1.2;
+
+		.site-title {
+			font-weight: 600;
+			margin: 0 0 .125rem 0;
+			font-size: var(--font-size);
+
+			small {
+				display:block;
+				font-size: .625rem;
+				text-transform:uppercase;
+			}
+		}
+
+		.site-desc {
+			font-size: .9rem;
+			margin: 0;
+		}
+	}
+
+	@include breakpoint(mobile-only) {
+		.wrapper { display: none; }
+	}
+}
+
+
+.dark-scheme .site-logo {
+	filter: invert(1);
+}

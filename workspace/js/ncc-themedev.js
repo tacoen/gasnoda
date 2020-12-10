@@ -1,7 +1,6 @@
 /* pls move to module */
 
 
-
 /* themedev only */
 
 var field1 = ['background','text'];

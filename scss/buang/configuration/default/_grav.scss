@@ -1,0 +1,16 @@
+/* item not in neocatema */
+
+$option-neoca_css_vars: false !default;
+
+$menu-mobile-breakpoint: 48rem !default;
+$menu-icon-h: 3rem !default;
+$menu-icon-w: 3rem !default;
+$menu-icon: fa fa-bars !default;
+
+
+$breakpoints-large-desktop-container:75rem !default;
+$breakpoints-desktop-container:60rem !default;
+$breakpoints-tablet-container:48rem !default;
+$breakpoints-large-mobile-container:30rem !default;
+$breakpoints-mobile-container: $breakpoints-large-mobile-container !default;
+$breakpoints-mobile-menu-breakpoint: $menu-mobile-breakpoint !default;

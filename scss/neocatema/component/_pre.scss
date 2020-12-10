@@ -1,0 +1,26 @@
+
+pre {
+    --background: #{unquote("hsl( var(--surface_h), var(--surface_s),  90% )")};
+    --text: #{unquote("hsl( var(--surface_h), var(--surface_s),  10% )")};
+    @include scrollbars( .25rem, #fff3, #0006);
+}
+
+
+.dark-scheme pre {
+    --background: #{unquote("hsl( var(--surface_h), var(--surface_s),  10% )")};
+    --text: #{unquote("hsl( var(--surface_h), var(--surface_s),  95% )")};
+    @include scrollbars( .25rem, #fff3, #0006);
+}
+
+pre {
+    background-color: var(--background);
+    color: var(--text);
+    padding: var(--padding);
+    border-radius: var(--bradius);
+    overflow: auto;
+    min-height: 3rem;
+    max-height: 60vh;
+    font-family: var(--font-mono);
+    font-size: 1.2em;
+    margin-bottom: var(--line-margin);
+}

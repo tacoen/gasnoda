@@ -1,5 +1,8 @@
-// REQUIRED DEPENDENCIES - DO NOT CHANGE
-@import "dependencies";
+// dependency
+@import "vendor/bourbon/bourbon";
+@import "neocatema/configuration";
+@import "neocatema/grav";
+@import "neocatema/function";
 
 
-@import "custom/base"
+//@import "custom/skell";

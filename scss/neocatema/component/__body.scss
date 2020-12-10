@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    color: var(--text);
+    font-family: var(--font-base);
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+
+	@include scrollbars(.75rem, var(--hilite), var(--shade));
+}
+
+a { text-decoration: none; }
+
+main a:not(.button) {
+    color: var(--accent);
+    &:hover { text-decoration: underline; }
+}
+
+hr {
+    margin: var(--line-margin) 0;
+    overflow: hidden;
+    border-top: var(--hrsep) solid var(--border);
+}

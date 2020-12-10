@@ -1,75 +1,7 @@
-@import "function.scss";
+@import "custom/grav-dependency";
 
 
-.fa-index {
+@import "custom/etc";
+@import "custom/particles";
 
-	span {
-   		margin: 0 1rem 0 0;
-   		padding: 1rem;
-   		flex: 0 0 6rem;
-        @include flex-div(column,center,center);
-        
-		i { 
-    		text-align: center;
-            @include flex-div(column,center,center);
-    		font-size: 2rem; 
-    		margin-bottom: 1rem;
-    	}
-
-    	input { width: 5rem; font-size: .8rem !important; }
-	}
-}
-
-
-.page-gallery {
-    @extend %reset-list;
-    display: flex;
-    flex-flow: row;
-    flex-wrap: wrap;
-
-    .item { 
-        flex: 0 1 25%; 
-
-        .image-surround { 
-            border: 1px solid #0002;  
-            padding: 1rem; 
-            margin: .5rem;
-        }
-    
-        img { 
-            width: 100%; 
-            }
-    }
-}
-
-#page-gallery-modal {
-    @include flex-div(row,center,center);
-    background: #000d;
-    position: fixed;
-    top:0; width: 100%;
-    left:0; height:100%;
-    display:none;
-
-    &.show { display: flex; }
-
-   figure { 
-        max-height: 95%; 
-        padding: 1rem;
-        background:#fff;
-        border: 1px solid #0009;
-        position: relative;
-        img { height: 90vh; }
-
-        .caption {
-            position: absolute;
-            bottom: 1rem;
-            width: calc(100% - (4 * var(--padding)));
-            background:#000c;
-            color:#fff;
-            padding: var(--padding);
-        }
-    }
-
-
-}
-
+@import "custom/test";

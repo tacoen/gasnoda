@@ -1,0 +1,49 @@
+#g-offcanvas {
+    position: absolute;
+    bottom:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    .g-grid{
+    	position: relative;
+        > * { 
+            visibility: hidden; 
+            width: auto;
+            z-index: 1002;
+        }
+    }
+}
+
+#g-page-surround {
+	display: flow-root;
+	min-height: 100vh;
+}
+
+main, aside {
+	min-height: 100vh;
+}
+
+
+
+#g-offcanvas {
+
+	#theme-switch {
+
+	    background-color: var(--info);
+	    visibility: visible !important;
+	    position: fixed;
+	    right: 2rem;
+	    bottom: 2rem;
+	    border-radius: 2rem;
+    	.toggle { color: #eee; }
+    }
+
+    .g-system-messages {
+	    visibility: visible !important;
+	    position: fixed;
+	    left: 2rem;
+	    top: 6rem;
+    	width: calc(100% - 4rem);
+    }
+}
+

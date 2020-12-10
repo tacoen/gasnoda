@@ -1,0 +1,28 @@
+%block-shadow {
+    box-shadow: 0 2px 1px var(--shadow);
+}
+
+.shaded {
+    @extend %block-shadow;
+    padding: .5rem;
+    box-sizing:content-box;
+	.menu-dropdown {
+        @extend %block-shadow;
+	}
+}
+
+
+
+@include breakpoint(mobile-only) {
+
+.shaded { padding: 0 }
+	
+}
+
+main {
+	background: var(--background);
+	padding: 2rem 0;
+	content-visibility: auto;
+	contain-intrinsic-size: 100vh;
+}
+

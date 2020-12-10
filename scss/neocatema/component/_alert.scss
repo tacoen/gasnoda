@@ -1,0 +1,39 @@
+@mixin alert-color($val) {
+    @include hsl-var-name($val);
+	$light: 25%;
+	background-color: #{unquote("hsl(var(--h), var(--s), #{$light})")};
+	color: #{unquote("hsl(var(--h), var(--s), #{100-$light})")};
+	--border: #{unquote("hsl(var(--h), var(--s), #{90-$light}%)")};
+}
+
+
+.alert {
+	padding: var(--padding);
+	border: 1px solid var(--border);
+	margin: var(--margin) 0;
+	border-radius: var(--bradius);
+	position: relative;
+	line-height: 1.2;
+	padding-right: calc( 2 * var(--padding));
+	padding-left: 3rem;
+	&:before {
+		color: var(--border);
+		font-family: 'neoca-feather';
+		content: '\4b';
+		position: absolute;
+		left: 1rem;
+	}
+
+}
+
+.alert-warning {
+	&:before { content:'\4a'; }
+	@include alert-color(warning); };
+.alert-error {
+	&:before { content:'\49'; }
+	@include alert-color(error); };
+.alert-success {
+	&:before { content:'\48'; }
+	@include alert-color(success); };
+.alert-info {
+	@include alert-color(info); };

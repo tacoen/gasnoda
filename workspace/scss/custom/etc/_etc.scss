@@ -1,0 +1,60 @@
+[card] {
+	.title { color: var(--accent-d); }
+	border-radius: .25rem;
+	padding: var(--padding);
+}
+
+[bones] {
+	.title { color: var(--accent); }
+	border: 1px solid var(--face-l);
+	background-color: transparent !important;
+	color: var(--text) !important;
+}
+
+[vborder] {
+	padding-right: 1rem;
+	margin-right: 1rem;
+	border-right: 1px dotted var(--face-d);
+	@include breakpoint(mobile-only) {	
+		padding-right: 0;
+		margin-right: 0;
+		border-right: none;
+	}	
+}
+
+[half][vborder] { 
+	width: calc(50% - 2rem - 1px); 
+	flex-basis: calc(50% - 2rem - 1px);}
+[third][vborder] { 
+	flex-basis: calc(33.3% - 2rem - 1px);
+	width: calc(33.3% - 2rem - 1px); }
+[quater][vborder] { 
+	flex-basis: calc(25% - 2rem - 1px);
+	width: calc(25% - 2rem - 1px); }
+
+
+[flex-items] {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content:space-between;
+    width:100%;
+    > * { flex: 0 0 auto; }
+}
+
+[deck-top] {
+	position: relative;
+	width: auto;
+}
+
+[deck-top] [fix-top],
+[fix-top] {
+	position: fixed;
+	top: 0;
+	left:0;
+	width: 100%;
+	z-index: +1;
+}	
+
+[small-text] {
+	font-size: .75rem;
+}

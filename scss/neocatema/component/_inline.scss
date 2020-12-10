@@ -1,0 +1,72 @@
+q { font-family: var(--font-alter); }
+
+b { font-weight: 600; }
+strong { font-weight: 700; }
+
+code,
+kbd,
+samp,
+tt,
+var {
+	font-family: var(--font-mono);
+	font-size: 1.2em;
+}
+
+
+code, var { font-weight: 600; }
+
+var { color: var(--accent); }
+
+mark,em {
+	background: #{unquote("hsla(var(--accent_h), var(--accent_s), var(--accent_l),.2)")};
+	color: var(--text);
+	display: inline-block;
+	font-style:normal;
+	padding: 1px 3px;
+}
+
+code {
+	display:inline-block;
+	padding: 1px 4px;
+	border-radius: 3px;
+	background: #{unquote("hsla(var(--surface_h), var(--surface_s), 85%,.7)")};
+	color: #{unquote("hsl(var(--surface_h), var(--surface_s), 30%)")}
+}
+
+.dark-scheme code {
+	background: #{unquote("hsla(var(--surface_h), var(--surface_s), 15%,.7)")};
+	color: #{unquote("hsl(var(--surface_h), var(--surface_s), 90%)")}
+}
+
+pre code {
+	font-family: inherit;
+	font-weight: normal;
+	font-size: inherit;
+	background-color: transparent;
+	padding:0;
+}
+
+kbd {
+	display:inline-block;
+	padding: 1px 3px;
+	border-radius: 3px;
+	background: #{unquote("hsl(var(--surface_h), var(--surface_s), 30%)")};
+	color: #{unquote("hsla(var(--surface_h), var(--surface_s), 95%, 1)")};
+	border-top: 1px solid var(--hilite);
+	border: 1px solid var(--border);
+	border-top: 1px solid var(--hilite);
+	border-left: 1px solid var(--hilite);
+}
+
+abbr[title],
+dfn[title] {
+	font-style: normal;
+	text-decoration: none;
+	border-bottom: 1px dotted var(--accent);
+	cursor: help;
+}
+
+cite:before {
+	content: "\2014\2002";
+	color: var(--border);
+}

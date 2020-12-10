@@ -82,10 +82,7 @@
 
 	{%- do gantry.document.addStyle(url('gantry-assets://css/neocatema-icon.css')) -%}
 
-	{%- do gantry.document.addStyle(url('gantry-assets://workspace/css/neocatema.css')) -%}
-
 	{% if gantry.config.get('styles.option.devinchrome') -%}
-		{%- do gantry.document.addStyle(url('gantry-assets://workspace/css/style.css')) -%}
 		{%- do gantry.document.addStyle(url('gantry-assets://workspace/css/custom.css')) -%}
 		{%- do gantry.document.addScript(url('gantry-assets://workspace/js/script.js'), 10, 'footer') -%}
 	{% endif %}

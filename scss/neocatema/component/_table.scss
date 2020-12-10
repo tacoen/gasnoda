@@ -1,0 +1,46 @@
+
+table {
+    --header: #{unquote("hsl( var(--surface_h), var(--surface_s),  75% )")};
+    --header-text: #{unquote("hsl( var(--surface_h), var(--surface_s),  10% )")};
+    --body: #{unquote("hsl( var(--surface_h), var(--surface_s),  95% )")};
+    --body-text: #{unquote("hsl( var(--surface_h), var(--surface_s),  10% )")};
+    --border: #{unquote("hsl( var(--surface_h), var(--surface_s),  75% )")};
+    --shade: #{unquote("hsla( var(--surface_h), var(--surface_s),  75%, .4 )")};
+}
+
+.dark-scheme table {
+    --header: #{unquote("hsl( var(--surface_h), var(--surface_s),  var(--surface_l) )")};
+    --header-text: #{unquote("hsl( var(--surface_h), var(--surface_s),  10% )")};
+    --body: #{unquote("hsl( var(--surface_h), var(--surface_s), 10% )")};
+    --body-text: #{unquote("hsl( var(--surface_h), var(--surface_s),  95% )")};
+    --border: #{unquote("hsl( var(--surface_h), var(--surface_s),  5% )")};
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        background-color: var(--header);
+        color: var(--header-text)
+    }
+
+    tbody {
+        background-color: var(--body);
+        color: var(--body-text);
+    }
+
+    th,td {
+        padding: calc(var(--padding) /2);
+        border: var(--hrsep) solid var(--border);
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    &.stripes {
+        tr:nth-child(even) td { background: var(--shade) }
+    }
+    
+}
+
+
