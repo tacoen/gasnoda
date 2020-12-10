@@ -1,65 +1,29 @@
 
-// final!
-.takut {
 
-	
-#g-page-surround {
-	overflow-x: hidden;
-
+%block-shadow {
+    box-shadow: 0 2px 1px var(--shadow);
 }
 
-#responsive-ctl {
-
-    --bw: #{$menu-icon-w};
-    --bh: #{$menu-icon-h};
-    --bm: calc( var(margin) / 4);
-
-    position: absolute;
-    z-index: 102;
-    margin: var(--margin) 0;
-    width: 100vw;
-
-
-    button {
-        position: absolute;
-    	background: transparent;
-    	outline: none;
-    	border: none;
-    	width: var(--bw);
-    	height: var(--bh);
-        font-size: calc(var(--bw) / 2);
-        border-radius: 50%;
-        background: var(--accent);
-        color: var(--accent_t);
-        
-
-        &:nth-child(2) { top: 0; left: calc(1 * (var(--bw) + var(--bm))); }
-        &:nth-child(3) { top: 0; left: calc(2 * (var(--bw) + var(--bm))); }
-        &:nth-child(3) { top: 0; left: calc(2 * (var(--bw) + var(--bm))); }
-
-        &.right { top:0; left:initial; right: 2rem }
-
-    }
-}
-
-
-
-
-.res {
-	
-	transition: all .25s ease-in-out;
-    opacity:0;
-
-	&.left { transform: translateX(-100%);}
-	&.right {  transform: translateX(100%); }
-	&.top {  transform: translateY(-100%);  }
-	&.bottom {  transform: translateY(100%);  }
-
-	&.res-show {
-		opacity: 1;
-		transform: translate(0);
-		width: initial;
+.shaded {
+    @extend %block-shadow;
+    padding: .5rem;
+    box-sizing:content-box;
+	.menu-dropdown {
+        @extend %block-shadow;
 	}
 }
 
+
+
+@include breakpoint(mobile-only) {
+
+.shaded { padding: 0 }
+	
 }
+
+main {
+	
+	background: var(--background);
+	padding: 2rem 0;
+}
+

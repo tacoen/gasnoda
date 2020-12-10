@@ -3,7 +3,8 @@
 }
 
 $display-none-list: [
-	'#g-offcanvas',
+	'#g-hide',
+	'template',
 ];
 
 $display-none: assign-inputs($display-none-list);

@@ -1,6 +1,3 @@
-#g-page-surround {
-	display: flow-root;
-}
 
 #section-ctl {
 
@@ -27,15 +24,6 @@
 
 .nanti .res {
 
-    opacity: 0;
-	visibility: hidden;
-	transition: all .25s ease-in-out, height 0.025s linear;
-
-	&.left { transform: translateX(-100%); height: 100%; }
-	&.right {  transform: translateX(100%); height: 100%; }
-	&.top {  transform: translateY(-100%); width: 100%;  }
-	&.bottom {  transform: translateY(100%); width: 100%; }
-
 	&.res-show {
 		transition: all .25s ease-in-out, height 0.025s linear;
 		visibility: visible;
@@ -60,50 +48,3 @@
 	}
 
 }
-
-.nanti .res-ctl {
-
-    min-width: var(--ctl-width);
-    min-height: var(--ctl-height);
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    display: none;
-    padding: calc(var(--ctl-height) / 6);
-    z-index: 99;
-    transition: all .25s ease;
-
-    i {
-        transition: inherit;
-        font-size: calc(var(--ctl-height) / 2);
-        }
-
-    span { font-size: .9rem; margin-left: .5rem; }
-
-    &.active {
-    	i { transform: rotate(180deg); }
-    }
-
-    &.active.right {
-    	i { transform: rotate(90deg); }
-    }
-
-    &.active.left {
-    	i { transform: rotate(-90deg); }
-    }
-
-
-    &.show { display: flex; }
-    &.fixed { position: fixed; }
-    &.left { left: var(--margin); }
-    &.right { right: var(--margin); }
-    &.bottom { bottom: var(--margin); }
-    &.top { top: 0 }
-
-	@include breakpoint(mobile-only) {
-		display: flex;
-	}
-
-
-}
-

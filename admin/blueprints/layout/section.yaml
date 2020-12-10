@@ -49,14 +49,43 @@ form:
                 value_placeholder: Value
                 exclude: ['id', 'class']
 
-        _tab_res:
-          label: Responsive Button
+        _tab_hacks:
+          label: Hacks
           fields:
 
-            _info:
-                type: separator.note
-                class: alert alert-error
-                content: 'Block Responsive must be Enable to use this.</small>'
+            disable_grid:
+                type: input.checkbox
+                label: Disable Grid
+                default: false
+
+            disable_sizes:
+                type: input.checkbox
+                label: Flush sizes
+                default: false
+
+            disable_gcontent:
+                type: input.checkbox
+                label: Flush g-content
+                default: false
+            
+            custom_style:
+                type: textarea.textarea
+                label: CSS Style
+
+        _tab_title2:
+          label: Responsive
+          fields:
+            responsive:
+              type: input.checkbox
+              label: Enable Responsive
+              default: false
+              description: Make block always responsive
+
+            res_always:
+              type: input.checkbox
+              label: Always Responsive
+              default: false
+              description: Make block always responsive
 
             res_position:
                 type: select.selectize
@@ -73,27 +102,21 @@ form:
                 label: Toggle Icon
                 default: fa fa-bars
 
+            res_icon_w:
+                type: input.text
+                label: Icon Width
+                default: 3rem
+
+            res_icon_h:
+                type: input.text
+                label: Icon Height
+                default: 3rem 
+                
             res_title:
                 type: input.text
                 label: Text
                 placeholder: Icon Text
 
-            res_opt_swipe:
+            res_swipe:
                 type: input.checkbox
-                label: Swipe
-
-        _tab_hacks:
-          label: Hacks
-          fields:
-
-            no_grid:
-                type: input.checkbox
-                label: Disable Grid
-                default: false
-
-            no_sizes:
-                type: input.checkbox
-                label: Flush sizes
-                default: false
-
-
+                label: Swipeable

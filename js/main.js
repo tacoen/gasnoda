@@ -5,6 +5,30 @@ window.addEventListener('resize', function() {
 	gn_breakpoint_tagging();
 	var dt = gn_fixtop('.dock-top',false); 
 
+	noda_attr_utilities()
+
+
+	var bp = gas('body').cssvar('mobile-breakpoint').replace('rem','');
+
+	if ( window.innerWidth < (bp*16) ) {
+
+        document.querySelectorAll('.g-block.show').forEach( function(el) {
+        	if ( gas(el).hasClass('show') ) {
+                gas(el).data('desktop','show')
+        	}
+
+            gas(el).toggleClass('show');
+
+        });
+
+	} else {
+
+        document.querySelectorAll(".g-block[data-desktop='show']").forEach( function(el) {
+            gas(el).addClass('show');
+        });
+
+	}
+
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -17,11 +41,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	//var rt = gn_fixtop('.res.top',false); 
 	
-	//noda_responsive_function();
+
 	noda_attr_utilities();
+	
+	noda_responsive_function();
 
 	//noda_sectioncolor();
 	//gn_modular_slideshow('.modular-row.showcase');
+	
+	//noda_hslpal();
+	
 
 });
 

@@ -6,18 +6,15 @@
 
     {% set html %}
         {% if enabled and (segment.attributes.enabled is null or segment.attributes.enabled) %}
-            {% include [
-				'particles/' ~ segment.subtype|default('position') ~ '.html.twig',
-				'@particles/' ~ segment.subtype|default('position') ~ '.html.twig'
-				] %}
+            {% include ['particles/' ~ segment.subtype|default('position') ~ '.html.twig',
+            '@particles/' ~ segment.subtype|default('position') ~ '.html.twig'] %}
         {% endif %}
     {% endset %}
 
     {%- if html|trim %}
         {% if gantry.debug and segment.attributes.key %}<!-- START POSITION {{ segment.attributes.key }} -->{% endif %}
 
-        {% set class = (nogcontent ? '': 'g-content') ~ (segment.classes ? segment.classes|join(' ')|e)%}
-		<div {% if class %}class="{{ class }}"{% endif %}>
+        <div class="g-content{{ segment.classes ? ' ' ~ segment.classes|join(' ')|e }}">
             {{ html|raw }}
         </div>
         {% if gantry.debug and segment.attributes.key %}<!-- END POSITION {{ segment.attributes.key }} -->{% endif %}

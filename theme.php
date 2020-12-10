@@ -45,6 +45,10 @@ class Noda extends Theme
 		$this->grav['assets']->add('user://themes/noda/js/module.js');
 		$this->grav['assets']->add('user://themes/noda/admin/poko.js');
 	
+		/* 
+		
+		use quicktray link will better! 
+		
 		if (isset($this->grav['theme']->config()['links'])) {
 			
 			foreach ($this->grav['theme']->config()['links'] as $key => $val) {
@@ -63,6 +67,8 @@ class Noda extends Theme
 			}
 		
 		}
+		
+		*/
 		
     }
 
@@ -120,21 +126,27 @@ class Noda extends Theme
 		$adminCookieSuffix = '-admin';
 		$this->adminCookie = session_name() . $adminCookieSuffix; 
 
+		/* Provide {{ config.gas }} */
+
         if (isset($_COOKIE[$this->adminCookie]) === true) {
 			$this->config->set('gas.admin',true);
         }
-
+		
 		$log_path = $locator('log://popularity');
+		
 		if (file_exists($log_path . '/daily.json')) {
-		$this->config->set('gas.stat.daily',array_values((array)json_decode(file_get_contents($log_path . '/daily.json')))[0]);
-		}
-		if (file_exists($log_path . '/monthly.json')) {
-		$this->config->set('gas.stat.monthly',array_values((array)json_decode(file_get_contents($log_path . '/monthly.json')))[0]);
-		}
-		if (file_exists($log_path . '/totals.json')) {
-		$this->config->set('gas.stat.total',array_values((array)json_decode(file_get_contents($log_path . '/totals.json')))[0]);
+			$val = array_values((array)json_decode(file_get_contents($log_path . '/daily.json')))[0];
+			$this->config->set('gas.stat.daily',$val);
 		}
 
+		if (file_exists($log_path . '/monthly.json')) {
+			$this->config->set('gas.stat.monthly',array_values((array)json_decode(file_get_contents($log_path . '/monthly.json')))[0]);
+		}
+
+		if (file_exists($log_path . '/totals.json')) {
+			$this->config->set('gas.stat.total',array_values((array)json_decode(file_get_contents($log_path . '/totals.json')))[0]);
+		}
+		
     }	
 
     public function onTwigExtensions()

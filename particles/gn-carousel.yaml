@@ -24,6 +24,10 @@ form:
           '': Slides
       overridable: false      
 
+    color:
+      type: input.colorpicker
+      label: Color
+      
     height:
       type: input.text
       label: height

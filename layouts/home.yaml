@@ -1,0 +1,15 @@
+version: 2
+preset:
+  image: 'gantry-admin://images/layouts/default.png'
+  name: Homepage
+
+layout:
+  header:
+  /navigation/:
+  main-top:
+  main:
+  main-bottom:
+  footer: 
+  offcanvas:
+    - system-messages
+

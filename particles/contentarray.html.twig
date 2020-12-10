@@ -16,6 +16,11 @@
 {% set total = collection.count() %}
 {% set pages = collection.slice(start, limit.total) %}
 {% block particle %}
+
+	<pre>
+	{{ particle.article|print_r }}
+	</pre>
+	
     {# All pages #}
     <div class="content-array g-grav-pages{% if particle.css.class %} {{ particle.css.class }}{% endif %}" {{- attr_extra|raw }}>
 {% if particle.article.coldhead %}

@@ -2,14 +2,14 @@
 // Attributes
 
 @for $i from 1 through 5 {
-	[size-#{$i}] {
+	:not(.grow):not(.shrink)[size-#{$i}] {
 		@include flex(0 5%);
 		width: 5%;
 	}
 }
 
 @for $i from 6 through 99 {
-	[size-#{$i}] {
+	:not(.grow):not(.shrink)[size-#{$i}] {
 		@include flex(0 $i * 1%);
 		width: $i * 1%;
 	}
@@ -26,8 +26,8 @@
 }
 
 [size-100] {
-    width: 100%;
-    max-width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
     @include flex-grow(0);
     @include flex-basis(100%);
 }
@@ -37,6 +37,7 @@
 		@extend [size-#{$i}]
 	}
 }
+
 
 // Visibility
 .visible-large,
@@ -173,8 +174,7 @@
 			@include flex-grow(0);
 			@include flex-basis(100%);
 			max-width: 100%;
-			width: 100%;
-			.res { width: 100%; }
+			width: 100% !important;
 		}
 
 
@@ -270,7 +270,7 @@
 
 
 html .no-size .g-block {
-	&[class*='size-'] {
+	[class*='size-'] {
 	    @extend [size-100];
     }
 }

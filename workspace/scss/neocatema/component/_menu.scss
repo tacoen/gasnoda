@@ -1,5 +1,5 @@
 .menucan {
-
+    --background: var(--c-n);
 	.g-go-back { display: none; }
 
 	li {
@@ -25,7 +25,7 @@
 	}
 
 	.nav-item-container {
-
+        height: 100%;
 		padding: var(--padding);
 	}
 

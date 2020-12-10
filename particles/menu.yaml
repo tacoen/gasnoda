@@ -73,13 +73,13 @@ form:
               type: input.icon
               label: Icon
               description: Icon to show
-              default: "ncico-home"
-            icon_width:
-              type: input.text
-              label: width
-              default: 3rem
-              pattern: '\d+(\.\d+){0,1}(rem|em|px)'
+              default: "fa fa-bars"
             icon_height:
+              type: input.text
+              label: height
+              default: 3rem
+              pattern: '(\d+(\.\d+){0,1}(rem|em|px))|auto|initial'
+            icon_width:
               type: input.text
               label: width
               default: auto

@@ -1,5 +1,5 @@
 body.has-res {
-	main {
+    main {
         padding-top: var(--ctl-height); 
     }
 }
@@ -21,90 +21,56 @@ button.res-ctl {
     border: none;
     outline: none;
     position:absolute;
-    i { font-size: calc(var(--ctl-width) / 2); }
-    &.text {
-    	i { font-size: 1rem; }
+    cursor:pointer; 
+    background: transparent;
+    z-index: 102;
+    height: var(--ctl-height);
+
+    i { 
+        font-size: calc(var(--ctl-height) / 2); 
     }
+
+    &.text {
+        i { font-size: calc(var(--ctl-height) / 3); }
+   }
+
 }
+
 
 
 .responsive {
 
-    position: absolute;
+    transition: all .5s ease-in-out;
 
-	.res-ctl { 
-	    position: absolute;
-	    z-index: 1002; 
-	    cursor:pointer; 
-	    padding: var(--padding);
-	    display: inline-flex;
-	    align-items: center;
-	    span { margin-left: calc(var(--padding) / 2)}
-	    background-color: var(--c-n) !Important;
-	}
+    &:not(.block-res) {
+
+    	position:absolute;
+    	width: 0;
+    }
 
     .res-content {
-        z-index: 1001; 
+        z-index: 101; 
         padding-top: var(--ctl-height);
-        transition: all .15s linear,  transform .25s ease-in-out;
+        transition: opacity .15s linear,  transform .5s ease-in-out;
         opacity:0;
         @include responsive-transform;
     }
 
-
     &.show {
-    	position: relative;
+    	
+    	position: initial;
+    	width: auto;
+
     	.res-content {
     		opacity:1;
-    		transform:translate(0);
+    		transform:translate(0) ;
     	}
     }
 
-}
-
-.kkresponsive {
-
-
-    .kk {
-
-        opacity: 1;
-        transform: translate(0);         
-    }
-
-    &.hide {
-
-        position: absolute;
-
-       .res-content {
-			opacity: 0;
-        }
-
-        @include responsive-transform;
-    }
-
     @include breakpoint(mobile-only) {
-
-        position: absolute;
-
-       .res-content {
-            opacity: 0;
-            transition: all .15s linear,  transform .25s ease-in-out;
-
-       }
-
-       @include responsive-transform;
-
-       &.hide {
-
-        position: relative;
-
-       .res-content {
-			opacity: 1;
-            transform: translate(0); 
-       }       	
-
-       }
-
+    	flex-basis: 100% !important;
+	    width: 100% !important;
     }
+
 
 }

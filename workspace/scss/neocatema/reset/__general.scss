@@ -1,7 +1,8 @@
+html { box-sizing:border-box; }
+
 *,
 *:before,
-*:after { box-sizing:border-box; }
-
+*:after { box-sizing: inherit; }
 
 tfoot,
 thead,
@@ -16,3 +17,9 @@ aside {
     min-height: 100%;
 }
 
+%imagecover {
+	background-color:#0009;
+	background-position: 50% 0%;
+	background-size: cover;
+	background-blend-mode:darken;
+}

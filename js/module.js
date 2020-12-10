@@ -1,4 +1,4 @@
-/* Compile Time: 12/03/20 00:19:04 */
+/* Compile Time: 12/09/20 21:30:48 */
 /* w3color.js ver.1.18 by w3schools.com (Do not remove this line)*/
 (function () {
 function w3color(color, elmnt) {
@@ -710,7 +710,9 @@ gas.prototype = {
 		
 			
 	},
-	
+	id: function(what) {
+		return this.ele.id;
+	},
 	data: function(what,value=false) {
 
 		if (value) { this.ele.setAttribute('data-'+what,value); }
@@ -907,7 +909,35 @@ function cssvar_extend(what, h, s, l, hover_step=false) {
 	
 	return cstyle;
 }
+function ncc_construct_pallete(q) {
+	if (!gas(q)) { return false; }
+	var color = gas(q).cssvar('color')
+	var c = w3color( color );
+	var h = c.hue
+	var s = c.sat
+	var l = c.lightness	
+	cstyle = q +" {";
+	cstyle += cssvar_input("h",h+"");	
+	cstyle += cssvar_input("s",percent(s));	
+	cstyle += cssvar_input("l",percent(l));
+	cstyle += cssvar_hsl("b",h,s,0.05);
+	cstyle += cssvar_hsl("w",h,s,0.95);
+	
+	var uf = (0.95-l)/5;	
+	var df = (l-0.05)/5;	
+	cstyle += cssvar_input("df",percent(df));
+	cstyle += cssvar_input("uf",percent(uf));
 
+	if (l <= 0.5) {
+		cstyle += cssvar_input("t","var(--w)");
+	} else {
+		cstyle += cssvar_input("t","var(--b)");
+	}
+	
+	gas(q).cssConstruct(cstyle)
+	
+}
+	
 function construct_SectionPallete2(q) {
 
 	if (!gas(q)) { return false; }
@@ -1185,19 +1215,52 @@ function noda_responsive_function() {
 	
 	/* only works on touch media */
 
-	document.querySelectorAll(".res-ctl").forEach(function(t) {
-		t.addEventListener("click", function(e) {
-			var target = gas(t).data('section');
-			if (gas(target).hasClass('res-show')) {
-				gas(t).removeClass('active')
-				gas(target).removeClass('res-show');
-			} else {
-				gas(t).addClass('active')
-				gas(target).addClass('res-show');
-			}
-				
-		})
+	document.querySelectorAll('.res-ctl').forEach( function(el) {
+    
+		var block = el.closest('.g-block')
+		var section = gas(el).data('section');
+		gas(block).addClass('responsive');
+		gas(block).cssvar('origin-width',block.offsetWidth+'px');
+		gas(block).data('ctl',section);
+		
+		el.addEventListener("click", function(e) {
+			var block = el.closest('.g-block')
+			gas(block).addClass('responsive');
+			gas(block).cssvar('origin-width',block.offsetWidth+'px');
+			gas(block).toggleClass('show');
+			gas(section).toggleClass('show');
+		});		
+	
 	});
+
+
+	document.querySelectorAll('.block-ctl').forEach( function(el) {
+		var b = el.closest('.g-block');
+		var g = el.closest('.g-grid');
+		var element =  document.createElement("DIV"); 
+		element.innerHTML = el.innerHTML;
+		element.setAttribute('class','g-block right middle grow block-ctl');
+
+		b.classList.add('block-res')
+    
+		//console.log(g.parentNode,g.parentNode.style.height);
+
+		b.style.top=g.offsetHeight+'px';
+
+		el.remove();
+
+		element.addEventListener("click", function(e) {
+			if (gas(b).hasClass('show') ) {
+				gas(b).removeClass('show')
+			} else {
+				gas(b).addClass('show')
+			}
+
+		});
+
+		g.insertBefore(element,b);
+
+	})
 
 	document.querySelectorAll('.res.swipe').forEach(function(t) {
 		//console.log(t);
@@ -1218,7 +1281,11 @@ function noda_attr_utilities() {
 	document.querySelectorAll("[data-height]").forEach(function(t) {
 		t.style.height = t.getAttribute('data-height');
 	});
-	
+
+	document.querySelectorAll(".g-block.responsive").forEach(function(t) {
+		gas(t).cssvar('origin-width',t.offsetWidth+'px');
+	});
+/*	
 	document.querySelectorAll("[data-toggle]").forEach(function(t) {
 		t.addEventListener("click", function(e) {
 			
@@ -1233,6 +1300,16 @@ function noda_attr_utilities() {
 			}
 		});
 	});
+*/	
+	if (document.querySelector('#neoca_scheme_switch')) {
+	document.querySelector('#neoca_scheme_switch').addEventListener("click", function(e) {
+		if (gas('body').hasClass('dark-scheme')) {
+			localStorage.setItem('ncc-scheme','dark');
+		} else {
+			localStorage.setItem('ncc-scheme','light');
+		}
+	})
+	}
 	
 }
 
@@ -1299,6 +1376,10 @@ function page_lightbox(img,title='',text='') {
 	}
 	
 }	
+
+/* gasnoda/res-ctl.js */
+
+
 
 /* gasnoda/toc.js */
 

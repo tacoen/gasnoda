@@ -1,7 +1,7 @@
 {% extends '@nucleus/partials/particle.html.twig' %}
 {% block particle %}
 	{% if particle.items|length > 0 %}
-	<div class='gn-carousel' style='max-height:{{particle.height|e}};height:{{particle.height|e}};'>
+	<div class='gn-carousel hsl-pal' style='--color:{{particle.color|e}}max-height:{{particle.height|e}};height:{{particle.height|e}};'>
 	{% set n = 0 %}
 	{% for item in particle.items %}
 		{% if particle.layout == 'frames' %}

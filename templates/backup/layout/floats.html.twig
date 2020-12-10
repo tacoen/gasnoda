@@ -1,0 +1,9 @@
+{% for block in segments %}
+	{% for content in block.children %}
+		{% if content.content %}
+			<div class='{{content.subtype}} size-{{content.attributes.size}}'>
+			{{ content.content|raw }}
+			</div>
+		{% endif %}
+	{% endfor %}
+{% endfor %}

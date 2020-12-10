@@ -15,7 +15,7 @@
 
 <div class='normal'>
 	{% if particle.headline %}
-		<h3 class='headline'>{{ particle.headline|raw }}</h3>
+		<div class='h2 headline'>{{ particle.headline|raw }}</div>
 	{% endif %}
 	{% if particle.description %}
 		<div class="description">{{ particle.description|raw }}</div>
@@ -28,7 +28,7 @@
 		{% for item in particle.items %}
 			<li class="item">
 			{% if item.title %}
-				<h4>{{ item.title|raw }}</h4>
+				<div class='h4'>{{ item.title|raw }}</div>
 			{% endif %}
 			{% if item.text %}
 				<div class='text'>{{ item.text|raw }}</div>

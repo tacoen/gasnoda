@@ -30,7 +30,7 @@ form:
                 1: PLUGIN_ADMIN.ENABLED
 
             header.image.summary.file:
-              type: text
+              type: pagemediaselect
               toggleable: true
               label: Summary Image File
               help: image filename that exists in the page folder. If not provided, will use the first image found.
@@ -47,7 +47,7 @@ form:
                 1: PLUGIN_ADMIN.ENABLED
 
             header.image.text.file:
-              type: text
+              type: pagemediaselect
               toggleable: true
               label: Blog Image File
               help: image filename that exists in the page folder. If not provided, will use the first image found.

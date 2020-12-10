@@ -13,13 +13,13 @@
 {% endif %}
 
 {% if particle.headline %}
-	<h3 class='headline bgcolor-l1'>{{ particle.headline|raw }}</h3>
+	<h3 class='headline bg-d1'>{{ particle.headline|raw }}</h3>
 {% endif %}
 
-<div class='content bgcolor-w1'>
+<div class='content bg-l3'>
 
 {% if particle.description %}
-	<div class="description bg-light-1">{{ particle.description|raw }}</div>
+	<div class="description bg-l">{{ particle.description|raw }}</div>
 {% endif %}
 
 {% if particle.items|length >0 %}

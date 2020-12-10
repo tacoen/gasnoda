@@ -61,12 +61,12 @@
     {{ gantry.document.getHtml('body_bottom')|join("\n    ")|raw }}
 {% endset -%}
 
-{%- set coba %}
-    {{ gantry.document.getHtml('myclass')|join("\n    ")|raw }}
-{% endset -%}
-
 {%- set menucan_ctl %}
     {{ gantry.document.getHtml('menucan_ctl')|join("\n    ")|raw }}
+{% endset -%}
+
+{%- set myclass %}
+    {{ gantry.document.getHtml('myclass')|join("\n    ")|raw }}
 {% endset -%}
 
 {# Head and footer needs to come last because of any of the above blocks may have CSS or JavaScript in them #}
@@ -119,7 +119,7 @@ var gn_media_breakpoint = {'wide':{{ 16*gantry.config.get('styles.breakpoints.la
     {{ page_head|raw }}
     {% block page_body -%}
     <body{{ gantry.page.bodyAttributes({'class': [
-		coba,
+		myclass,
 		offcanvas_position, 
 		'page-'~page.slug(), 
 		gantry.page.preset, 
@@ -128,7 +128,10 @@ var gn_media_breakpoint = {'wide':{{ 16*gantry.config.get('styles.breakpoints.la
         {{ gantry.config.page.body.body_top|raw }}
         {{ body_top|raw }}
         {{ page_offcanvas|raw }}
-        <div id="g-page-surround">
+		
+		<div class='modal-layer'></div>
+        
+		<div id="g-page-surround">
             {{ page_top|raw }}
             {{ page_layout|raw }}
             {{ page_bottom|raw }}
@@ -136,6 +139,7 @@ var gn_media_breakpoint = {'wide':{{ 16*gantry.config.get('styles.breakpoints.la
         {{ body_bottom|raw }}
         {{ page_footer|raw }}
 		{{ gantry.config.page.body.body_bottom|raw }}
+	
 	</body>
     {%- endblock %}
 </html>

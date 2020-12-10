@@ -12,7 +12,7 @@ body {
 
 a { text-decoration: none; }
 
-main a {
+main a:not(.button) {
     color: var(--accent);
     &:hover { text-decoration: underline; }
 }

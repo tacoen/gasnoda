@@ -1,6 +1,9 @@
 {% set html %}
     {% for segment in segments %}
-        {% include '/layout/' ~ segment.type ~ '.html.twig' with { 'segments': segment.children } %}
+        {% include '/layout/' ~ segment.type ~ '.html.twig' with { 
+			'segments': segment.children,
+			'options': options
+			} %}
     {% endfor %}
 {% endset %}
 

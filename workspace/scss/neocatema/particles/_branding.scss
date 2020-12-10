@@ -1,15 +1,17 @@
 #gn-branding {
 
 	display: flex;
-	padding: 0 var(--padding);
 
 	a {
 		border: none; outline: none;
 		position: relative;
 		@include flex-div(row, center, flex-start);
+		color: var(--text);
 	}
 
 	.site-logo {
+
+		@include flex-div(row, center, center);
 
 		flex-shrink: 1;
 
@@ -20,7 +22,7 @@
 		}
 
 		i.icon {
-			display: inline-flex;
+    		@include flex-div(row, center, center);
 			align-items: center;
 		}
 	}
@@ -30,8 +32,6 @@
 		flex: 1 0;
 		font-weight: 300;
 		line-height: 1.2;
-        padding-left: var(--padding);
-
 
 		.site-title {
 			font-weight: 600;
@@ -45,7 +45,7 @@
 			}
 		}
 
-		.subtext {
+		.site-desc {
 			font-size: .9rem;
 			margin: 0;
 		}
@@ -58,4 +58,8 @@
 
 .no-gcontent #gn-branding a {
     padding: 0 var(--padding);
+}
+
+.dark-scheme .site-logo {
+	filter: invert(1);
 }

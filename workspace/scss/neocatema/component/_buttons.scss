@@ -30,7 +30,7 @@ $all-buttons-hover: assign-inputs($buttons, hover);
 	user-select: none;
 	line-height: 1.2;
 	white-space: nowrap;
-	outline: 1px solid var(--shadow);
+	outline: 1px solid var(--shade);
     border: 1px solid var(--border);
     border-top: 1px solid var(--hilite);
     border-left: 1px solid var(--hilite);
@@ -78,6 +78,11 @@ $all-buttons-hover: assign-inputs($buttons, hover);
 #{$all-buttons} {
 	&.primary { @include button-color(accent); };
 	&.secondary { @include button-color(surface); };
+}
+
+
+[disabled],.disabled {
+    opacity: .4;
 }
 
 [naked],.naked {

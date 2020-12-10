@@ -1,45 +1,67 @@
-{% extends '@nucleus/partials/particle.html.twig' %}
-{% set image = url(particle.logo) %}
-{% set icon = particle.icon|raw %}
+{% extends 'partials/particle.html.twig' %}
+
+{% set wrap=false %}
+	
 {% if particle.title %}
-    {%- set title = particle.twig ? gantry.theme.compile(particle.title) : particle.title -%}
-    {%- set stitle = (particle.filter ? gantry.platform.filter(title) : title)|html|raw %}
+    {% set title = particle.twig ? gantry.theme.compile(particle.title) : particle.title -%}
+    {% set title = (particle.filter ? gantry.platform.filter(title) : title)|html|raw %}
+	{% set wrap=true %}
 {% endif %}
+{% if particle.desc %}
+    {%- set desc = particle.twig ? gantry.theme.compile(particle.desc) : particle.desc -%}
+    {%- set desc = (particle.filter ? gantry.platform.filter(desc) : desc)|html|raw %}
+	{% set wrap=true %}
+{% endif %}
+
+{% set text =
+	(wrap ? "<div class='wrapper'>" )
+	~ (title ? "<div class='site-title'>"~title~"</div>" )
+	~ (desc ? "<div class='site-desc'>"~desc~"</div>" )
+	~ (wrap ? "</div>" ) 
+%}
+
+{% set class = (particle.class ? "class="~particle.class~"") %}
+
 {% if particle.height is not empty %}
-    {% set heights = "style=height:"~particle.height|raw~";" %}
-    {% set iconsize = (round(particle.height|raw|number_format/16)-1)~"rem" %}
+    {% set height = particle.height|raw %}
+    {% set iconsize = (round(particle.height|raw|number_format/16)-1)*0.9~"rem" %}
     {% set margin = (round(particle.height|raw|number_format/16)-1)/3~"rem" %}
+	{% set width  = particle.height|raw %}
 {% else %}
-    {% set heights = "" %}
+    {% set height = "" %}
+    {% set width = "" %}
     {% set iconsize = "1rem" %}
+	{% set margin = "0" %}
 {% endif %}
+
+{% if particle.width is not empty %}
+	{% set width = particle.width|raw %}
+{% endif %}
+
+
+{% set logo %}
+
+	<div class='site-logo' style='width:{{width}};height:{{height}}'>
+	
+	{% if particle.svg is not empty %}
+		<div class='svg'>{{ particle.svg|raw }}</div>
+	{% elseif particle.image is not empty %}
+		<img src="{{ url(particle.image) }}" alt="{{ title }}">
+	{% elseif particle.icon is not empty %}
+		<i style="font-size:{{ iconsize }};" class="icon {{ particle.icon }}" title="{{ title }}"></i>
+	{% endif %}
+	
+	</div>
+	
+{% endset %}
+
 {% block particle %}
-    <div id="gn-branding" class="{{ particle.class|raw }}" >
-    <a href="/" title="{{ stitle }}">
-    {% if particle.svg is not empty %}
-        <div class='site-logo' {{ heights }} >{{ particle.svg|raw }}</div>
-    {% elseif image %}
-        <div class='site-logo' {{ heights }}><img src="{{ url(particle.logo) }}" alt="{{ particle.title }}"></div>
-    {% elseif icon %}
-        <div class='site-logo' {{ heights }}><i style="font-size:{{ iconsize }};" class="icon {{ icon }}" title="{{ stitle }}"></i></div>
-    {% endif %}
-    {% if particle.title %}
-        {% set wrap = 1 %}
-        {% set wtitle = "<div class='site-title'>"~stitle~"</div>" %}
-    {% endif %}
-    {% if particle.html %}
-        {% set wrap = 1 %}
-        {% set wsubtext %}
-        <div class='subtext'>
-        {% set html = particle.twig ? gantry.theme.compile(particle.html) : particle.html %}
-        {{ (particle.filter ? gantry.platform.filter(html) : html)|html|raw }}
-        </div>
-        {% endset %}
-    {% endif %}
-    {% if wrap %} <div class='wrapper' {{ heights }}>{% endif %}
-        {{ wtitle|raw }}
-        {{ wsubtext|raw }}
-    {% if wrap %}</div>{% endif %}
-    </a>
-    </div>
+
+
+
+	<div id="gn-branding" {{class}}>
+	{{ logo }}
+	{{ text|raw }}
+	</div>
+	
 {% endblock %}

@@ -4,16 +4,15 @@ preset:
   name: 2_column_right
 
 layout:
-  /navigation/: {  }
+  /navigation/:
   /container-main/:
     -
-      -
-        'header 80' : {  }
-        'main 80': {  }
-        'footer 80': {  }
-      -
-        'aside 20': {  }
-  
-  /offcanvas/:
+       - 
+         header:
+         main:
+         footer:
+       - 
+         aside:
+        
+  offcanvas:
     - system-messages
-

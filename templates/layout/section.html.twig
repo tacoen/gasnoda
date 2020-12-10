@@ -1,57 +1,77 @@
 {% set tag_type = segment.subtype|default('section') %}
 {% set attr_id = segment.attributes.id ?: 'g-' ~ segment.id %}
-{% set variations = (segment.attributes.variations ? ' ' ~ segment.attributes.variations|join(' ')) %}
 {% set attr_class = segment.attributes.class
-	~ ' section-'~segment.id ~ variations 
-	~ (segment.attributes.no_sizes ? ' no-size': '')
-	%}
-
-{% set nogrid = segment.attributes.no_grid %}
-
+	~ ' section-'~segment.id
+	~ (segment.attributes.blockcolor ? ' bg')
+	~ (segment.attributes.disable_sizes ? ' no-size')
+	~ (segment.attributes.disable_grid ? ' no-grid')
+	~ (segment.attributes.disable_gcontent ? ' no-gcontent')
+    ~ (segment.attributes.variations ? ' ' ~ segment.attributes.variations|join(' ')) %}
 {% set attr_extra = segment.attributes.extra|attribute_array %}
 {% set boxed = segment.attributes.boxed %}
-{% if boxed is not null %}
-    {% set boxed = boxed|trim == '' ? gantry.config.page.body.layout.sections : boxed %}
-{% endif %}
+
+{% set options = {
+	'gsize': segment.attributes.disable_sizes,
+	'ggrid': segment.attributes.disable_grid,
+	'gcontent': segment.attributes.disable_gcontent,
+	}
+%}
 
 {# Gasnoda //------- #}
 
-{%if segment.id != 'main' %}
-
-	{%if responsive_block %}
-
-		{% pageblock myclass %} has-res {% endpageblock %}
-
-		{% set res_class = ' res-content' 
-			~ ( segment.attributes.res_opt_swipe ? ' swipe': '' )
-			~ ' ' ~ segment.attributes.res_position
-		%}
-
-		{% set attr_class = attr_class ~ res_class %}
-
-		{% set section_ctl %}
-		<button class="toggle res-ctl {{ segment.attributes.res_offcanvas }}
-			{%if segment.attributes.res_title %} text{% endif %}
-			{{segment.attributes.res_position}}
-			{%if segment.attributes.res_opt_always %} show{% endif %} {{variations}}"
-			data-section='#{{attr_id}}'>
-		<i class='{{segment.attributes.res_icon}}'></i>
-		{%if segment.attributes.res_title %}<span>{{segment.attributes.res_title}}</span>{% endif %}
-		</button>
-		{% endset %}	
+{% set styles = segment.attributes.custom_style %}
 
 
-	{% endif %}
+{% if segment.attributes.responsive %}
+
+	{% pageblock myclass %} has-res {% endpageblock %}
+		
+	{% set attr_class = attr_class 
+		~ (segment.attributes.responsive ? ' res-content')
+		~ (segment.attributes.res_always ? ' show')
+		~ (segment.attributes.res_swipe ? ' swipe')
+		~ (segment.attributes.res_position ? ' ' ~ segment.attributes.res_position)
+	%}
+	
+	{% set resbutton_class = 'res-ctl toggle'
+		~ (segment.attributes.res_position ? ' ' ~ segment.attributes.res_position)
+		~ (segment.attributes.res_title ? ' text')
+	%}
+
+	{% set resbutton_style = ""
+		~(segment.attributes.res_icon_w ? '--ctl-width:' ~ segment.attributes.res_icon_w ~';' )
+		~(segment.attributes.res_icon_h ? '--ctl-height:' ~ segment.attributes.res_icon_h ~';' )
+	%}
+	
+	{% set resbutton %}
+	
+	<button class="{{resbutton_class}}" 
+		data-always="{{segment.attributes.res_always}}"
+		data-section='#{{attr_id}}' 
+		style="{{resbutton_style|raw}}">
+	<i class='{{segment.attributes.res_icon}}'></i>
+	{%if segment.attributes.res_title %}<span>{{segment.attributes.res_title}}</span>{% endif %}
+	</button>
+	
+	{% endset %}
+
 {% endif %}
 
+
 {# Gasnoda //------- #}	
-	
+
+{% if boxed is not null %}
+    {% set boxed = boxed|trim == '' ? gantry.config.page.body.layout.sections : boxed %}
+{% endif %}
 
 {%- set html %}
 
     {% if segment.children %}
         {% for segment in segments %}
-            {% include '/layout/' ~ segment.type ~ '.html.twig' with { 'segments':segment.children } %}
+            {% include 'layout/' ~ segment.type ~ '.html.twig' with { 
+				'segments':segment.children ,
+				'options':options
+			} %}
         {% endfor %}
     {% endif %}
 {% endset %}
@@ -63,23 +83,23 @@
         {% endset %}
     {% endif %}
 
-	{%if segment.attributes.blockcolor %}
-		{% set attr_class = attr_class ~ ' bg' %}
-	{% endif %}
-
     {% set html %}
     {% if boxed == 2 %}{% set attr_class = attr_class ~ ' g-flushed' %}{% endif %}
     {% set attr_class = attr_class ? ' class="' ~ attr_class|trim ~ '"' -%}
-    {{ section_ctl| raw }}
-	<{{ tag_type }} id="{{ attr_id }}"{{ attr_class|raw }} {{- attr_extra|raw }}>
-		{{ html|raw }}
+
+	{{ resbutton|raw }}
+
+	<{{ tag_type }} 
+		id="{{ attr_id }}"
+		{{ attr_class|raw }} {{- attr_extra|raw }} 
+		{% if styles %} style="{{styles}}" {% endif %} >
+        {{ html|raw }}
     </{{ tag_type }}>
     {%- endset %}
 
     {%- if boxed == 1 %}
-		<div class="g-container">{{ html|raw }}</div>
+    <div class="g-container">{{ html|raw }}</div>
     {% else %}
-		{{ html|raw }}
+    {{ html|raw }}
     {% endif %}
-	
 {% endif %}

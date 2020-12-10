@@ -1,0 +1,130 @@
+<article class="list-item h-entry">
+
+	{% if page.taxonomy.tag or show_date  %}
+		{% set article_meta %}
+        <div class="list-blog-meta">
+            {% if show_date %}
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <time class="dt-published" datetime="{{ page.date|date("c") }}">
+                {{ page.date|date('jS M Y') }}
+            </time>
+            {% endif %}
+
+            {% if page.taxonomy.tag.length > 0 or page.taxonomy.category.length >0 %} <span class="separator">&mdash;</span> {% endif %}
+
+            {% if page.taxonomy.tag %}
+			<i class="fa fa-tags" aria-hidden="true"></i>
+            <span class="tags">
+                {% for tag in page.taxonomy.tag %}
+                <a href="{{ blog.url|rtrim('/') }}/tag{{ config.system.param_sep }}{{ tag }}" class="p-category">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </span>
+            {% endif %}
+
+            {% if page.taxonomy.category %}
+			<i class="fa fa-folder-o" aria-hidden="true"></i>
+            <span class="category">
+                {% for cat in page.taxonomy.category %}
+                <a href="{{ blog.url|rtrim('/') }}/category{{ config.system.param_sep }}{{ cat }}" class="p-category">{{ cat }}</a>{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </span>
+            {% endif %}
+
+        </div>
+		{% endset %}
+    {% endif %}
+		
+    {% if truncate %}
+        {% set image_file = page.header.image.summary.enabled|defined(false) ? (page.header.image.summary.file ?: true) %}
+    {% else %}
+        {% set image_file = page.header.image.text.enabled|defined(false) ? (page.header.image.text.file ?: true) %}
+    {% endif %}
+
+    {% if image_file %}
+		{% set image = image_file is same as(true) ? page.media.images|first.url : (image_file ? page.media.images[image_file].url) %}
+	{% endif %}
+
+	{% set styles = (image ? "background-image: url('" ~ image ~ "');" ) %}
+	
+    <div class="list-blog-header ncc-surface
+		{% if image %} cover {% endif %}
+		" style= "{{styles|raw}}">
+	
+        {% if truncate %}
+        {% if page.header.link %}
+            <div class="p-name article-title">
+                {% if page.header.continue_link is not same as(false) %}
+                <a href="{{ page.url }}"><i class="fa fa-angle-double-right u-url" aria-hidden="true"></i></a>
+                {% endif %}
+                <a href="{{ page.header.link }}" class="u-url">{{ page.title }}</a>
+            </div>
+        {% else %}
+            <div class="p-name article-title"><a href="{{ page.url }}" class="u-url">{{ page.title }}</a></div>
+        {% endif %}
+        {% else %}
+            <div class="p-name article-title">{{ page.title }}</div>
+        {% endif %}
+
+        {{ (article_meta ? article_meta) }}
+		
+    </div>
+
+    <div class="list-blog-padding">
+
+    {% if page.header.continue_link is same as(false) %} 
+	
+ 	
+        <div class="e-content">
+            {{ page.content|raw }}
+        </div>
+        {% if not truncate %}
+        {% set show_prev_next = true %}
+        {% endif %}
+    {% elseif truncate and page.summary != page.content %}
+        <div class="p-summary e-content">
+            {{ page.summary|raw }}
+            <p><a class="read-more button" href="{{ page.url }}">{{ display.read_more.label|default('GANTRY5_ENGINE_READMORE'|trans) }}</a></p>
+        </div>
+    {% elseif truncate %}
+        <div class="p-summary e-content">
+            {% if page.summary != page.content %}
+                    {{ page.content|truncate(550)|raw }}
+            {% else %}
+                    {{ page.content|raw }}
+
+            {% endif %}
+            <p><a class="read-more button" href="{{ page.url }}">{{ display.read_more.label|default('GANTRY5_ENGINE_READMORE'|trans) }}</a></p>
+        </div>
+    {% else %}
+		
+        <div class="e-content">
+            {{ page.content|raw }}
+        </div>
+
+        {% if config.plugins.comments.enabled %}
+            {% include 'partials/comments.html.twig' %}
+        {% endif %}
+
+    
+	{% endif %}
+
+	
+    </div>
+
+    {% if show_prev_next %}
+
+        <div class="prev-next">
+            {% if not page.isFirst %}
+                <a class="button next" href="{{ page.nextSibling.url }}"><i class="fa fa-chevron-left" aria-hidden="true"></i> <span>{{ 'GANTRY5_ENGINE_BLOG_ITEM_NEXT_POST'|trans }}</span></a>
+            {% endif %}
+
+            {% if not page.isLast %}
+                <a class="button prev" href="{{ page.prevSibling.url }}"><span>{{ 'GANTRY5_ENGINE_BLOG_ITEM_PREV_POST'|trans }}</span> <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+            {% endif %}
+        </div>
+
+    {% endif %}
+
+
+
+</article>

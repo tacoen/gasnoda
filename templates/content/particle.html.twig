@@ -1,8 +1,6 @@
 {% try %}
-
     {% set id = segment.id %}
-    
-	{% if not particle %}
+    {% if not particle %}
         {% if noConfig %}
             {% set enabled = true %}
             {% set particle = segment.attributes %}
@@ -13,17 +11,16 @@
     {% endif %}
 
     {% set html %}
+		ini-par: {{ options|print_r }}
         {% if enabled and (segment.attributes.enabled is null or segment.attributes.enabled) %}
-            {% include [
+            {% include ['particles/' ~ segment.subtype ~ '.html.twig',
 				'@particles/' ~ segment.subtype ~ '.html.twig',
-				'particles/' ~ segment.subtype ~ '.html.twig',
-				'/content/missing.html.twig'] 
-			%}
+				'/content/missing.html.twig'] %}
         {% endif %}
     {% endset %}
     {% set html = html|trim %}
 
-	{% set classes = ((not inContent ? (nogcontent ? '': 'g-content') : 'g-particle ') ~ segment.classes|join(' '))|trim %}
+    {% set classes = ((not inContent ? 'g-content g-particle ' : 'g-particle ') ~ segment.classes|join(' '))|trim %}
     {%- if html -%}
             {% if gantry.debug %}<!-- START PARTICLE {{ id }} -->{% endif %}
 
@@ -36,5 +33,3 @@
 {% catch %}
     <div class="alert alert-error"><strong>Error</strong> while rendering {{ segment.subtype }} particle.</div>
 {% endtry %}
-
-

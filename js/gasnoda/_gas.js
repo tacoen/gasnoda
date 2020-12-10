@@ -60,7 +60,9 @@ gas.prototype = {
 		
 			
 	},
-	
+	id: function(what) {
+		return this.ele.id;
+	},
 	data: function(what,value=false) {
 
 		if (value) { this.ele.setAttribute('data-'+what,value); }

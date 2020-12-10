@@ -1,0 +1,102 @@
+name: Carousel
+description: Displays Carousel Content
+type: particle
+icon: fa-image
+
+configuration:
+  caching:
+    type: static
+
+form:
+  fields:
+    enabled:
+      type: input.checkbox
+      label: Enabled
+      description: Globally enable the particle.
+      default: true
+
+    layout:
+      type: select.select
+      label: Layout
+      default: 'slides'
+      options:
+          frames: Frames
+          slides: Slides
+      overridable: false      
+
+    color:
+      type: input.colorpicker
+      label: Color
+
+       
+    height:
+      type: input.text
+      label: height
+      default: 60vh
+
+    delay:
+      type: input.text
+      label: delay
+      default: 10
+      
+    items:
+      type: collection.list
+      array: true
+      label: Carousel Items
+      description: Create each item to appear in the content row.
+      value: title
+      ajax: true
+      overridable: false
+
+      fields:
+        .image:
+            type: input.imagepicker
+            label: Image
+
+        .imgclass:
+            type: input.text
+            label: class
+
+        .onright: 
+            type: input.checkbox
+            label: On right
+            
+        .blend:
+          type: select.selectize
+          label: blend
+          placeholder: 'Select...'
+          default: normal
+          options:
+            normal: normal
+            soft-light: soft-light
+            hard-light: hard-light
+            overlay: overlay
+            darken: darken
+            multiply: multiply
+            screen: screen
+            lighten: lighten
+            color-burn: color-burn
+            color-dodge: color-dodge
+            saturation: saturation
+            hue: hue
+            color: color
+            luminosity: luminosity
+            difference: difference
+ 
+        .html:
+            type: textarea.textarea
+            label: HTML
+
+        .button:
+            type: input.text
+            label: button
+            default: 'Read More'
+
+        .url:
+            type: input.text
+            label: url
+
+        .variations:
+          type: input.block-variations
+          label: Variations
+          

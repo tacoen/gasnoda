@@ -1,0 +1,212 @@
+title: module-hero
+extends@: default
+
+form:
+  fields:
+    tabs:
+      fields:
+        advanced:
+          fields:
+            columns:
+              fields:
+                column1:
+                  fields:
+                    name:
+                      default: 'modular/features'
+                      data-options@: '\Grav\Common\Page\Pages::modularTypes'
+            overrides:
+              fields:
+                header.template:
+                  default: 'modular/features'
+                  data-options@: '\Grav\Common\Page\Pages::modularTypes'
+        contents:
+          type: tab
+          title: Hero Setup
+          fields:
+
+            header.class:
+              type: text
+              label: Class
+
+            header.background_color:
+              type: colorpicker
+              label: Background Color
+            
+            _section3:
+              type: section
+              title: Page Content
+
+            header.content_h_layout:
+              type: select
+              label: H-position
+              placeholder: 'Select...'
+              default: center
+              options:
+                left: left
+                center: center
+                right: right
+                
+            header.content_v_layout:
+              type: select
+              label: V-position
+              placeholder: 'Select...'
+              default: middle
+              options:
+                top: top
+                middle: middle
+                bottom: bottom                
+
+            header.title_print:
+              label: Show Page Title
+              type: checkbox
+              default: false
+
+            _section4:
+              type: section
+              title: Background Animation
+
+            header.img_blend:
+              type: select
+              label: Image Blend-Mode
+              placeholder: 'Select...'
+              default: soft-light
+              options:
+                normal: normal
+                soft-light: soft-light
+                hard-light: hard-light
+                overlay: overlay
+                darken: darken
+                multiply: multiply
+                screen: screen
+                lighten: lighten
+                color-burn: color-burn
+                color-dodge: color-dodge
+                saturation: saturation
+                hue: hue
+                color: color
+                luminosity: luminosity
+                difference: difference
+                auto: auto
+
+            header.img_timeout:
+                name: timeout
+                type: number
+                label: Slide second
+                default: 10
+                validate:
+                    min: 0
+                    max: 60
+                    step: 10
+
+            header.img_animation:
+              name: animation
+              type: select
+              label: Animation
+              placeholder: 'Select...'
+              default: paralax-h
+              options:
+                paralax-h: paralax-h
+                paralax-v: paralax-v
+                zoom: zoom-flash
+                fade: fade
+
+            _section_img:
+              type: fieldset
+              title: Images
+              collapsible: true
+              collapsed: false
+              fields:                
+                header.images:
+                  type: list
+                  label: Background Image
+                  style: vertical
+                  fields:
+                    .file:
+                      type: pagemediaselect
+                      label: Image
+                
+        listing:
+          type: tab
+          title: List
+          fields:
+
+            _section1:
+              type: fieldset
+              title: List
+              collapsible: true
+              collapsed: false
+              fields:
+
+                header.list_enable:
+                  type: checkbox
+                  label: Enable
+                  default: 0
+                  
+                header.list_layout:
+                  type: select
+                  label: Layout
+                  placeholder: 'Select...'
+                  default: vertical
+                  options:
+                    vertical: vertical
+                    horizontal: horizontal
+
+                header.list:
+                  type: list
+                  label: Items
+                  style: vertical
+                  fields:
+                    .icon:
+                      type: text
+                      label: Icon
+                    .header:
+                      type: text
+                      label: Header
+                    .link:
+                      type: text
+                      label: URL Link
+                    .text:
+                      type: text
+                      label: Text
+
+            _section2:
+              type: fieldset
+              title: Buttons
+              collapsible: true
+              collapsed: true
+              fields:
+
+                header.buttons_enable:
+                  type: checkbox
+                  label: Enable
+                  default: 0
+
+                header.buttons_layout:
+                  type: select
+                  label: Layout
+                  placeholder: 'Select...'
+                  default: horizontal
+                  options:
+                    vertical: vertical
+                    horizontal: horizontal
+
+                header.buttons_list:
+                  type: list
+                  label: Buttons
+                  fields:
+                    .text:
+                      type: text
+                      label: Text
+                    .link:
+                      type: text
+                      label: URL Link
+                    .subtext:
+                      type: text
+                      label: Sub Text
+                    .class:
+                      type: text
+                      label: Class
+                      default: primary
+
+
+

@@ -5,9 +5,7 @@
 
 {% set idimg = 'image_slider'~random(100, 999)  %}
 
-{{ idimg }}
-
-<div class='img-slider-container' style='height:{{particle.height|e}};'>
+<div class='gn-img-slider' style='height:{{particle.height|e}};'>
 <div id='{{ idimg }}' class='slide' style='width:{{ (100*particle.images|length) }}%'>
 {% set n = 0 %}
 {% for item in particle.images %}
@@ -18,11 +16,10 @@
 {% endfor %}
 </div>
 </div>
-{% block javascript_footer %}
-    <script src="{{ url('gantry-theme://js/slider.js') }}"></script>
-{% endblock %}
+
+{% do assets.addJs('theme://js/slider.js', {group: 'bottom'}) %}
+
 {% set slider_inject %}
-var ini=1;
 image_slider('{{ idimg }}',{{ particle.images|length }}, {{ particle.delay }},0);
 {% endset %}
 {% do gantry.document.addInlineScript(slider_inject, 0, 'footer') %}

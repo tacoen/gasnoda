@@ -1,0 +1,118 @@
+{% set class = 'modular-row' %}
+
+{% set class = class
+	~ ' ' ~ page.header.content_h_layout
+	~ ' ' ~ page.header.content_v_layout
+	~ ' ' ~(page.header.class ? page.header.class)
+%}
+
+{% set id = 'modular-' ~ rand(1000, 9999) %}
+
+{% if page.header.background_color %}
+
+	{% set bgcolor = '--color:'~page.header.background_color~';' %}
+
+	{% set module_injectjs = module_injectjs ~ "ncc_construct_pallete('#"~id~"');" %}
+
+	{% do gantry.document.addInlineScript(module_injectjs, 0, 'footer') %}
+
+{% endif %}
+
+{% if page.header.list_enable and page.header.list %}
+	{% set class = class ~ ' has-items' %}
+	{% set features %}
+	<ul class='features {{ page.header.list_layout }}'>
+	{% for item in page.header.list %}
+		<li>
+		{{ (item.link ? "<a href='"~item.link~"'>" : "")|raw }}
+		{{ (item.icon ? "<i block class='"~item.icon~"'></i>" : "")|raw }}
+		<div class='item-wrap'>
+		{{ (item.header ? "<div class='item-title'>"~item.header~"</div>" : "")|raw }}
+		{{ (item.text ? "<div class='item-text'>"~item.text~"</div>" : "")|raw }}
+		</div>
+		{{ (item.link ? "</a>": "")|raw }}</li>
+	{% endfor %}
+	</ul>
+	{% endset %}
+{% endif %}
+
+{% if page.header.buttons_enable and page.header.buttons_list %}
+	{% set class = class ~ ' has-buttons' %}
+	{% set buttons %}
+	<ul class='buttons {{ page.header.buttons_layout }}'>
+	{% for item in page.header.buttons_list %}
+		<li>
+		<a class='button {{item.class}}'
+		{%if item.link %}href="{{item.link}}"{% endif %}
+		>{{item.text}}</a>
+		{%if item.subtext %}<div class='item-text'>{{item.subtext}}</div>{% endif %}
+		</li>
+	{% endfor %}
+	</ul>
+	{% endset %}
+{% endif %}
+
+{% set styles = bgcolor %}
+
+{% if page.header.images|length > 1 %}
+
+	{% set img_list = "data-image=" %}
+
+	{% for img in page.header.images %}
+		{% if loop.last %}
+			{% set img_list = img_list~page.media[img.file].url|e %}
+		{% else %}
+			{% set img_list = img_list~page.media[img.file].url|e~"," %}
+		{% endif %}
+	{% endfor %}
+
+
+{% else %}
+
+	{% if page.media.images|length > 1 %}
+		{% set img_list = "data-image=" %}
+		{% for img in page.media.images %}
+			{% if loop.last %}
+				{% set img_list = img_list~img.url|e %}
+			{% else %}
+				{% set img_list = img_list~img.url|e~"," %}
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+
+{% endif %}
+
+{% set img_list = img_list|rtrim %}
+
+{% if img_list %}
+
+	{% set styles = styles
+		~ (page.header.media_order ? "background-image: url('" ~ page.media.images|first.url ~ "');" )
+		~ (page.header.img_blend ? "background-blend-mode:" ~ page.header.img_blend ~ ";" )
+		~ (page.header.img_animation ? "animation-name:" ~ page.header.img_animation ~ ";" )
+		~ (page.header.img_timeout ? "animation-duration:" ~ page.header.img_timeout ~ "s;" )
+	%}
+
+	{% set module_img_injectjs %}
+	gn_modular_slideshow('#{{id}}',{{page.header.img_timeout|raw}})
+	{% endset %}
+	{% do gantry.document.addInlineScript(module_img_injectjs, 0, 'footer') %}	
+
+
+{% endif %}
+
+<div id="{{id|raw}}" class="{{ class|raw }}" style="{{ styles|raw }}" 
+	{{img_list|raw}}
+	data-delay={{page.header.img_timeout}}>
+
+    <div class='page-content'>
+		{% if page.header.title_print %}<div class='h1'>{{ page.title }}</div>{% endif %}
+		{{ content|raw }}
+	</div>
+	
+	{{ features|raw }}
+
+	{{ buttons|raw }}
+
+</div>
+

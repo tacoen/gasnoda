@@ -1,0 +1,21 @@
+version: 2
+preset:
+  image: 'gantry-admin://images/layouts/3-col.png'
+  name: 3_column
+
+layout:
+  navigation: {  }
+  /container-main/:
+    -
+      -
+        sidebar: {  }
+      -
+        header : {  }
+        main: {  }
+        footer: {  }
+      -
+        aside: {  }
+  
+  offcanvas:
+    - system-messages
+

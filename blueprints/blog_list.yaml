@@ -89,6 +89,17 @@ form:
               validate:
                 type: bool
 
+            header.content.show_prev_next:
+              type: toggle
+              label: Show Prev/Next Button
+              highlight: 0
+              default: 0
+              options:
+                1: PLUGIN_ADMIN.ENABLED
+                0: PLUGIN_ADMIN.DISABLED
+              validate:
+                type: bool
+
             header.content.pagination:
               type: toggle
               label: Pagination

@@ -79,17 +79,5 @@ form:
                   class: alert alert-warning center blocksize-note
                   content: 'The <em>Block Size</em> can only be set <span class="blocksize-range">between <strong>#min#</strong>% and <strong>#max#</strong>%</span><span class="blocksize-fixed">to <strong>#max#</strong>%</span>'
 
-        _tab_title2:
-          label: Responsive
-          fields:
-            responsive:
-              type: input.checkbox
-              label: Enable Responsive
-              default: false
-              description: Make block always responsive
 
-            res_always:
-              type: input.checkbox
-              label: Always Responsive
-              default: false
-              description: Make block always responsive                
+              
