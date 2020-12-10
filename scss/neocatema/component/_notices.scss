@@ -14,7 +14,7 @@
 	border-radius: var(--bradius);
 	position: relative;
 	line-height: 1.2;
-	padding-right: calc( 2 * var(--padding));
+	padding-right: calc(3 * var(--padding));
 
 	&:after {
 		font-family: 'neoca-feather';
@@ -22,6 +22,7 @@
 		position: absolute;
 		top: .25rem;
 		right: .25rem;
+		cursor: pointer;
 	}
 
     &.yellow { @include notice-color(warning); };

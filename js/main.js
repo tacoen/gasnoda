@@ -50,8 +50,24 @@ document.addEventListener('DOMContentLoaded', function () {
 	//gn_modular_slideshow('.modular-row.showcase');
 	
 	//noda_hslpal();
-	
 
+
+	document.querySelectorAll('.notices').forEach( function(el) {
+	
+		el.addEventListener("click", function(e) {
+			el.remove()
+		})
+		
+	});
+	
+	document.querySelectorAll('.alert').forEach( function(el) {
+	
+		el.addEventListener("click", function(e) {
+			el.remove()
+		})
+		
+	});	
+	
 });
 
 /* Gas un-ready ----------------------------------------------------- */

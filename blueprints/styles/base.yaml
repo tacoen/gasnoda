@@ -11,14 +11,14 @@ form:
 
     padding:
         type: input.text
-        label: Horizontal
-        default: "0.5rem"
-        placeholder: 0.5rem (default) 
+        label: Padding
+        default: "1rem"
+        placeholder: 1rem (default) 
         pattern: '\d+(\.\d+){0,1}(rem|em|%|px)'
 
     margin:
         type: input.text
-        label: Horizontal
+        label: Margin
         default: "1rem"
         placeholder: 1rem (default) 
         pattern: '\d+(\.\d+){0,1}(rem|em|%|px)'

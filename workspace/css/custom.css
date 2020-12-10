@@ -11,7 +11,7 @@
 /* grav dependecy on workspace */
 /* -------------------------------------------------------------
  * 
- * neocatema/etc - 12/10/20 10:06:36
+ * neocatema/etc - 12/10/20 22:10:27
  * 
  */
 @keyframes paralax-v {
@@ -146,11 +146,16 @@
 
 [flex-items] {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  width: 100%; }
+  flex-direction: row;
+  align-items: start;
+  justify-content: star;
+  flex-wrap: wrap; }
   [flex-items] > * {
-    flex: 0 0 auto; }
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    flex-wrap: wrap; }
 
 [deck-top] {
   position: relative;
@@ -260,9 +265,107 @@ button.res-ctl {
       flex-basis: 100% !important;
       width: 100% !important; } }
 
+.fa-index span, .fa-index .nc-icon, .nc-index span, .nc-index .nc-icon {
+  width: 15%;
+  flex-basis: 15%;
+  padding: 1rem; }
+  .fa-index span i, .fa-index .nc-icon i, .nc-index span i, .nc-index .nc-icon i {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 3rem;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem; }
+  .fa-index span input, .fa-index span span, .fa-index .nc-icon input, .fa-index .nc-icon span, .nc-index span input, .nc-index span span, .nc-index .nc-icon input, .nc-index .nc-icon span {
+    text-align: center;
+    width: 100%;
+    text-align: center;
+    font-size: .9rem; }
+
+.section-title {
+  font-weight: 700;
+  color: #931;
+  padding-bottom: .5rem;
+  border-bottom: 1px dotted #ccc;
+  margin-bottom: var(line-margin); }
+  .section-title:first-child {
+    margin-top: 0; }
+
+.dark-scheme .section-title {
+  color: #fc3; }
+
+.boxcolor,
+input[type="color"] {
+  height: 2.5rem;
+  position: relative;
+  width: 100%;
+  padding: 0 !important; }
+
+.boxcolor:after, .boxcolor:before,
+input[type="color"]:after,
+input[type="color"]:before {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  position: absolute;
+  font-family: var(--font-mono);
+  width: 72px;
+  display: block;
+  font-size: .85rem; }
+
+.boxcolor:before,
+input[type="color"]:before {
+  top: .5rem;
+  left: .5rem;
+  content: attr(data-color);
+  font-weight: bold; }
+
+.boxcolor:after,
+input[type="color"]:after {
+  bottom: .25rem;
+  right: .5rem;
+  text-align: right;
+  content: attr(data-value); }
+
+input[type="color" i]::-webkit-color-swatch-wrapper,
+input[type="color" i]::-webkit-color-swatch {
+  padding: 0;
+  border: none;
+  cursor: pointer; }
+
+.nc-outline > div,
+.grid-outline > div {
+  outline: 1px solid #0006; }
+
+.nc-outline > div > div,
+.grid-outline > div > div {
+  outline: 1px dotted #9009; }
+
+.sep {
+  width: 3rem; }
+
+.color-chart {
+  width: 100px;
+  flex: 0 0 100px;
+  margin-right: 2rem; }
+
+.color-chart > div {
+  margin: 0.25rem; }
+
+.color-chart .label {
+  text-align: center;
+  font-size: .9rem; }
+
+.color-preview {
+  width: auto;
+  flex: 0 0 calc(100% - 100px - 2rem); }
+
 /* -------------------------------------------------------------
  * 
- * neocatema/particles - 12/10/20 10:06:37
+ * neocatema/particles - 12/10/20 22:10:27
  * 
  */
 #gn-branding {

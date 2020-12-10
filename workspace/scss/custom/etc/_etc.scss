@@ -34,11 +34,12 @@
 
 
 [flex-items] {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content:space-between;
-    width:100%;
-    > * { flex: 0 0 auto; }
+
+    @include flex-div(row,start,star);
+
+    > * {
+        @include flex-div(column,start,start);
+    }        
 }
 
 [deck-top] {
