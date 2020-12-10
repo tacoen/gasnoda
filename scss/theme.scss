@@ -1,12 +1,14 @@
 // dependency
 @import "vendor/bourbon/bourbon";
+
 @import "neocatema/configuration";
 @import "neocatema/grav";
 @import "neocatema/function";
+@import "neocatema/common";
 
 //neocatema - theme
 
-@import "neocatema/common";
+
 
 @import "neocatema/reset";
 @import "neocatema/tema";

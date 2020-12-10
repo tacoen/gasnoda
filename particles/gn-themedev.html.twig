@@ -3,10 +3,10 @@
 {% set page = uri.param('nccdev') %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="gantry-theme://workspace/css/ncc-themedev.css" />
+    <link rel="stylesheet" type="text/css" href="gantry-theme://theme-dev/css/ncc-themedev.css" />
 {% endblock %}
 {% block javascript_footer %}
-    <script src="{{ url('gantry-theme://workspace/js/ncc-themedev.js') }}"></script>
+    <script src="{{ url('gantry-theme://theme-dev/js/ncc-themedev.js') }}"></script>
 {% endblock %}
 
 {# include ['@particles/gn-themedev/'~page~'.html.twig', 'welcome.html.twig'] #}

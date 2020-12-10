@@ -1,7 +1,0 @@
-// sub list are keep with previous.
-
-ul,
-ol { padding-inline-start: 1rem; }
-
-ul li::marker { color: var(--surface); }
-ol li::marker { color: var(--accent); }
