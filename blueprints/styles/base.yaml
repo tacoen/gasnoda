@@ -53,12 +53,12 @@ form:
 
     font-alter:
         type: input.fonts
-        label: Heading Font
+        label: Alter Font
         default: 'serif'
 
     font-mono:
         type: input.fonts
-        label: Heading Font
+        label: Mono Font
         default: 'monospace'
         
     font-size:

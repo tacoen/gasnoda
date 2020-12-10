@@ -1,0 +1,27 @@
+// item thats not in neocatema
+
+$option-disable_scheme: 0 !default;
+$option-devinchrome: 1 !default;
+$option-fontawesome_css: 1 !default;
+$option-animate_css: 0 !default;
+
+$menu-col-width: 180px !default;
+$menu-animation: g-fade !default;
+$menu-mobile-breakpoint: 48rem !default;
+$menu-box-height: 75vh !default;
+$menu-panel-width: 75vw !default;
+$menu-icon: fa fa-bars !default;
+$menu-icon-w: 3rem !default;
+$menu-icon-h: 3rem !default;
+
+$breakpoints-large-desktop-container:75rem !default;
+$breakpoints-desktop-container:60rem !default;
+$breakpoints-tablet-container:48rem !default;
+$breakpoints-large-mobile-container:30rem !default;
+$breakpoints-mobile-container: $breakpoints-large-mobile-container !default;
+$breakpoints-mobile-menu-breakpoint: $menu-mobile-breakpoint !default;
+
+$colors-color-1: false !default;
+$colors-color-2: false !default;
+$colors-color-3: false !default;
+$colors-color-4: false !default;

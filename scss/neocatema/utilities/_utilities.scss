@@ -1,0 +1,63 @@
+[center] { text-align: center; }
+
+[right] {
+    float: right;
+    text-align: right;
+}
+
+[left] {
+    float: left;
+    text-align: left;
+}
+
+[spaced] * {
+	margin-right: calc(.5 * var(--margin));
+}
+
+@for $i from 0 through 6 {
+	
+	.mr-#{$i},[mr-#{$i}] { margin-right: calc(#{$i} * var(--margin)) !important; }
+	.ml-#{$i},[ml-#{$i}] { margin-left: calc(#{$i} * var(--margin)) !important; }	
+	.mb-#{$i},[mb-#{$i}] { margin-bottom: calc(#{$i} * var(--margin)) !important; }	
+	.mt-#{$i},[mt-#{$i}] { margin-top: calc(#{$i} * var(--margin)) !important; }	
+	.m-#{$i},[m-#{$i}] { margin: calc(#{$i} * var(--margin)); }
+	.mv-#{$i},[mv-#{$i}] { 
+		margin-top: calc(#{$i} * var(--margin)) !important; 
+		margin-bottom: calc(#{$i} * var(--margin)) !important; 
+	}	
+	.mh-#{$i},[mh-#{$i}] { 
+		margin-left: calc(#{$i} * var(--margin)) !important; 
+		margin-right: calc(#{$i} * var(--margin)) !important; 
+	}	
+
+	.pr-#{$i},[pr-#{$i}] { padding-right: calc(#{$i} * var(--padding)) !important; }
+	.pl-#{$i},[pl-#{$i}] { padding-left: calc(#{$i} * var(--padding)) !important; }	
+	.pb-#{$i},[pb-#{$i}] { padding-bottom: calc(#{$i} * var(--padding)) !important; }	
+	.pt-#{$i},[pt-#{$i}] { padding-top: calc(#{$i} * var(--padding)) !important; }	
+	.p-#{$i},[p-#{$i}] { padding: calc(#{$i} * var(--padding)); }
+	.pv-#{$i},[pv-#{$i}] { 
+		margin-top: calc(#{$i} * var(--padding)) !important; 
+		margin-bottom: calc(#{$i} * var(--padding)) !important; 
+	}	
+	.ph-#{$i},[ph-#{$i}] { 
+		margin-left: calc(#{$i} * var(--padding)) !important; 
+		margin-right: calc(#{$i} * var(--padding)) !important; 
+	}	
+
+}
+
+.outlined,[outlined] { outline: var(--hrsep) dashed var(--border); }
+.border,[border] { border: var(--hrsep) solid var(--border); }
+.border-top,[border-top] { border-top: var(--hrsep) solid var(--border); }
+.border-left,[border-left] { border-left: var(--hrsep) solid var(--border); }
+.border-right,[border-right] { border-right: var(--hrsep) solid var(--border); }
+.border-bottom,[border-bottom] { border-bottom: var(--hrsep) solid var(--border); }
+    
+.nomarginall {
+    .g-content { margin: 0 !important; }
+} 
+
+.nopaddingall {
+    .g-content { padding: 0 !important; }
+}
+

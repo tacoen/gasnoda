@@ -1,0 +1,49 @@
+/* heading
+*/
+
+@function hsize($i) {
+	$s: (5-$i);
+	$r: .25;
+	@if ($s<=0) { $r: 0.1 }
+	@return 1+($s*$r);
+}
+
+// heading: title, section title, reading marks
+$heading: assign-inputs(['h1','h2','h3','h4','h5','h6']);
+
+#{$heading} {
+	margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
+@for $i from 1 through 6 {
+
+	h#{$i},.h#{$i} {
+		font-size: calc(#{hsize($i)} * var(--font-size));
+		text-transform: capitalize;
+		font-weight: 500;
+		font-family: var(--font-head);
+	}
+
+	h#{$i} {
+		line-height: 1;
+		margin-top: var(--line-margin);
+		&:first-child {
+			@extend %no-margin-top
+		}
+	}
+
+}
+
+
+// h5,h6 will stick with next
+
+h4 + * { margin-top: calc(var(--line-margin) /2); }
+h5 + *,
+h6 + * { margin-top: calc(var(--line-margin) /4); }
+
+.title, .sub-title {
+	color: var(--accent)
+}

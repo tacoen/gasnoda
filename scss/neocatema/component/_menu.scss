@@ -1,0 +1,32 @@
+.menucan {
+    --background: var(--c-n);
+	.g-go-back { display: none; }
+
+	li {
+		.menu-dropdown { background-color: var(--background); }
+		&:hover { background-color: var(--hover); }
+	}
+
+	li.active {
+		background: var(--active);
+		.menu-dropdown { background-color: var(--active); }
+		&:hover { background-color: var(--active-hover); }
+	}
+
+	a { color: var(--text); text-transform: capitalize; }
+
+	.toplevel {
+
+		background-color: var(--background);
+
+		li {
+			width:var(--menu-width);
+		}
+	}
+
+	.nav-item-container {
+        height: 100%;
+		padding: var(--padding);
+	}
+
+}

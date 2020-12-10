@@ -1,0 +1,14 @@
+[hidden] {
+	display: none;
+}
+
+$display-none-list: [
+	'#g-hide',
+	'template',
+];
+
+$display-none: assign-inputs($display-none-list);
+
+#{$display-none} {
+	@extend [hidden];
+}

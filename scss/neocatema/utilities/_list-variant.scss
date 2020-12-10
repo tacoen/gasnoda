@@ -1,0 +1,35 @@
+$ul-list-types: [
+	circle,
+	disc,
+	square
+];
+
+$ol-list-types: [
+	decimal,
+	decimal-leading-zero,
+	lower-alpha,
+	upper-alpha,
+	lower-roman,
+	upper-roman,
+];
+
+/* list-type variants, shorcode-ui flavored */
+
+@each $type in $ul-list-types {
+	.#{$type} > ul,
+	ul[#{$type}] { list-style-type: $type; }
+}
+
+@each $type in $ol-list-types {
+	.#{$type} > ol,
+	ol[#{$type}] { list-style-type: $type; }
+}
+
+.decimal-leading-zero > ol,
+ol[decimal-leading-zero] { padding-left: 1.8rem; }
+
+
+.none > ol,
+.none > ul,
+ul[none],
+ol[none] { list-style-type: none; }

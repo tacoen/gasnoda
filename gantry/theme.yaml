@@ -39,10 +39,10 @@ configuration:
 
   fonts:
     clearsans:
-      300: 'gantry-theme://fonts/clearsans_light_macroman/clearsans-light-webfont'
-      400: 'gantry-theme://fonts/clearsans_regular_macroman/clearsans-regular-webfont'
-      500: 'gantry-theme://fonts/clearsans_medium_macroman/clearsans-medium-webfont'
-      700: 'gantry-theme://fonts/clearsans_bold_macroman/clearsans-bold-webfont'
+      300: 'gantry-theme://fonts/clearsans-light-webfont'
+      400: 'gantry-theme://fonts/clearsans-regular-webfont'
+      500: 'gantry-theme://fonts/clearsans-medium-webfont'
+      700: 'gantry-theme://fonts/clearsans-bold-webfont'
 
   css:
     compiler: \Gantry\Component\Stylesheet\ScssCompiler

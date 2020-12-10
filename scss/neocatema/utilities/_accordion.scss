@@ -1,0 +1,31 @@
+
+.accordion {
+	
+	> label {
+		display:block;
+		position: relative;
+		width: 100%;
+		padding: .5rem;
+		font-weight:600;
+	}
+	
+	> label:after {
+		font-weight:normal;
+		position: absolute;
+		right: 0;
+		top: 0;
+		padding: .5rem;
+		font-family: 'neoca-feather' !important;
+		content: "\43";
+	}
+
+	> div.toggle-content { 
+		background: var(--background); 
+		padding: .5rem;
+	}
+
+	[toggle] {
+		&:checked ~ label:after { content: "\44";}
+	}	
+
+}

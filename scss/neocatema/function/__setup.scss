@@ -1,0 +1,69 @@
+// setup
+// since libass 2.x doesn't deep-merge
+
+$base: ();
+$light: ();
+$dark: ();
+$custome: ();
+
+$base-vars:();
+$light-vars:();
+$dark-vars:();
+
+// var function
+
+@function varkan($section,$var,$val) {
+	@return map-merge($section,(#{$var}:$val));
+}
+
+// how we add variables:
+
+
+$base: varkan($base, margin, $base-margin);
+$base: varkan($base, padding, $base-padding);
+$base: varkan($base, font-size, $base-font-size);
+$base: varkan($base, bradius, $base-bradius);
+$base: varkan($base, hrsep, $base-hrsep);
+
+$base: varkan($base, line-height, $base-line-height);
+$base: varkan($base, font-base, $base-font-base);
+$base: varkan($base, font-alter, $base-font-alter);
+$base: varkan($base, font-head, $base-font-head);
+$base: varkan($base, font-mono, $base-font-mono);
+$base: varkan($base, background, $base-background);
+$base: varkan($base, text, $base-text-color);
+
+$light: varkan($light, background, $light-background-color);
+$light: varkan($light, text, $light-text-color);
+$light: varkan($light, surface, $light-surface-color);
+$light: varkan($light, button, $light-button-color);
+$light: varkan($light, accent, $light-accent-color);
+$light: varkan($light, warning, $light-warning-color);
+$light: varkan($light, error, $light-error-color);
+$light: varkan($light, info, $light-info-color);
+$light: varkan($light, success, $light-success-color);
+
+$light: varkan($light, border, $light-border-color);
+$light: varkan($light, shade, $light-shade-color);
+$light: varkan($light, hilite, $light-hilite-color);
+$light: varkan($light, shadow, $light-shadow-color);
+
+$dark: varkan($dark, background, $dark-background-color);
+$dark: varkan($dark, text, $dark-text-color);
+$dark: varkan($dark, surface, $dark-surface-color);
+$dark: varkan($dark, button, $dark-button-color);
+$dark: varkan($dark, accent, $dark-accent-color);
+$dark: varkan($dark, warning, $dark-warning-color);
+$dark: varkan($dark, error, $dark-error-color);
+$dark: varkan($dark, info, $dark-info-color);
+$dark: varkan($dark, success, $dark-success-color);
+
+$dark: varkan($dark, border, $dark-border-color);
+$dark: varkan($dark, shade, $dark-shade-color);
+$dark: varkan($dark, hilite, $dark-hilite-color);
+$dark: varkan($dark, shadow, $dark-shadow-color);
+
+@if $colors-color-1 { $custome: varkan($custome, color1, $colors-color-1); }
+@if $colors-color-2 { $custome: varkan($custome, color2, $colors-color-2); }
+@if $colors-color-3 { $custome: varkan($custome, color3, $colors-color-3); }
+@if $colors-color-4 { $custome: varkan($custome, color4, $colors-color-4); }
