@@ -74,6 +74,7 @@
 {# Gasnoda //------- #}
 
 	{%- do gantry.document.addScript(url('gantry-assets://js/module.js'), 11) -%}
+	{%- do gantry.document.addScript(url('gantry-assets://js/ncc-module.js'), 11) -%}	
 	{%- do gantry.document.addScript(url('gantry-assets://js/main.js'), 10, 'footer') -%}
 
 	{% if gantry.config.get('styles.option.animate_css') -%}

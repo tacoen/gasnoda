@@ -1,5 +1,379 @@
-/* Compile Time: 12/12/20 00:41:05 */
-/* w3color.js ver.1.18 by w3schools.com (Do not remove this line)*/
+/* Compile Time: 12/12/20 00:41:06 */
+
+
+/* neoca/_gas.js */
+
+/*
+ * gas.js -- for Gakeun.js on Gasnoda Grav theme
+ *
+ */
+
+(function () {
+
+function gas(query) {
+
+	/*
+	 * gas is Gasnoda Script
+	 *
+	 */
+
+	if (typeof(query) == 'object') {
+		this.ele = query
+	} else {
+		this.ele = document.querySelector(query);
+	}
+
+	if (this.ele === null) { return false; }
+
+	if (!(this instanceof gas)) { return new gas(query); }
+
+}
+
+gas.prototype = {
+
+	cl: function() {
+		return console.log(this.ele);
+	},
+
+	load: function(source,functions=false) {
+		var request = new XMLHttpRequest();
+		request.open('GET', source, true);
+		var ele = this.ele;
+
+		const send = XMLHttpRequest.prototype.send
+		XMLHttpRequest.prototype.send = function(e) {
+			this.addEventListener('load', function(event) {
+				if (functions) { functions(); }
+			})
+			return send.apply(this, arguments)
+		}
+
+		request.onload = function(e) {
+			if (request.status >= 200 && request.status < 400) {
+				var resp = request.responseText;
+				ele.innerHTML = resp;
+			} else {
+				console.log(source+' not loading.');
+			}
+		};
+
+
+		request.send()
+
+	},
+	id: function(what) {
+		return this.ele.id;
+	},
+	data: function(what,value=false) {
+
+		if (value) { this.ele.setAttribute('data-'+what,value); }
+		else if (value==null){ this.ele.removeAttribute('data-'+what); }
+		return this.ele.getAttribute('data-'+what);
+	},
+
+	attr: function(what,value=false) {
+		if (value) { this.ele.setAttribute(what,value); }
+		else if (value==null){ this.ele.removeAttribute(what); }
+		return this.ele.getAttribute(what);
+	},
+
+	offset: function() {
+			return [ this.ele.offsetTop, this.ele.offsetLeft, this.ele.offsetWidth, this.ele.offsetHeight];
+	},
+
+	class: function() {
+		return this.ele.classList.value;
+	},
+
+	hasClass: function(nclass) {
+		if (this.ele.classList.contains(nclass)) {
+			return true;
+		} else {
+			return false;
+		}
+	},
+	addClass: function(nclass) {
+		if (!this.ele.classList.contains(nclass)) {
+			this.ele.classList.add(nclass);
+		}
+	},
+	removeClass: function(nclass) {
+		if (this.ele.classList.contains(nclass)) {
+			this.ele.classList.remove(nclass);
+		}
+	},
+	toggleClass: function(nclass) {
+		if (this.ele.classList.contains(nclass)) {
+			this.ele.classList.remove(nclass);
+		} else {
+			this.ele.classList.add(nclass);
+		}
+	},
+	content: function(newcontent=false) {
+		if (newcontent) { this.ele.innerHTML = newcontent; }
+		else { return this.ele.innerHTML; }
+	},
+
+	styleParse: function() {
+		var styles = this.ele.style;
+		var res = '';
+		for (var p in styles) {
+			if ((styles[styles[p]]) && styles[styles[p]]!=='initial') {
+					res += styles[p]+": "+ styles[styles[p]].toString()+'; ';
+			}
+		}
+		return res.trim();
+	},
+
+
+	cssConstruct: function(styles) {
+		const newSheet = new CSSStyleSheet();
+		newSheet.replaceSync(styles);
+		document.adoptedStyleSheets = document.adoptedStyleSheets.concat(newSheet);
+	},
+	cssvar: function(what,value=false,important=false) {
+		var c = getComputedStyle(this.ele)
+		if (value) {
+			if (important) {
+				this.ele.style.setProperty('--'+what,value,'important');
+			} else {
+				this.ele.style.setProperty('--'+what,value);
+			}
+	} else {
+			return c.getPropertyValue('--'+what).trim()
+		}
+	},
+
+	cssvarRemove: function(what) {
+		this.ele.style.removeProperty('--'+what);
+	},
+
+	style: function(what=false,value=false) {
+		var styles = this.ele.style;
+		var res = '';
+		if (!what) {
+
+			res = this.attr('style');
+			return res;
+		} else {
+			what = what.replace(/-/gi,function(r) {
+				return r.charAt(0).toUpperCase() + r.slice(1)
+			});
+			if (value) { this.ele.style[what]=value; }
+		}
+	},
+	hide: function() {
+		this.style('display','none');
+	},
+	show: function(mode='block') {
+		this.style('display',mode);
+	},
+	value: function(val=false) {
+		if (val) {
+			this.ele.value = val;
+		} else {
+			return this.ele.val;
+		}
+	},
+	height: function(value=false) {
+		return this.ele.offsetHeight
+	},
+	width:function(value=false) {
+		return this.ele.offsetWidth;
+	},
+	append:function(value=false) {
+		if (value) { this.ele.insertAdjacentHTML("afterend",value.toString) }
+	},
+	prepend:function(value=false) {
+		if (value) { this.ele.insertAdjacentHTML("afterbegin",value) }
+	}
+
+}
+
+window.gas = gas;
+
+})();
+
+/* neoca/html5_interface.js */
+
+function ncc_html5_interface() {
+
+	document.querySelectorAll('.notices').forEach( function(el) {
+	
+		el.addEventListener("click", function(e) {
+			el.remove()
+		})
+		
+	});
+	
+	document.querySelectorAll('.alert').forEach( function(el) {
+	
+		el.addEventListener("click", function(e) {
+			el.remove()
+		})
+		
+	});	
+
+}	
+
+/* neoca/swipeable.js */
+
+function swipedetect(el, callback){
+  
+    var touchsurface = el,
+    swipedir,
+    startX,
+    startY,
+    distX,
+    distY,
+    threshold = el.clientWidth/4, //required min distance traveled to be considered swipe
+    restraint = el.clientWidth/2, // maximum distance allowed at the same time in perpendicular direction
+    allowedTime = 720, // maximum time allowed to travel that distance
+    elapsedTime,
+    startTime,
+    handleswipe = callback || function(swipedir){}
+  
+    touchsurface.addEventListener('touchstart', function(e){
+
+        var touchobj = e.changedTouches[0]
+        swipedir = 'none'
+        dist = 0
+        startX = touchobj.clientX
+        startY = touchobj.clientY
+        startTime = new Date().getTime() // record time when finger first makes contact with surface
+        e.preventDefault()
+    }, false)
+  
+    touchsurface.addEventListener('touchmove', function(e){
+        e.preventDefault() // prevent scrolling when inside DIV
+
+		gas(this).addClass('touched');
+
+        var touchobj = e.changedTouches[0]
+        distX = touchobj.clientX - startX
+        distY = touchobj.clientY - startY
+		
+		if (gas(this).hasClass('left')) {
+		
+			if (distX <= 0)  { 
+				this.style.left = distX+"px";
+			} else {
+				this.style.left = "0px"; 
+			} 
+			
+		}
+
+		if (gas(this).hasClass('right')) {
+			
+			if (distX > 0)  { 
+				this.style.right = "-"+distX+"px";
+			} else {
+				this.style.right = "0px"; 
+			} 
+			
+		}
+		
+    }, false)
+  
+    touchsurface.addEventListener('touchend', function(e){
+		
+		gas(this).removeClass('touched')
+	
+        var touchobj = e.changedTouches[0]
+        distX = touchobj.clientX - startX // get horizontal dist traveled by finger while in contact with surface
+        distY = touchobj.clientY - startY // get vertical dist traveled by finger while in contact with surface
+		
+		//console.log(distX,distY,elapsedTime)
+		
+        elapsedTime = new Date().getTime() - startTime // get time elapsed
+        if (elapsedTime <= allowedTime){ // first condition for awipe met
+            if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
+                swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
+
+				var block = this.closest('.g-block');
+
+				if ( (gas(this).hasClass('left')) && (swipedir=='left')) {
+					gas(block).removeClass('show'); 
+					this.style.left = "";				
+				}
+
+				if ( (gas(this).hasClass('right')) && (swipedir=='right')) {
+					gas(block).removeClass('show'); 
+					this.style.right = "";				
+				}
+				
+				
+            }
+            else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
+                swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
+            }
+        }
+
+        handleswipe(swipedir)
+
+        e.preventDefault()
+    }, false)
+}
+
+	
+/*
+function handleTouch(e) {
+	var total = this.clientWidth;
+	var x =  e.changedTouches[0].clientX;
+	gas(this).addClass('touched');
+
+	if ( (x < total/2) && (gas(this).hasClass('left'))) {
+		this.style.left = (x-total)+"px";
+	}
+}
+
+function handleTouchStart(e) {
+	var x =  e.changedTouches[0].pageX;
+	var total = this.clientWidth;
+	console.log(e.touches);
+
+}
+
+function handleTouchEnd(e) {
+	gas(this).removeClass('touched')
+	var vx = [ this.clientWidth * .5,this.clientWidth *.5 ] ;
+	if (gas(this).hasClass('right')) {
+		//var x = parseInt(this.style.left)
+		
+		var x =  e.changedTouches[0].clientX;
+		
+		if (x >= this.clientWidth/2) { 
+			var block = this.closest('.g-block');
+			gas(block).removeClass('show'); 
+			this.style.left = "";
+		} else {
+			this.style.left = '0px';
+		}
+	} else {
+		
+		var x =  e.changedTouches[0].clientX;
+		
+		if (x <= this.clientWidth/2) { 
+			var block = this.closest('.g-block');
+			gas(block).removeClass('show'); 
+			this.style.left = "";
+		} else {
+			this.style.left = '0px';
+		}
+	}
+
+}
+*/
+
+function ncc_init_swipeable() {
+	
+	document.querySelectorAll('.res-content.swipe').forEach(function(t) {
+		swipedetect(t, function(swipedir) {
+			//console.log(swipedir)
+		})
+	});
+	
+}/* w3color.js ver.1.18 by w3schools.com (Do not remove this line)*/
 (function () {
 function w3color(color, elmnt) {
   if (!(this instanceof w3color)) { return new w3color(color, elmnt); }
@@ -645,723 +1019,3 @@ function w3SetColorsByAttribute() {
     }
   }
 }
-
-/* gasnoda/_gas.js */
-
-/*
- * gas.js -- for Gakeun.js on Gasnoda Grav theme
- *
- */
- 
-(function () {
-
-function gas(query) {
-	
-	/* 
-	 * gas is Gasnoda Script 
-	 *
-	 */
-
-	if (typeof(query) == 'object') {
-		this.ele = query
-	} else {
-		this.ele = document.querySelector(query);
-	}
-
-	if (this.ele === null) { return false; }
-
-	if (!(this instanceof gas)) { return new gas(query); }
-
-}
-
-gas.prototype = {
-	
-	cl: function() {
-		return console.log(this.ele);
-	},
-	
-	load: function(source,functions=false) {
-		var request = new XMLHttpRequest();
-		request.open('GET', source, true);
-		var ele = this.ele;
-
-		const send = XMLHttpRequest.prototype.send
-		XMLHttpRequest.prototype.send = function(e) { 
-			this.addEventListener('load', function(event) {
-				if (functions) { functions(); }
-			})
-			return send.apply(this, arguments)
-		}		
-
-		request.onload = function(e) {
-			if (request.status >= 200 && request.status < 400) {
-				var resp = request.responseText;
-				ele.innerHTML = resp;
-			} else {
-				console.log(source+' not loading.'); 
-			}
-		};
-		
-
-		request.send()
-
-		//console.log(request);
-		
-		
-			
-	},
-	id: function(what) {
-		return this.ele.id;
-	},
-	data: function(what,value=false) {
-
-		if (value) { this.ele.setAttribute('data-'+what,value); }
-		else if (value==null){ this.ele.removeAttribute('data-'+what); }
-		return this.ele.getAttribute('data-'+what);
-	},
-	
-	attr: function(what,value=false) {
-		if (value) { this.ele.setAttribute(what,value); }
-		else if (value==null){ this.ele.removeAttribute(what); }
-		return this.ele.getAttribute(what);
-	},
-	
-	offset: function() {
-			return [ this.ele.offsetTop, this.ele.offsetLeft, this.ele.offsetWidth, this.ele.offsetHeight];
-	},
-	
-	class: function() {
-		return this.ele.classList.value;
-	},
-	
-	hasClass: function(nclass) {
-		if (this.ele.classList.contains(nclass)) {
-			return true;
-		} else {
-			return false;
-		}
-	},
-	addClass: function(nclass) {
-		if (!this.ele.classList.contains(nclass)) {
-			this.ele.classList.add(nclass);
-		}
-	},
-	removeClass: function(nclass) {
-		if (this.ele.classList.contains(nclass)) {
-			this.ele.classList.remove(nclass);
-		}
-	},
-	toggleClass: function(nclass) {
-		if (this.ele.classList.contains(nclass)) {
-			this.ele.classList.remove(nclass);
-		} else {
-			this.ele.classList.add(nclass);
-		}
-	},
-	content: function(newcontent=false) {
-		if (newcontent) { this.ele.innerHTML = newcontent; }
-		else { return this.ele.innerHTML; }
-	},
-	
-	styleParse: function() {
-		var styles = this.ele.style;
-		var res = '';
-		for (var p in styles) {
-			if ((styles[styles[p]]) && styles[styles[p]]!=='initial') {
-					res += styles[p]+": "+ styles[styles[p]].toString()+'; '; 
-			}
-		}
-		return res.trim();
-	},
-	
-	
-	cssConstruct: function(styles) {
-		const newSheet = new CSSStyleSheet();
-		newSheet.replaceSync(styles);
-		document.adoptedStyleSheets = document.adoptedStyleSheets.concat(newSheet);		
-	},
-	cssvar: function(what,value=false,important=false) {
-		var c = getComputedStyle(this.ele)
-		if (value) { 
-			if (important) {
-				this.ele.style.setProperty('--'+what,value,'important');
-			} else {
-				this.ele.style.setProperty('--'+what,value);
-			}
-	} else {
-			return c.getPropertyValue('--'+what).trim()
-		}
-	},
-
-	cssvarRemove: function(what) {
-		this.ele.style.removeProperty('--'+what);
-	},
-
-	style: function(what=false,value=false) {
-		var styles = this.ele.style;
-		var res = '';
-		if (!what) {
-
-			res = this.attr('style');
-			return res;
-		} else {
-			what = what.replace(/-/gi,function(r) { 
-				return r.charAt(0).toUpperCase() + r.slice(1)
-			});
-			if (value) { this.ele.style[what]=value; }
-		}
-	},
-	hide: function() {
-		this.style('display','none');	
-	},
-	show: function(mode='block') {
-		this.style('display',mode);
-	},
-	value: function(val=false) {
-		if (val) {
-			this.ele.value = val;
-		} else {
-			return this.ele.val;
-		}
-	},
-	height: function(value=false) {
-		return this.ele.offsetHeight
-	},
-	width:function(value=false) {
-		return this.ele.offsetWidth;
-	},
-	append:function(value=false) {
-		if (value) { this.ele.insertAdjacentHTML("afterend",value.toString) }
-	},
-	prepend:function(value=false) {
-		if (value) { this.ele.insertAdjacentHTML("afterbegin",value) }
-	}
-
-}
-
-window.gas = gas;
-
-})();
-
-/* gasnoda/_util.js */
-
-function percent(n) { return Math.round(n*100)+"%" }
-function cssvar_input(what,value) { return "--"+what+":"+value+";" }
-function cssvar_hsl(what,h,s,l) { return "--"+what+":hsl("+h+","+percent(s)+","+percent(l)+");" }
-function trim(x) { return x.replace(/^\s+|\s+$/g, ''); }
-function safe_str(x) { return x.replace(/^\s+|\s+$|\W/g, '').toLowerCase(); }
-function quote(text) { return '"'+text.replace(/\"/ig,"'")+'"'; }
-
-/* gasnoda/ajax-form.js */
-
-function gn_ajaxform(qform,qresult) {
-    const form = document.querySelector(qform);
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const result = document.querySelector(qresult);
-        const action = form.getAttribute('action');
-        const method = form.getAttribute('method');
-
-        fetch(action, {
-            method: method,
-            body: new FormData(form)
-        })
-        .then(function(response) {
-            if (response.ok) {
-                return response.text();
-            } else {
-                return response.json();
-            }
-        })
-        .then(function(output) {
-            if (result) {
-                result.innerHTML = output;
-            }
-        })
-        .catch(function(error) {
-            if (result) {
-                result.innerHTML = 'Error: ' + error;
-            }
-
-            throw new Error(error);
-        });
-    });
-	
-}
-
-
-/* gasnoda/consctruct_style.js */
-
-function cssvar_extend(what, h, s, l, hover_step=false) {
-
-	cstyle = cssvar_hsl(what, h, s, l);
-	
-	if (l < 0.49) {
-		cstyle += cssvar_hsl(what+"-txt",h,s,0.95);
-	} else {
-		cstyle += cssvar_hsl(what+"-txt",h,s,0.05);
-	}
-
-	if ((hover_step) && (hover_step != 0)) {
-		cstyle += cssvar_hsl(what+"-ho", h-8, s+0.1, l - hover_step);
-	}
-	
-	return cstyle;
-}
-function ncc_construct_pallete(q) {
-	if (!gas(q)) { return false; }
-	var color = gas(q).cssvar('color')
-	var c = w3color( color );
-	var h = c.hue
-	var s = c.sat
-	var l = c.lightness	
-	cstyle = q +" {";
-	cstyle += cssvar_input("h",h+"");	
-	cstyle += cssvar_input("s",percent(s));	
-	cstyle += cssvar_input("l",percent(l));
-	cstyle += cssvar_hsl("b",h,s,0.05);
-	cstyle += cssvar_hsl("w",h,s,0.95);
-	
-	var uf = (0.95-l)/5;	
-	var df = (l-0.05)/5;	
-	cstyle += cssvar_input("df",percent(df));
-	cstyle += cssvar_input("uf",percent(uf));
-
-	if (l <= 0.5) {
-		cstyle += cssvar_input("t","var(--w)");
-	} else {
-		cstyle += cssvar_input("t","var(--b)");
-	}
-	
-	gas(q).cssConstruct(cstyle)
-	
-}
-	
-function construct_SectionPallete2(q) {
-
-	if (!gas(q)) { return false; }
-	
-	var color = gas(q).cssvar('color')
-	
-	if (!color) { 
-		console.log(q+': --color?');
-		return false; 
-	}
-
-	var c = w3color( color );
-	var h = c.hue
-	var s = c.sat
-	var l = c.lightness	
-	
-	var step = 0.16;
-	var hover_step = 0.10
-
-	cstyle = q +" {";
-	cstyle += cssvar_input("h",h+"");	
-	cstyle += cssvar_input("s",percent(s));	
-	cstyle += cssvar_input("l",percent(l));
-	
-	cstyle += cssvar_hsl("bg",h,s,l);
-
-	cstyle += cssvar_hsl("b0",h,s,0.03);
-	cstyle += cssvar_hsl("w0",h,s,0.97);
-
-	cstyle += cssvar_input("h-co", h+180);
-	cstyle += cssvar_input("h-a1", h-32);
-	cstyle += cssvar_input("h-a2", h+32);
-	cstyle += cssvar_input("h-t1", h+120);
-	cstyle += cssvar_input("h-t2", h+240);
-
-	cstyle += cssvar_input("b0-txt","var(--w0)");
-	cstyle += cssvar_input("w0-txt","var(--b0)");
-
-	var step = (0.94-l)/4;
-	var center = (0.94-l)/2;
-	var hover_step = step/2
-	cstyle += cssvar_extend("lc",h,s,l+center);
-
-	if (l+center <= 0.5) {
-		cstyle += cssvar_input("lc-txt","var(--w0)");
-	} else {
-		cstyle += cssvar_input("lc-txt","var(--b0)");
-	}
-
-
-	var step = (l-0.06)/4;
-	var hover_step = step/2
-	var center = (l-0.06)/2;
-	cstyle += cssvar_extend("dc",h,s,l-center);
-	if (l-center <= 0.5) {
-		cstyle += cssvar_input("dc-txt","var(--w0)");
-	} else {
-		cstyle += cssvar_input("dc-txt","var(--b0)");
-	}
-
-	cstyle += "}";
-	
-	gas(q).cssConstruct(cstyle)
-
-	return true;
-}	
-
-
-/* gasnoda/gn.js */
-
-function gn_toggle(ele,classes) {
-	gas(ele).toggleClass(classes);
-}
-
-function gn_scheme_switch(ele=false) {
-	if (gas('body').hasClass('dark-scheme')) {
-		gas('body').removeClass('dark-scheme');
-		gas('body').addClass('light-scheme');
-	} else {
-		gas('body').removeClass('light-scheme');
-		gas('body').addClass('dark-scheme');
-	}
-}	
-
-
-/* 30/11/2020 */
-
-function gn_scheme() {
-
-	if (disable_scheme) {
-		gas('body').addClass('light-scheme');
-		localStorage.setItem('ncc-scheme','light')
-		return 'light';
-	}
-	
-	var prefer_scheme = localStorage.getItem('ncc-scheme');
-	
-	if (prefer_scheme == 'light') {
-		var scheme = 'light';
-    	gas('body').addClass('light-scheme');
-	} else if (prefer_scheme == 'dark') {
-		var scheme = 'dark';
-    	gas('body').addClass('dark-scheme');
-	} else {
-		
-		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-			var scheme = 'dark';
-			gas('body').addClass('dark-scheme');
-		} else {
-			var scheme = 'light';
-			gas('body').addClass('light-scheme');
-		}
-
-	}
-	
-	return scheme;
-}
-
-function gn_topshadow(query, remove_element=false) {
-	var ele = gas(query);
-
-	if (ele) {
-		
-		var shadow = gas('.g-top-shadow');
-		
-		if (shadow) {
-			
-			if (remove_element) {
-				shadow.hide();
-				gas('html').removeClass('has-top-shadow');
-			} else {
-				shadow.show('block');
-				gas('html').addClass('has-top-shadow');
-			}
-			
-		} else {
-
-			var page = document.querySelector("#g-page-surround");
-			var shadow_div = document.createElement("div");
-			page.prepend(shadow_div);
-			if (! shadow_div.classList.contains('g-top-shadow')) {
-				shadow_div.classList.add('g-top-shadow');
-				shadow_div.style.height = ele.height()+'px';
-			}
-			
-		}
-	}
-}
-
-function gn_fixtop(query,shadow=false) {
-	
-	var f = document.querySelector(query);
-	
-	if (f){
-		
-		/* init */
-		// f.style.width = f.offsetWidth+'px';
-		
-		var top = f.offsetTop;
-		var ori_w = f.offsetWidth;
-
-		var style={
-			position: f.style.position,
-			top: f.style.top,
-			width: f.style.width
-		};
-		
-		if (shadow) { gn_topshadow(query) }
-		
-		/* scroll event */
-		window.addEventListener('scroll', (event) => {	
-			var scroll = this.scrollY;
-			if (scroll > top) {
-				f.style.position = 'fixed';
-				f.style.top = '0px';
-				
-				var p = f.parentNode.closest('section');
-
-				f.style.width=ori_w+'px';
-				f.classList.add('pinned')
-				
-				if (shadow) { gn_topshadow(query) }
-				
-			} else {
-				
-				//console.log('unpin',f);
-				f.classList.remove('pinned');
-				f.style.position = style.position;
-				f.style.top = style.top;
-				f.style.width = style.width;
-
-				if (f.classList.contains('dock-top')) {
-					gn_topshadow(query,true);
-				}
-			}
-		});
-
-		return true;
-
-		
-	} else {
-		
-		return false;
-
-	}
-}	
-
-function gn_breakpoint_tagging() {
-
-	var html = document.querySelector('html');
-	
-	if (window.innerWidth < gn_media_breakpoint.tablet) { media='gn-mobile'; }
-	if (window.innerWidth <= 520) { media='gn-small'; }
-	if (window.innerWidth <= gn_media_breakpoint.mobile) { media='gn-small'; }
-	if (window.innerWidth >= gn_media_breakpoint.tablet) { media='gn-tablet'; }
-	if (window.innerWidth >= gn_media_breakpoint.desktop) { media='gn-desktop'; }
-	if (window.innerWidth >= gn_media_breakpoint.wide) { media=false; }
-	
-	html.classList.remove('gn-small');
-	html.classList.remove('gn-desktop');
-	html.classList.remove('gn-tablet');
-	html.classList.remove('gn-mobile');
-	
-	if (media) { html.classList.add(media); }
-}
-
-function gn_searchbox_toggle(th,sid) {
-	
-	event.preventDefault()
-	var gas = document.querySelector(sid);
-	//gas(th).data('html',th.innerHTML)
-	
-	if (! gas.classList.contains('active')) {
-		gas.classList.add('active')
-		//th.innerHTML = '<i class="fa fa-chevron-right"></i>'
-	} else {
-		gas.classList.remove('active')
-		//th.innerHTML = gas(th).data('html')
-	}
-}
-
-/* gasnoda/noda.js */
-
-
-
-/* ------------------------------------------- */
-
-function noda_responsive_function() {
-	
-	/* only works on touch media */
-
-	document.querySelectorAll('.res-ctl').forEach( function(el) {
-    
-		var block = el.closest('.g-block')
-		var section = gas(el).data('section');
-		gas(block).addClass('responsive');
-		gas(block).cssvar('origin-width',block.offsetWidth+'px');
-		gas(block).data('ctl',section);
-		
-		el.addEventListener("click", function(e) {
-			var block = el.closest('.g-block')
-			gas(block).addClass('responsive');
-			gas(block).cssvar('origin-width',block.offsetWidth+'px');
-			gas(block).toggleClass('show');
-			gas(section).toggleClass('show');
-		});		
-	
-	});
-
-
-	document.querySelectorAll('.block-ctl').forEach( function(el) {
-		var b = el.closest('.g-block');
-		var g = el.closest('.g-grid');
-		var element =  document.createElement("DIV"); 
-		element.innerHTML = el.innerHTML;
-		element.setAttribute('class','g-block right middle grow block-ctl');
-
-		b.classList.add('block-res')
-    
-		//console.log(g.parentNode,g.parentNode.style.height);
-
-		b.style.top=g.offsetHeight+'px';
-
-		el.remove();
-
-		element.addEventListener("click", function(e) {
-			if (gas(b).hasClass('show') ) {
-				gas(b).removeClass('show')
-			} else {
-				gas(b).addClass('show')
-			}
-
-		});
-
-		g.insertBefore(element,b);
-
-	})
-
-
-
-	document.querySelectorAll('.notices').forEach(function(t) {
-		t.addEventListener('click', function(e) {
-			t.remove();
-		})
-	});
-}
-	
-function noda_attr_utilities() {
-
-	document.querySelectorAll("[data-height]").forEach(function(t) {
-		t.style.height = t.getAttribute('data-height');
-	});
-
-	document.querySelectorAll(".g-block.responsive").forEach(function(t) {
-		gas(t).cssvar('origin-width',t.offsetWidth+'px');
-	});
-/*	
-	document.querySelectorAll("[data-toggle]").forEach(function(t) {
-		t.addEventListener("click", function(e) {
-			
-			var target = document.querySelector(t.getAttribute('data-toggle'));
-			
-			//console.log(target.classList)
-			
-			if ( target.classList.contains('toggle-off') ) {
-				target.classList.remove('toggle-off');
-			} else {
-				target.classList.add('toggle-off');
-			}
-		});
-	});
-*/	
-	if (document.querySelector('#neoca_scheme_switch')) {
-	document.querySelector('#neoca_scheme_switch').addEventListener("click", function(e) {
-		if (gas('body').hasClass('dark-scheme')) {
-			localStorage.setItem('ncc-scheme','dark');
-		} else {
-			localStorage.setItem('ncc-scheme','light');
-		}
-	})
-	}
-	
-}
-
-function noda_sectioncolor() {
-
-	var sections = document.querySelectorAll("[class*='section-']")
-	var this_done = [];
-	
-	sections.forEach(function(s) {
-
-		sc = s.classList.value;
-		
-		/* clean class from extend classes */
-		var re = /(.+)(section-(\w+\s?))(.+)?/gm;
-		var shadow = sc.replace(re, '$2').trim();
-		var shadow = shadow.split(' ');
-		var shadow = shadow[0];
-		var shadow = shadow.trim();
-		
-		if (! this_done.includes(shadow)) {
-
-			this_done.push(shadow);
-
-			if (
-				(shadow != 'section-main') &&
-				(shadow != 'section-offcanvas') &&
-				(shadow != 'section-floats')
-				){
-				/* 
-				 * section-main use :root 
-				 * section-floats: basicaly is hidden sections
-				 */
-				construct_SectionPallete2("."+shadow);
-				gas(s).addClass('hsl-pal');
-			}
-		}
-		
-	})
-}
-
-/* gasnoda/page_lightbox.js */
-
-function page_lightbox(img,title='',text='') {
-
-	var modal = document.getElementById('page-gallery-modal');
-	
-	if (!img) {
-		modal.children[0].innerHTML = ''
-		modal.classList.remove('show'); 
-	} else {
-	
-		if (! modal.classList.contains('show')) { 
-			var content = "<figure><img src='"+img+"'>";
-			if (title) {
-				content += "<div class='caption'><h5>"+title+"</h5>"+"<p>"+title+"</p></div>"
-			}
-			content += "</figure>"
-			modal.children[0].innerHTML=content
-			modal.classList.add('show'); 
-		} else {
-			modal.children[0].innerHTML = ''
-			modal.classList.remove('show'); 
-		}
-	}
-	
-}	
-
-/* gasnoda/res-ctl.js */
-
-
-
-/* gasnoda/toc.js */
-
-function prepare_for_tocbot(from) {
-
-	var doc = document.querySelector(from);
-	doc.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach( function(h) {
-		if (h) {
-			var hid = h.innerText.replace(/\W+/igm,'_').replace(/^_|_$/igm,'').toLowerCase();
-			if (h.id=='') { h.id=hid }
-		}
-	});
-	
-}	
-
-

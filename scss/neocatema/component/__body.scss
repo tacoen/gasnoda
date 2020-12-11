@@ -22,3 +22,20 @@ hr {
     overflow: hidden;
     border-top: var(--hrsep) solid var(--border);
 }
+
+@include breakpoint(mobile-only) {
+	
+	body,
+	#g-page-surround {
+		overflow-x: hidden;
+	}
+	
+	#g-navigation {
+		position: fixed;
+		top:0;
+		left:0;
+		width: 100%;
+		z-index: 888;
+	}
+	
+}

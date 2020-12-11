@@ -90,12 +90,10 @@ form:
             res_position:
                 type: select.selectize
                 label: Off-Canvas
-                default: top
+                default: left
                 options:
-                    top: Top
                     left: Left
                     right: Right
-                    bottom: Bottom
 
             res_icon:
                 type: input.icon

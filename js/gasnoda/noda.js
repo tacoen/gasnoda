@@ -1,30 +1,4 @@
-function handleTouch(e) {
-	var total = this.clientWidth;
-	var x = (total/2)  + e.changedTouches[0].clientX;
-	gas(this).addClass('touched')
-	this.style.left = (x-total)+"px";
-}
 
-function handleTouchEnd(e) {
-	gas(this).removeClass('touched')
-	var vx = [ this.clientWidth * .5,this.clientWidth *.5 ] ;
-	if (gas(this).hasClass('right')) {
-		var x = parseInt(this.style.left)
-		if (x >= vx[1]) { 
-			gas(this).addClass('res-hide');this.style.left = "";
-		} else {
-			this.style.left = '0px';
-		}
-	} else {
-		var x = e.changedTouches[0].clientX+this.clientWidth/2;
-		if (x <= vx[0]) { 
-			gas(this).addClass('res-hide'); this.style.left = "";
-		} else {
-			this.style.left = '0px';
-		}
-	}
-
-}
 
 /* ------------------------------------------- */
 
@@ -79,12 +53,7 @@ function noda_responsive_function() {
 
 	})
 
-	document.querySelectorAll('.res.swipe').forEach(function(t) {
-		//console.log(t);
-		t.addEventListener('touchstart', handleTouch, false)
-		t.addEventListener('touchmove', handleTouch, false)
-		t.addEventListener('touchend', handleTouchEnd, false)
-	});
+
 
 	document.querySelectorAll('.notices').forEach(function(t) {
 		t.addEventListener('click', function(e) {

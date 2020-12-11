@@ -1,3 +1,21 @@
+function ncc_main_afterLoad() {
+
+	ncc_html5_interface();
+	ncc_init_swipeable();
+
+	console.log('ncc-main: afterload')
+}
+
+function ncc_main_onResize() {
+	console.log('ncc-main: onresize')
+}
+
+
+document.addEventListener('DOMContentLoaded', ncc_main_afterLoad);
+window.addEventListener('resize', ncc_main_onResize);
+
+/* ------------------------------------------------------------------- */
+
 var scheme = 'light';
 
 window.addEventListener('resize', function() {
@@ -45,21 +63,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 	noda_responsive_function();
 
-	document.querySelectorAll('.notices').forEach( function(el) {
-	
-		el.addEventListener("click", function(e) {
-			el.remove()
-		})
-		
-	});
-	
-	document.querySelectorAll('.alert').forEach( function(el) {
-	
-		el.addEventListener("click", function(e) {
-			el.remove()
-		})
-		
-	});	
 	
 });
 

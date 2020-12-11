@@ -114,6 +114,16 @@
 .line-data .stat {
   float: right; }
 
+.touched {
+  opacity: .6 !important;
+  position: fixed !important;
+  width: 100vw; }
+  .touched .left {
+    border-right: 1rem solid var(--shadow); }
+
+.hint {
+  border: 3px solid red !important; }
+
 .h-entry a {
   color: var(--t) !important; }
 .h-entry .list-blog-padding {
@@ -1366,5 +1376,8 @@ main {
   padding: 2rem 0;
   content-visibility: auto;
   contain-intrinsic-size: 100vh; }
+
+.gn-small .gn-small-hide {
+  display: none; }
 
 /*# sourceMappingURL=custom.css.map */
