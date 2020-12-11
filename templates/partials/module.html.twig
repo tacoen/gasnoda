@@ -1,4 +1,7 @@
-{% extends ['/module-chrome/' ~ style ~ '.html.twig', '/module-chrome/gantry.html.twig'] %}
+{% extends [
+	'module-chrome/' ~ style ~ '.html.twig', 
+	'module-chrome/gantry.html.twig'
+	] %}
 
 {% set id = segment.id ?: segment.type ~ '-' ~ rand(1000, 9999) %}
 {% set chrome = segment.chrome %}

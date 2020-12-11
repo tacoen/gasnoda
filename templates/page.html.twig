@@ -19,17 +19,17 @@
 {%- set page_offcanvas %}
     {% block page_offcanvas %}
         {% if offcanvas %}
-            {% include 'layout/' ~ offcanvas.type ~ '.html.twig' with { 'segment': offcanvas } -%}
+            {% include 'layout/' ~ offcanvas.type ~ '.html.twig' with {
+				'segment': offcanvas 
+			} -%}
         {% endif %}
     {% endblock %}
 {% endset -%}
 
 {%- set page_offcanvas = page_offcanvas|trim ?: '' %}
-{%- set offcanvas_position = page_offcanvas ? offcanvas.attributes.position|default('g-offcanvas-left') : '' -%}
 
 {%- set page_layout %}
     {% block page_layout %}
-
     {% for segment in segments if segment.type != 'offcanvas' %}
         {% include 'layout/' ~ segment.type ~ '.html.twig' with { 
 			'segments': segment.children } %}
@@ -117,7 +117,6 @@ var gn_media_breakpoint = {'wide':{{ 16*gantry.config.get('styles.breakpoints.la
     {% block page_body -%}
     <body{{ gantry.page.bodyAttributes({'class': [
 		myclass,
-		offcanvas_position, 
 		'page-'~page.slug(), 
 		gantry.page.preset, 
 		'g-style-' ~ gantry.theme.preset]

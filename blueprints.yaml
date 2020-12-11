@@ -1,20 +1,19 @@
-name: Noda
+name: Gasnoda
 version: "2.0"
-description: "Gasnoda Noda Grav theme using Gantry 5."
+description: "Grav theme using Gantry5 Framework"
 icon: html5
 author:
   name: tacoen
   email: tacoen@gmail.com
   url: https://tacoen.github.io/
-homepage: https://tacoen.github.io/noda/
-readme: https://github.com/tacoen/noda/blob/master/README.md
+homepage: https://github.com/tacoen/gasnoda
+readme: https://github.com/tacoen/gasnoda/blob/master/README.md
 keywords: gantry5, css3, theme
-bugs: https://github.com/tacoen/noda/issues
+bugs: https://github.com/tacoen/gasnoda/issues
 license: MIT
 
 dependencies:
   - { name: grav, version: '>=1.5.10' }
-
 
 form:
   validation: loose
@@ -40,15 +39,15 @@ form:
         
     static_path:
         type: text
-        default: 'static'
         label: Static Path (static root)
+        default: 'static'
 
     rewrite:
         type: checkbox
-        default: false
         label: Rewrite everything
+        default: false
 
     static:
         type: checkbox
-        default: false
         label: Check this to generate static copies of each pages
+        default: false

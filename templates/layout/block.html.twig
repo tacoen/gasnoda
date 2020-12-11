@@ -10,7 +10,7 @@
 	{% if segment.children %}
         {% for segment in segments %}
             {% if segment.content %}
-                {{ segment.content|raw }}
+				{{ segment.content|raw }}
             {% else %}
                 {% include [
 						'/content/' ~ segment.type ~ '.html.twig', '/layout/' ~ segment.type ~ '.html.twig'

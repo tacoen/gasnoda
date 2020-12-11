@@ -13,7 +13,11 @@
 {% endset %}
 
 {%- if html|trim %}
+	{% if segment.type == 'offcanvas' %}
+		  {{- html|raw -}}
+	{% else %}
         <div {% if segment.attributes.id %}id="{{ segment.attributes.id|e }}" {% endif %}class="{{ class }}" {{- attr_extra|raw }}>
-          {{- html|raw -}}
+		  {{- html|raw -}}
         </div>
+	{% endif %}
 {% endif %}

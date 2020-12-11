@@ -1,3 +1,7 @@
-
-
 [vcenter] { @extend %vcenter; }
+
+
+.line-data {
+    div { line-height: 2.2 }
+    .stat { float:right; }
+}
