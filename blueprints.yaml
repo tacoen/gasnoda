@@ -28,26 +28,17 @@ form:
         type: textarea
         label: <b>Owner Information</b>
 
-    links:
-        type: array
-        size: long
-        label: Add Links to Admin Navigation
-
     _note2:
         type: section
         title: Generate Static Page
-        
+
     static_path:
+        toggleable: true
         type: text
         label: Static Path (static root)
-        default: 'static'
 
     rewrite:
         type: checkbox
         label: Rewrite everything
         default: false
 
-    static:
-        type: checkbox
-        label: Check this to generate static copies of each pages
-        default: false

@@ -27,49 +27,49 @@ class Noda extends Theme
             'onThemeInitialized' => ['onThemeInitialized', 0],
             'onAdminMenu' => ['onAdminMenu', 0],
 			'onGetPageTemplates' => ['onGetPageTemplates', 0],
-			'onGetPageBlueprints' => ['onGetPageBlueprints', 0],					
+			'onGetPageBlueprints' => ['onGetPageBlueprints', 0],
 			'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
-			'onShortcodeHandlers' => ['onShortcodeHandlers', 0],			
+			'onShortcodeHandlers' => ['onShortcodeHandlers', 0],
 			'onTwigSiteVariables' => ['onTwigSiteVariables', 0],
 			'onTwigExtensions' => ['onTwigExtensions', 0],
 			'onOutputGenerated' => ['onOutputGenerated', 0],
-			
-//             'onFormProcessed' => ['onFormProcessed', 0],			
+
+//             'onFormProcessed' => ['onFormProcessed', 0],
 		];
     }
 
     public function onAdminMenu()
     {
-	
+
 		$this->grav['assets']->add('user://themes/noda/admin/poko.css',1);
 		$this->grav['assets']->add('user://themes/noda/js/module.js');
 		$this->grav['assets']->add('user://themes/noda/admin/poko.js');
 
-		/* 
-		
-		use quicktray link will better! 
-		
+		/*
+
+		use quicktray link will better!
+
 		if (isset($this->grav['theme']->config()['links'])) {
-			
+
 			foreach ($this->grav['theme']->config()['links'] as $key => $val) {
-				
+
 				if (substr($val, 0, 4) == 'http') {
 					$link = $val;
 				} else {
 					$link = "../".$val;
 				}
-				
+
 				$this->grav['twig']->plugins_hooked_nav[$key] = [
-					'route' => $link, 
+					'route' => $link,
 					'icon' => 'fa-link'
 				];
-		
+
 			}
-		
+
 		}
-		
+
 		*/
-		
+
     }
 
     public function onThemeInitialized()
@@ -102,17 +102,17 @@ class Noda extends Theme
         // Set the theme path from Grav variable.
         $gantry['theme.path'] = $path;
         $gantry['theme.name'] = $name;
-		
+
         // Define the template.
         require $locator('theme://includes/theme.php');
 
         // Define Gantry services.
- 
+
 		$gantry['theme'] = function ($c) {
             return new \Gantry\Theme\Noda($c['theme.path'], $c['theme.name']);
         };
     }
-	
+
     public function onShortcodeHandlers()
     {
         $this->grav['shortcode']->registerAllShortcodes('user://themes/noda/php/shortcodes');
@@ -121,19 +121,19 @@ class Noda extends Theme
 
 	public function onTwigSiteVariables()
     {
-        $gantry = Gantry::instance();		
-        $locator = $this->grav['locator'];		
+        $gantry = Gantry::instance();
+        $locator = $this->grav['locator'];
 		$adminCookieSuffix = '-admin';
-		$this->adminCookie = session_name() . $adminCookieSuffix; 
+		$this->adminCookie = session_name() . $adminCookieSuffix;
 
 		/* Provide {{ config.gas }} */
 
         if (isset($_COOKIE[$this->adminCookie]) === true) {
 			$this->config->set('gas.admin',true);
         }
-		
+
 		$log_path = $locator('log://popularity');
-		
+
 		if (file_exists($log_path . '/daily.json')) {
 			$val = array_values((array)json_decode(file_get_contents($log_path . '/daily.json')))[0];
 			$this->config->set('gas.stat.daily',$val);
@@ -146,8 +146,8 @@ class Noda extends Theme
 		if (file_exists($log_path . '/totals.json')) {
 			$this->config->set('gas.stat.total',array_values((array)json_decode(file_get_contents($log_path . '/totals.json')))[0]);
 		}
-		
-    }	
+
+    }
 
     public function onTwigExtensions()
     {
@@ -155,13 +155,13 @@ class Noda extends Theme
         $this->grav['twig']->twig->addExtension(new GaskenTwigExtension());
         require_once(__DIR__.'/php/ColorMixerTwigExtension.php');
         $this->grav['twig']->twig->addExtension(new ColorMixerTwigExtension());
-    }		
+    }
 
 
-	/* 
-	 * So you can make templae outside the theme for a client needs 
+	/*
+	 * So you can make templae outside the theme for a client needs
 	 */
-	
+
     public function onTwigTemplatePaths()
     {
 		$locator = $this->grav['locator'];
@@ -169,7 +169,7 @@ class Noda extends Theme
 		if (! file_exists($tdir) ) { mkdir($tdir); }
 		$bdir = $locator('user://').'/blueprints';
 		if (! file_exists($tdir) ) { mkdir($bdir); }
-		
+
         $this->grav['twig']->twig_paths[] = $locator('user://templates');
     }
 
@@ -178,21 +178,21 @@ class Noda extends Theme
         $types = $event->types;
         $types->scanTemplates('user://templates');
     }
-	
+
     public function onGetPageBlueprints(Event $event)
     {
         $types = $event->types;
         $types->scanBlueprints('user://blueprints');
-    }	
-	
+    }
+
     public function onFormProcessed(Event $event)
     {
         $action = $event['action'];
         $params = $event['params'];
         $form = $event['form'];
-		$path = GRAV_ROOT . $params['path']; 
-		
-        switch ($action) {	
+		$path = GRAV_ROOT . $params['path'];
+
+        switch ($action) {
 			case 'txt-write':
 				$data = $form->value()->toArray();
 				$file = $path ."/". $data['file'];
@@ -200,7 +200,7 @@ class Noda extends Theme
 				break;
 		}
 	}
-	
+
 
     public function onOutputGenerated()
     {
@@ -214,31 +214,31 @@ class Noda extends Theme
 
         if (! $this->isAdmin()) {
 
-	
-			if ($this->config['theme']['static']) {
-				
+
+			if ($this->config['theme']['static_path']) {
+
 				$locator = $this->grav['locator'];
 				$tdir = $_SERVER['DOCUMENT_ROOT'].'/'. $this->config['theme']['static_path'];
-			
+
 				if (! file_exists($tdir)) { mkdir($tdir); }
 
 				$file = $tdir.$this->grav['uri']->path();
 				createPath($file);
 				$filepath = $file."/index.html";
 				$st_content = $this->grav->output."";
-			
+
 				$st_content = preg_replace('#href="\/#','href="/static/',$st_content);
 				$st_content = preg_replace('#link href="\/static#','link href="',$st_content);
 				if ($this->config['theme']['rewrite']) {
-					file_put_contents($filepath, $st_content); 
+					file_put_contents($filepath, $st_content);
 				} else {
 					if (! file_exists($filepath) ) {
-						file_put_contents($filepath, $st_content); 
+						file_put_contents($filepath, $st_content);
 					}
 				}
 
 			}
 		}
 	}
-	
 }
+

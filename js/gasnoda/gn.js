@@ -154,10 +154,10 @@ function gn_breakpoint_tagging() {
 	if (media) { html.classList.add(media); }
 }
 
-function gn_searchbox_toggle(th) {
+function gn_searchbox_toggle(th,sid) {
 	
 	event.preventDefault()
-	var gas = document.querySelector('#gn-search-box');
+	var gas = document.querySelector(sid);
 	//gas(th).data('html',th.innerHTML)
 	
 	if (! gas.classList.contains('active')) {

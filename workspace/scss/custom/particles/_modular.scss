@@ -177,3 +177,10 @@ body.modular main {
     }
 
 }
+
+
+@include breakpoint(mobile-only) {
+
+    .moduletable { width: 100% !important; }
+
+}

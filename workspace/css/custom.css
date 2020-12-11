@@ -114,6 +114,16 @@
 .line-data .stat {
   float: right; }
 
+.h-entry a {
+  color: var(--t) !important; }
+.h-entry .list-blog-padding {
+  margin-bottom: var(--line-margin); }
+.h-entry .list-blog-meta {
+  margin-top: calc( .5 * var(--line-margin)); }
+@media only all and (max-width: 47.99rem) {
+  .h-entry img {
+    width: 100%; } }
+
 [card] {
   border-radius: .25rem;
   padding: var(--padding); }
@@ -1274,6 +1284,9 @@ body.modular main {
         margin-top: calc(2 * var(--margin));
         margin-left: 0; }
 
+@media only all and (max-width: 47.99rem) {
+  .moduletable {
+    width: 100% !important; } }
 .fixed .gn-tree {
   padding-top: 1rem; }
 

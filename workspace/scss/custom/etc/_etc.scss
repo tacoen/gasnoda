@@ -1,3 +1,20 @@
+.h-entry {
+	a { color: var(--t) !important; }
+
+    .list-blog-padding {
+        margin-bottom: var(--line-margin);	
+    }
+
+    .list-blog-meta {
+        margin-top: calc( .5 * var(--line-margin));	
+
+    }
+
+    @include breakpoint(mobile-only) {
+        img { width: 100%; }
+    }
+}
+
 [card] {
 	.title { color: var(--accent-d); }
 	border-radius: .25rem;
