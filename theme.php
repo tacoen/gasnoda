@@ -41,10 +41,11 @@ class Noda extends Theme
     public function onAdminMenu()
     {
 	
-        $this->grav['assets']->add('user://themes/noda/admin/poko.css',1);
+        /*
+		$this->grav['assets']->add('user://themes/noda/admin/poko.css',1);
 		$this->grav['assets']->add('user://themes/noda/js/module.js');
 		$this->grav['assets']->add('user://themes/noda/admin/poko.js');
-	
+		*/
 		/* 
 		
 		use quicktray link will better! 

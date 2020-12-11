@@ -2,8 +2,18 @@
 {% set attr_extra = segment.attributes.extra|attribute_array %}
 
 {% set offcanvas %}
+
+	{% set options_offcanvas = {
+		'gsize': true,
+		'ggrid': segment.attributes.disable_grid,
+		'gcontent': segment.attributes.disable_gcontent,
+		}
+	%}
     {% for child in segment.children %}
-        {% include '/layout/' ~ child.type ~ '.html.twig' with { 'segments': child.children } %}
+        {% include '/layout/' ~ child.type ~ '.html.twig' with { 
+			'segments': segment.children,
+			'options': options_offcanvas
+		} %}
     {% endfor %}
 {% endset %}
 

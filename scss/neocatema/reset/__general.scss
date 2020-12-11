@@ -1,8 +1,23 @@
-html { box-sizing:border-box; }
+html { 
+
+	box-sizing:border-box;
+	line-height: 1.15;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0
+}
 
 *,
 *:before,
 *:after { box-sizing: inherit; }
+
+
+table {
+  text-indent: 0;
+  border-color: inherit;
+}
 
 tfoot,
 thead,
@@ -10,7 +25,7 @@ tbody {
 	background-color: inherit;
 }
 
-// Known vertical section/container
+// vertical section/container
 
 main,
 aside {

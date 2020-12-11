@@ -22,6 +22,9 @@
 	--menu-width: $menu-col-width;
 	--mobile-breakpoint: $menu-mobile-breakpoint;
 	--box-height: $menu-box-height;
+	-moz-tab-size: 4;
+	tab-size: 4;
+	
 	
 	@include schemer($custome);
 

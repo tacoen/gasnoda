@@ -7,7 +7,6 @@
     ~ (segment.attributes.class ? ' ' ~ segment.attributes.class|join(' ')) %}
 
 {% set html %}
-
 	{% if segment.children %}
         {% for segment in segments %}
             {% if segment.content %}

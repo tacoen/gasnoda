@@ -7,7 +7,6 @@ window.addEventListener('resize', function() {
 
 	noda_attr_utilities()
 
-
 	var bp = gas('body').cssvar('mobile-breakpoint').replace('rem','');
 
 	if ( window.innerWidth < (bp*16) ) {
@@ -45,12 +44,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	noda_attr_utilities();
 	
 	noda_responsive_function();
-
-	//noda_sectioncolor();
-	//gn_modular_slideshow('.modular-row.showcase');
-	
-	//noda_hslpal();
-
 
 	document.querySelectorAll('.notices').forEach( function(el) {
 	

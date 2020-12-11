@@ -2,14 +2,14 @@
 // Attributes
 
 @for $i from 1 through 5 {
-	:not(.grow):not(.shrink)[size-#{$i}] {
+	:not(.grow):not(.shrink):not([hidden])[size-#{$i}] {
 		@include flex(0 5%);
 		width: 5%;
 	}
 }
 
 @for $i from 6 through 99 {
-	:not(.grow):not(.shrink)[size-#{$i}] {
+	:not(.grow):not(.shrink):not([hidden])[size-#{$i}] {
 		@include flex(0 $i * 1%);
 		width: $i * 1%;
 	}
