@@ -265,10 +265,6 @@
 .col-5 { @extend [size-20] }
 .col-8 { @extend [size-12-5] }
 
-
-.g-block[class*='size-']:last-child { flex-grow: 1 }
-
-
 html .no-size .g-block {
 	[class*='size-'] {
 	    @extend [size-100];

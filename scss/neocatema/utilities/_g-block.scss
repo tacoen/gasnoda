@@ -36,11 +36,17 @@
         flex: 0 0 auto !important;
         //width: auto !important;
     }
+
+
+	&[class*='size-']:last-child { flex-grow: 1 !important }
+
      
 	@media only all and (max-width: $breakpoints-mobile-menu-breakpoint) {
 
 	    &.float-right { position: absolute; right: 0; top: 0 }
         &.float-left  { position: absolute; left: 0; top: 0 }
+
+		&[class*='size-']:last-child { flex-grow: 0 !important; flex-shrink: 1 !important; }
         
         &.block-ctl {
         	display: flex !important;

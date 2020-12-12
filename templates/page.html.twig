@@ -18,6 +18,9 @@
 
 {%- set page_offcanvas %}
     {% block page_offcanvas %}
+
+	<noscript>Hi! You need to enable JavaScript for this website.</noscript>
+
         {% if offcanvas %}
             {% include 'layout/' ~ offcanvas.type ~ '.html.twig' with {
 				'segment': offcanvas 
@@ -126,8 +129,6 @@ var gn_media_breakpoint = {'wide':{{ 16*gantry.config.get('styles.breakpoints.la
         {{ body_top|raw }}
         {{ page_offcanvas|raw }}
 		
-		<div class='modal-layer'></div>
-        
 		<div id="g-page-surround">
             {{ page_top|raw }}
             {{ page_layout|raw }}

@@ -50,3 +50,12 @@
 
 	
 }
+
+@include breakpoint(mobile-only) {
+
+	.g-block.block-res {
+		&[grow],&.grow {
+			width: 100% !important;
+		}
+	}
+}

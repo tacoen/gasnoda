@@ -1380,4 +1380,7 @@ main {
 .gn-small .gn-small-hide {
   display: none; }
 
+noscript {
+  display: none; }
+
 /*# sourceMappingURL=custom.css.map */
