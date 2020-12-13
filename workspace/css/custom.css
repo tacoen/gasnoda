@@ -8,6 +8,9 @@
   align-items: center;
   justify-content: center; }
 
+.shaded, .shaded .menu-dropdown {
+  box-shadow: 0 2px 1px var(--shadow); }
+
 /* grav dependecy on workspace */
 /* -------------------------------------------------------------
  * 
@@ -1361,8 +1364,8 @@ body.modular main {
     .gn-tree.collapse ol.gatree li.open > .indicator:before {
       content: "\f147"; }
 
-.shaded, .shaded .menu-dropdown {
-  box-shadow: 0 2px 1px var(--shadow); }
+.menucan li {
+  transition: all .5 ease; }
 
 .shaded {
   padding: .5rem;
@@ -1376,11 +1379,5 @@ main {
   padding: 2rem 0;
   content-visibility: auto;
   contain-intrinsic-size: 100vh; }
-
-.gn-small .gn-small-hide {
-  display: none; }
-
-noscript {
-  display: none; }
 
 /*# sourceMappingURL=custom.css.map */

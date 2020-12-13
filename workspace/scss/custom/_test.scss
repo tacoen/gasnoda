@@ -1,5 +1,5 @@
-%block-shadow {
-    box-shadow: 0 2px 1px var(--shadow);
+.menucan li {
+	transition: all .5 ease;
 }
 
 .shaded {
@@ -26,8 +26,3 @@ main {
 	contain-intrinsic-size: 100vh;
 }
 
-
-
-.gn-small .gn-small-hide { display: none; }
-
-noscript { display: none; }

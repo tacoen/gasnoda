@@ -26,15 +26,19 @@ form:
                     1: Boxed
                     3: Remove Container
 
-            variations:
-                type: input.section-variations
-                label: Variations
-    
+            background_color:
+              type: input.colorpicker
+              label: Background Color
+            
             blockcolor:
                 type: input.checkbox
                 label: Block Color
                 default: true
 
+            variations:
+                type: input.section-variations
+                label: Variations
+                
             class:
                 type: input.selectize
                 label: CSS Classes

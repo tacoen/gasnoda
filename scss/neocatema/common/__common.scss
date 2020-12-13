@@ -6,3 +6,12 @@
 }
 
 %vcenter { @include flexa(center,center) }
+
+
+%block-shadow {
+    box-shadow: 0 2px 1px var(--shadow);
+}
+
+%display-none {
+	display: none;
+}

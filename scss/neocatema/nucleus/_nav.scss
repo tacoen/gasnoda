@@ -29,7 +29,7 @@ nav.menucan {
 			height: 100%;
 			flex-direction: column;
 			align-items: flex-start;
-		
+			transition: all .5 ease;
 			label {
 				position: absolute;
 				right: 1rem;

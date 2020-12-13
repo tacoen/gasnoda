@@ -120,17 +120,18 @@ $tones: (
 
 	@extend [class*='ncc-'];
 	
-	.bg-a1 { background-color: var(--c-a1); color: var(--t); }
-	.bg-a2 { background-color: var(--c-a2); color: var(--t); }
-	.bg-co { background-color: var(--c-co); color: var(--t); }
-	.bg-b { background-color: var(--b); color: var(--c-w); }
-	.bg-w { background-color: var(--w); color: var(--c-b); }
-	.bg-d { background-color: var(--c-d); color: var(--t); }
-	.bg-d1 { background-color: var(--c-d1); color: var(--w); }
-	.bg-d2 { background-color: var(--c-d2); color: var(--w); }
-	.bg-d3 { background-color: var(--c-d3); color: var(--w); }
-	.bg-l { background-color: var(--c-l); color: var(--t); }
-	.bg-l1 { background-color: var(--c-l1); color: var(--b); }
-	.bg-l2 { background-color: var(--c-l2); color: var(--b); }
-	.bg-l3 { background-color: var(--c-l3); color: var(--b); }
+	&.bg,.bg { background-color: var(--c-n); color: var(--t); }
+	&.bg-a1,.bg-a1 { background-color: var(--c-a1); color: var(--t); }
+	&.bg-a2,.bg-a2 { background-color: var(--c-a2); color: var(--t); }
+	&.bg-co,.bg-co { background-color: var(--c-co); color: var(--t); }
+	&.bg-b,.bg-b { background-color: var(--b); color: var(--c-w); }
+	&.bg-w,.bg-w { background-color: var(--w); color: var(--c-b); }
+	&.bg-d,.bg-d { background-color: var(--c-d); color: var(--t); }
+	&.bg-d1,.bg-d1 { background-color: var(--c-d1); color: var(--w); }
+	&.bg-d2,.bg-d2 { background-color: var(--c-d2); color: var(--w); }
+	&.bg-d3,.bg-d3 { background-color: var(--c-d3); color: var(--w); }
+	&.bg-l,.bg-l { background-color: var(--c-l); color: var(--t); }
+	&.bg-l1,.bg-l1 { background-color: var(--c-l1); color: var(--b); }
+	&.bg-l2,.bg-l2 { background-color: var(--c-l2); color: var(--b); }
+	&.bg-l3,.bg-l3 { background-color: var(--c-l3); color: var(--b); }
 }

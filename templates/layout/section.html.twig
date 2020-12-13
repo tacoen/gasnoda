@@ -6,10 +6,11 @@
 	~ (segment.attributes.disable_sizes ? ' no-size')
 	~ (segment.attributes.disable_grid ? ' no-grid')
 	~ (segment.attributes.disable_gcontent ? ' no-gcontent')
-    ~ (segment.attributes.variations ? ' ' ~ segment.attributes.variations|join(' ')) %}
+    ~ (segment.attributes.variations ? ' ' ~ segment.attributes.variations|join(' '))
+	~ (segment.attributes.background_color ? ' hsl-pal') %}
+
 {% set attr_extra = segment.attributes.extra|attribute_array %}
 {% set boxed = segment.attributes.boxed %}
-
 {% set options = {
 	'gsize': segment.attributes.disable_sizes,
 	'ggrid': segment.attributes.disable_grid,
@@ -19,8 +20,14 @@
 
 {# Gasnoda //------- #}
 
-{% set styles = segment.attributes.custom_style %}
+{% if segment.attributes.background_color %}
+	{% do gantry.document.addInlineScript('ncc_construct_pallete("#'~attr_id~'")', 0, 'footer') %}
+{% endif %}
 
+{% set styles = segment.attributes.custom_style %}
+{% set styles = styles 
+	~ (segment.attributes.background_color ? "; --color:"~ segment.attributes.background_color )
+%}
 
 {% if segment.attributes.responsive %}
 
