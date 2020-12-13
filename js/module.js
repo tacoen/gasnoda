@@ -1,5 +1,194 @@
-/* Compile Time: 12/12/20 00:41:05 */
-/* w3color.js ver.1.18 by w3schools.com (Do not remove this line)*/
+/* Compile Time: 12/13/20 23:27:43 */
+/*
+ * gas.js -- for Gakeun.js on Gasnoda Grav theme
+ *
+ */
+
+(function () {
+
+function gas(query) {
+
+	/*
+	 * gas is Gasnoda Script
+	 *
+	 */
+
+	if (typeof(query) == 'object') {
+		this.ele = query
+	} else {
+		this.ele = document.querySelector(query);
+	}
+
+	if (this.ele === null) { return false; }
+
+	if (!(this instanceof gas)) { return new gas(query); }
+
+}
+
+gas.prototype = {
+
+	cl: function() {
+		return console.log(this.ele);
+	},
+
+	load: function(source,functions=false) {
+		var request = new XMLHttpRequest();
+		request.open('GET', source, true);
+		var ele = this.ele;
+
+		const send = XMLHttpRequest.prototype.send
+		XMLHttpRequest.prototype.send = function(e) {
+			this.addEventListener('load', function(event) {
+				if (functions) { functions(); }
+			})
+			return send.apply(this, arguments)
+		}
+
+		request.onload = function(e) {
+			if (request.status >= 200 && request.status < 400) {
+				var resp = request.responseText;
+				ele.innerHTML = resp;
+			} else {
+				console.log(source+' not loading.');
+			}
+		};
+
+
+		request.send()
+
+	},
+	id: function(what) {
+		return this.ele.id;
+	},
+	data: function(what,value=false) {
+
+		if (value) { this.ele.setAttribute('data-'+what,value); }
+		else if (value==null){ this.ele.removeAttribute('data-'+what); }
+		return this.ele.getAttribute('data-'+what);
+	},
+
+	attr: function(what,value=false) {
+		if (value) { this.ele.setAttribute(what,value); }
+		else if (value==null){ this.ele.removeAttribute(what); }
+		return this.ele.getAttribute(what);
+	},
+
+	offset: function() {
+			return [ this.ele.offsetTop, this.ele.offsetLeft, this.ele.offsetWidth, this.ele.offsetHeight];
+	},
+
+	class: function() {
+		return this.ele.classList.value;
+	},
+
+	hasClass: function(nclass) {
+		if (this.ele.classList.contains(nclass)) {
+			return true;
+		} else {
+			return false;
+		}
+	},
+	addClass: function(nclass) {
+		if (!this.ele.classList.contains(nclass)) {
+			this.ele.classList.add(nclass);
+		}
+	},
+	removeClass: function(nclass) {
+		if (this.ele.classList.contains(nclass)) {
+			this.ele.classList.remove(nclass);
+		}
+	},
+	toggleClass: function(nclass) {
+		if (this.ele.classList.contains(nclass)) {
+			this.ele.classList.remove(nclass);
+		} else {
+			this.ele.classList.add(nclass);
+		}
+	},
+	content: function(newcontent=false) {
+		if (newcontent) { this.ele.innerHTML = newcontent; }
+		else { return this.ele.innerHTML; }
+	},
+
+	styleParse: function() {
+		var styles = this.ele.style;
+		var res = '';
+		for (var p in styles) {
+			if ((styles[styles[p]]) && styles[styles[p]]!=='initial') {
+					res += styles[p]+": "+ styles[styles[p]].toString()+'; ';
+			}
+		}
+		return res.trim();
+	},
+
+
+	cssConstruct: function(styles) {
+		const newSheet = new CSSStyleSheet();
+		newSheet.replaceSync(styles);
+		document.adoptedStyleSheets = document.adoptedStyleSheets.concat(newSheet);
+	},
+	cssvar: function(what,value=false,important=false) {
+		var c = getComputedStyle(this.ele)
+		if (value) {
+			if (important) {
+				this.ele.style.setProperty('--'+what,value,'important');
+			} else {
+				this.ele.style.setProperty('--'+what,value);
+			}
+	} else {
+			return c.getPropertyValue('--'+what).trim()
+		}
+	},
+
+	cssvarRemove: function(what) {
+		this.ele.style.removeProperty('--'+what);
+	},
+
+	style: function(what=false,value=false) {
+		var styles = this.ele.style;
+		var res = '';
+		if (!what) {
+
+			res = this.attr('style');
+			return res;
+		} else {
+			what = what.replace(/-/gi,function(r) {
+				return r.charAt(0).toUpperCase() + r.slice(1)
+			});
+			if (value) { this.ele.style[what]=value; }
+		}
+	},
+	hide: function() {
+		this.style('display','none');
+	},
+	show: function(mode='block') {
+		this.style('display',mode);
+	},
+	value: function(val=false) {
+		if (val) {
+			this.ele.value = val;
+		} else {
+			return this.ele.val;
+		}
+	},
+	height: function(value=false) {
+		return this.ele.offsetHeight
+	},
+	width:function(value=false) {
+		return this.ele.offsetWidth;
+	},
+	append:function(value=false) {
+		if (value) { this.ele.insertAdjacentHTML("afterend",value.toString) }
+	},
+	prepend:function(value=false) {
+		if (value) { this.ele.insertAdjacentHTML("afterbegin",value) }
+	}
+
+}
+
+window.gas = gas;
+
+})();/* w3color.js ver.1.18 by w3schools.com (Do not remove this line)*/
 (function () {
 function w3color(color, elmnt) {
   if (!(this instanceof w3color)) { return new w3color(color, elmnt); }
@@ -646,203 +835,6 @@ function w3SetColorsByAttribute() {
   }
 }
 
-/* gasnoda/_gas.js */
-
-/*
- * gas.js -- for Gakeun.js on Gasnoda Grav theme
- *
- */
- 
-(function () {
-
-function gas(query) {
-	
-	/* 
-	 * gas is Gasnoda Script 
-	 *
-	 */
-
-	if (typeof(query) == 'object') {
-		this.ele = query
-	} else {
-		this.ele = document.querySelector(query);
-	}
-
-	if (this.ele === null) { return false; }
-
-	if (!(this instanceof gas)) { return new gas(query); }
-
-}
-
-gas.prototype = {
-	
-	cl: function() {
-		return console.log(this.ele);
-	},
-	
-	load: function(source,functions=false) {
-		var request = new XMLHttpRequest();
-		request.open('GET', source, true);
-		var ele = this.ele;
-
-		const send = XMLHttpRequest.prototype.send
-		XMLHttpRequest.prototype.send = function(e) { 
-			this.addEventListener('load', function(event) {
-				if (functions) { functions(); }
-			})
-			return send.apply(this, arguments)
-		}		
-
-		request.onload = function(e) {
-			if (request.status >= 200 && request.status < 400) {
-				var resp = request.responseText;
-				ele.innerHTML = resp;
-			} else {
-				console.log(source+' not loading.'); 
-			}
-		};
-		
-
-		request.send()
-
-		//console.log(request);
-		
-		
-			
-	},
-	id: function(what) {
-		return this.ele.id;
-	},
-	data: function(what,value=false) {
-
-		if (value) { this.ele.setAttribute('data-'+what,value); }
-		else if (value==null){ this.ele.removeAttribute('data-'+what); }
-		return this.ele.getAttribute('data-'+what);
-	},
-	
-	attr: function(what,value=false) {
-		if (value) { this.ele.setAttribute(what,value); }
-		else if (value==null){ this.ele.removeAttribute(what); }
-		return this.ele.getAttribute(what);
-	},
-	
-	offset: function() {
-			return [ this.ele.offsetTop, this.ele.offsetLeft, this.ele.offsetWidth, this.ele.offsetHeight];
-	},
-	
-	class: function() {
-		return this.ele.classList.value;
-	},
-	
-	hasClass: function(nclass) {
-		if (this.ele.classList.contains(nclass)) {
-			return true;
-		} else {
-			return false;
-		}
-	},
-	addClass: function(nclass) {
-		if (!this.ele.classList.contains(nclass)) {
-			this.ele.classList.add(nclass);
-		}
-	},
-	removeClass: function(nclass) {
-		if (this.ele.classList.contains(nclass)) {
-			this.ele.classList.remove(nclass);
-		}
-	},
-	toggleClass: function(nclass) {
-		if (this.ele.classList.contains(nclass)) {
-			this.ele.classList.remove(nclass);
-		} else {
-			this.ele.classList.add(nclass);
-		}
-	},
-	content: function(newcontent=false) {
-		if (newcontent) { this.ele.innerHTML = newcontent; }
-		else { return this.ele.innerHTML; }
-	},
-	
-	styleParse: function() {
-		var styles = this.ele.style;
-		var res = '';
-		for (var p in styles) {
-			if ((styles[styles[p]]) && styles[styles[p]]!=='initial') {
-					res += styles[p]+": "+ styles[styles[p]].toString()+'; '; 
-			}
-		}
-		return res.trim();
-	},
-	
-	
-	cssConstruct: function(styles) {
-		const newSheet = new CSSStyleSheet();
-		newSheet.replaceSync(styles);
-		document.adoptedStyleSheets = document.adoptedStyleSheets.concat(newSheet);		
-	},
-	cssvar: function(what,value=false,important=false) {
-		var c = getComputedStyle(this.ele)
-		if (value) { 
-			if (important) {
-				this.ele.style.setProperty('--'+what,value,'important');
-			} else {
-				this.ele.style.setProperty('--'+what,value);
-			}
-	} else {
-			return c.getPropertyValue('--'+what).trim()
-		}
-	},
-
-	cssvarRemove: function(what) {
-		this.ele.style.removeProperty('--'+what);
-	},
-
-	style: function(what=false,value=false) {
-		var styles = this.ele.style;
-		var res = '';
-		if (!what) {
-
-			res = this.attr('style');
-			return res;
-		} else {
-			what = what.replace(/-/gi,function(r) { 
-				return r.charAt(0).toUpperCase() + r.slice(1)
-			});
-			if (value) { this.ele.style[what]=value; }
-		}
-	},
-	hide: function() {
-		this.style('display','none');	
-	},
-	show: function(mode='block') {
-		this.style('display',mode);
-	},
-	value: function(val=false) {
-		if (val) {
-			this.ele.value = val;
-		} else {
-			return this.ele.val;
-		}
-	},
-	height: function(value=false) {
-		return this.ele.offsetHeight
-	},
-	width:function(value=false) {
-		return this.ele.offsetWidth;
-	},
-	append:function(value=false) {
-		if (value) { this.ele.insertAdjacentHTML("afterend",value.toString) }
-	},
-	prepend:function(value=false) {
-		if (value) { this.ele.insertAdjacentHTML("afterbegin",value) }
-	}
-
-}
-
-window.gas = gas;
-
-})();
-
 /* gasnoda/_util.js */
 
 function percent(n) { return Math.round(n*100)+"%" }
@@ -1012,49 +1004,8 @@ function gn_toggle(ele,classes) {
 	gas(ele).toggleClass(classes);
 }
 
-function gn_scheme_switch(ele=false) {
-	if (gas('body').hasClass('dark-scheme')) {
-		gas('body').removeClass('dark-scheme');
-		gas('body').addClass('light-scheme');
-	} else {
-		gas('body').removeClass('light-scheme');
-		gas('body').addClass('dark-scheme');
-	}
-}	
-
 
 /* 30/11/2020 */
-
-function gn_scheme() {
-
-	if (disable_scheme) {
-		gas('body').addClass('light-scheme');
-		localStorage.setItem('ncc-scheme','light')
-		return 'light';
-	}
-	
-	var prefer_scheme = localStorage.getItem('ncc-scheme');
-	
-	if (prefer_scheme == 'light') {
-		var scheme = 'light';
-    	gas('body').addClass('light-scheme');
-	} else if (prefer_scheme == 'dark') {
-		var scheme = 'dark';
-    	gas('body').addClass('dark-scheme');
-	} else {
-		
-		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-			var scheme = 'dark';
-			gas('body').addClass('dark-scheme');
-		} else {
-			var scheme = 'light';
-			gas('body').addClass('light-scheme');
-		}
-
-	}
-	
-	return scheme;
-}
 
 function gn_topshadow(query, remove_element=false) {
 	var ele = gas(query);
@@ -1145,24 +1096,6 @@ function gn_fixtop(query,shadow=false) {
 	}
 }	
 
-function gn_breakpoint_tagging() {
-
-	var html = document.querySelector('html');
-	
-	if (window.innerWidth < gn_media_breakpoint.tablet) { media='gn-mobile'; }
-	if (window.innerWidth <= 520) { media='gn-small'; }
-	if (window.innerWidth <= gn_media_breakpoint.mobile) { media='gn-small'; }
-	if (window.innerWidth >= gn_media_breakpoint.tablet) { media='gn-tablet'; }
-	if (window.innerWidth >= gn_media_breakpoint.desktop) { media='gn-desktop'; }
-	if (window.innerWidth >= gn_media_breakpoint.wide) { media=false; }
-	
-	html.classList.remove('gn-small');
-	html.classList.remove('gn-desktop');
-	html.classList.remove('gn-tablet');
-	html.classList.remove('gn-mobile');
-	
-	if (media) { html.classList.add(media); }
-}
 
 function gn_searchbox_toggle(th,sid) {
 	
@@ -1185,102 +1118,6 @@ function gn_searchbox_toggle(th,sid) {
 
 /* ------------------------------------------- */
 
-function noda_responsive_function() {
-	
-	/* only works on touch media */
-
-	document.querySelectorAll('.res-ctl').forEach( function(el) {
-    
-		var block = el.closest('.g-block')
-		var section = gas(el).data('section');
-		gas(block).addClass('responsive');
-		gas(block).cssvar('origin-width',block.offsetWidth+'px');
-		gas(block).data('ctl',section);
-		
-		el.addEventListener("click", function(e) {
-			var block = el.closest('.g-block')
-			gas(block).addClass('responsive');
-			gas(block).cssvar('origin-width',block.offsetWidth+'px');
-			gas(block).toggleClass('show');
-			gas(section).toggleClass('show');
-		});		
-	
-	});
-
-
-	document.querySelectorAll('.block-ctl').forEach( function(el) {
-		var b = el.closest('.g-block');
-		var g = el.closest('.g-grid');
-		var element =  document.createElement("DIV"); 
-		element.innerHTML = el.innerHTML;
-		element.setAttribute('class','g-block right middle grow block-ctl');
-
-		b.classList.add('block-res')
-    
-		//console.log(g.parentNode,g.parentNode.style.height);
-
-		b.style.top=g.offsetHeight+'px';
-
-		el.remove();
-
-		element.addEventListener("click", function(e) {
-			if (gas(b).hasClass('show') ) {
-				gas(b).removeClass('show')
-			} else {
-				gas(b).addClass('show')
-			}
-
-		});
-
-		g.insertBefore(element,b);
-
-	})
-
-
-
-	document.querySelectorAll('.notices').forEach(function(t) {
-		t.addEventListener('click', function(e) {
-			t.remove();
-		})
-	});
-}
-	
-function noda_attr_utilities() {
-
-	document.querySelectorAll("[data-height]").forEach(function(t) {
-		t.style.height = t.getAttribute('data-height');
-	});
-
-	document.querySelectorAll(".g-block.responsive").forEach(function(t) {
-		gas(t).cssvar('origin-width',t.offsetWidth+'px');
-	});
-/*	
-	document.querySelectorAll("[data-toggle]").forEach(function(t) {
-		t.addEventListener("click", function(e) {
-			
-			var target = document.querySelector(t.getAttribute('data-toggle'));
-			
-			//console.log(target.classList)
-			
-			if ( target.classList.contains('toggle-off') ) {
-				target.classList.remove('toggle-off');
-			} else {
-				target.classList.add('toggle-off');
-			}
-		});
-	});
-*/	
-	if (document.querySelector('#neoca_scheme_switch')) {
-	document.querySelector('#neoca_scheme_switch').addEventListener("click", function(e) {
-		if (gas('body').hasClass('dark-scheme')) {
-			localStorage.setItem('ncc-scheme','dark');
-		} else {
-			localStorage.setItem('ncc-scheme','light');
-		}
-	})
-	}
-	
-}
 
 function noda_sectioncolor() {
 

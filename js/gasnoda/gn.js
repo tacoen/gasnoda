@@ -2,49 +2,8 @@ function gn_toggle(ele,classes) {
 	gas(ele).toggleClass(classes);
 }
 
-function gn_scheme_switch(ele=false) {
-	if (gas('body').hasClass('dark-scheme')) {
-		gas('body').removeClass('dark-scheme');
-		gas('body').addClass('light-scheme');
-	} else {
-		gas('body').removeClass('light-scheme');
-		gas('body').addClass('dark-scheme');
-	}
-}	
-
 
 /* 30/11/2020 */
-
-function gn_scheme() {
-
-	if (disable_scheme) {
-		gas('body').addClass('light-scheme');
-		localStorage.setItem('ncc-scheme','light')
-		return 'light';
-	}
-	
-	var prefer_scheme = localStorage.getItem('ncc-scheme');
-	
-	if (prefer_scheme == 'light') {
-		var scheme = 'light';
-    	gas('body').addClass('light-scheme');
-	} else if (prefer_scheme == 'dark') {
-		var scheme = 'dark';
-    	gas('body').addClass('dark-scheme');
-	} else {
-		
-		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-			var scheme = 'dark';
-			gas('body').addClass('dark-scheme');
-		} else {
-			var scheme = 'light';
-			gas('body').addClass('light-scheme');
-		}
-
-	}
-	
-	return scheme;
-}
 
 function gn_topshadow(query, remove_element=false) {
 	var ele = gas(query);
@@ -134,25 +93,6 @@ function gn_fixtop(query,shadow=false) {
 
 	}
 }	
-
-function gn_breakpoint_tagging() {
-
-	var html = document.querySelector('html');
-	
-	if (window.innerWidth < gn_media_breakpoint.tablet) { media='gn-mobile'; }
-	if (window.innerWidth <= 520) { media='gn-small'; }
-	if (window.innerWidth <= gn_media_breakpoint.mobile) { media='gn-small'; }
-	if (window.innerWidth >= gn_media_breakpoint.tablet) { media='gn-tablet'; }
-	if (window.innerWidth >= gn_media_breakpoint.desktop) { media='gn-desktop'; }
-	if (window.innerWidth >= gn_media_breakpoint.wide) { media=false; }
-	
-	html.classList.remove('gn-small');
-	html.classList.remove('gn-desktop');
-	html.classList.remove('gn-tablet');
-	html.classList.remove('gn-mobile');
-	
-	if (media) { html.classList.add(media); }
-}
 
 function gn_searchbox_toggle(th,sid) {
 	

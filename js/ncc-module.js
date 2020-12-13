@@ -1,379 +1,5 @@
-/* Compile Time: 12/12/20 00:41:06 */
-
-
-/* neoca/_gas.js */
-
-/*
- * gas.js -- for Gakeun.js on Gasnoda Grav theme
- *
- */
-
-(function () {
-
-function gas(query) {
-
-	/*
-	 * gas is Gasnoda Script
-	 *
-	 */
-
-	if (typeof(query) == 'object') {
-		this.ele = query
-	} else {
-		this.ele = document.querySelector(query);
-	}
-
-	if (this.ele === null) { return false; }
-
-	if (!(this instanceof gas)) { return new gas(query); }
-
-}
-
-gas.prototype = {
-
-	cl: function() {
-		return console.log(this.ele);
-	},
-
-	load: function(source,functions=false) {
-		var request = new XMLHttpRequest();
-		request.open('GET', source, true);
-		var ele = this.ele;
-
-		const send = XMLHttpRequest.prototype.send
-		XMLHttpRequest.prototype.send = function(e) {
-			this.addEventListener('load', function(event) {
-				if (functions) { functions(); }
-			})
-			return send.apply(this, arguments)
-		}
-
-		request.onload = function(e) {
-			if (request.status >= 200 && request.status < 400) {
-				var resp = request.responseText;
-				ele.innerHTML = resp;
-			} else {
-				console.log(source+' not loading.');
-			}
-		};
-
-
-		request.send()
-
-	},
-	id: function(what) {
-		return this.ele.id;
-	},
-	data: function(what,value=false) {
-
-		if (value) { this.ele.setAttribute('data-'+what,value); }
-		else if (value==null){ this.ele.removeAttribute('data-'+what); }
-		return this.ele.getAttribute('data-'+what);
-	},
-
-	attr: function(what,value=false) {
-		if (value) { this.ele.setAttribute(what,value); }
-		else if (value==null){ this.ele.removeAttribute(what); }
-		return this.ele.getAttribute(what);
-	},
-
-	offset: function() {
-			return [ this.ele.offsetTop, this.ele.offsetLeft, this.ele.offsetWidth, this.ele.offsetHeight];
-	},
-
-	class: function() {
-		return this.ele.classList.value;
-	},
-
-	hasClass: function(nclass) {
-		if (this.ele.classList.contains(nclass)) {
-			return true;
-		} else {
-			return false;
-		}
-	},
-	addClass: function(nclass) {
-		if (!this.ele.classList.contains(nclass)) {
-			this.ele.classList.add(nclass);
-		}
-	},
-	removeClass: function(nclass) {
-		if (this.ele.classList.contains(nclass)) {
-			this.ele.classList.remove(nclass);
-		}
-	},
-	toggleClass: function(nclass) {
-		if (this.ele.classList.contains(nclass)) {
-			this.ele.classList.remove(nclass);
-		} else {
-			this.ele.classList.add(nclass);
-		}
-	},
-	content: function(newcontent=false) {
-		if (newcontent) { this.ele.innerHTML = newcontent; }
-		else { return this.ele.innerHTML; }
-	},
-
-	styleParse: function() {
-		var styles = this.ele.style;
-		var res = '';
-		for (var p in styles) {
-			if ((styles[styles[p]]) && styles[styles[p]]!=='initial') {
-					res += styles[p]+": "+ styles[styles[p]].toString()+'; ';
-			}
-		}
-		return res.trim();
-	},
-
-
-	cssConstruct: function(styles) {
-		const newSheet = new CSSStyleSheet();
-		newSheet.replaceSync(styles);
-		document.adoptedStyleSheets = document.adoptedStyleSheets.concat(newSheet);
-	},
-	cssvar: function(what,value=false,important=false) {
-		var c = getComputedStyle(this.ele)
-		if (value) {
-			if (important) {
-				this.ele.style.setProperty('--'+what,value,'important');
-			} else {
-				this.ele.style.setProperty('--'+what,value);
-			}
-	} else {
-			return c.getPropertyValue('--'+what).trim()
-		}
-	},
-
-	cssvarRemove: function(what) {
-		this.ele.style.removeProperty('--'+what);
-	},
-
-	style: function(what=false,value=false) {
-		var styles = this.ele.style;
-		var res = '';
-		if (!what) {
-
-			res = this.attr('style');
-			return res;
-		} else {
-			what = what.replace(/-/gi,function(r) {
-				return r.charAt(0).toUpperCase() + r.slice(1)
-			});
-			if (value) { this.ele.style[what]=value; }
-		}
-	},
-	hide: function() {
-		this.style('display','none');
-	},
-	show: function(mode='block') {
-		this.style('display',mode);
-	},
-	value: function(val=false) {
-		if (val) {
-			this.ele.value = val;
-		} else {
-			return this.ele.val;
-		}
-	},
-	height: function(value=false) {
-		return this.ele.offsetHeight
-	},
-	width:function(value=false) {
-		return this.ele.offsetWidth;
-	},
-	append:function(value=false) {
-		if (value) { this.ele.insertAdjacentHTML("afterend",value.toString) }
-	},
-	prepend:function(value=false) {
-		if (value) { this.ele.insertAdjacentHTML("afterbegin",value) }
-	}
-
-}
-
-window.gas = gas;
-
-})();
-
-/* neoca/html5_interface.js */
-
-function ncc_html5_interface() {
-
-	document.querySelectorAll('.notices').forEach( function(el) {
-	
-		el.addEventListener("click", function(e) {
-			el.remove()
-		})
-		
-	});
-	
-	document.querySelectorAll('.alert').forEach( function(el) {
-	
-		el.addEventListener("click", function(e) {
-			el.remove()
-		})
-		
-	});	
-
-}	
-
-/* neoca/swipeable.js */
-
-function swipedetect(el, callback){
-  
-    var touchsurface = el,
-    swipedir,
-    startX,
-    startY,
-    distX,
-    distY,
-    threshold = el.clientWidth/4, //required min distance traveled to be considered swipe
-    restraint = el.clientWidth/2, // maximum distance allowed at the same time in perpendicular direction
-    allowedTime = 720, // maximum time allowed to travel that distance
-    elapsedTime,
-    startTime,
-    handleswipe = callback || function(swipedir){}
-  
-    touchsurface.addEventListener('touchstart', function(e){
-
-        var touchobj = e.changedTouches[0]
-        swipedir = 'none'
-        dist = 0
-        startX = touchobj.clientX
-        startY = touchobj.clientY
-        startTime = new Date().getTime() // record time when finger first makes contact with surface
-        e.preventDefault()
-    }, false)
-  
-    touchsurface.addEventListener('touchmove', function(e){
-        e.preventDefault() // prevent scrolling when inside DIV
-
-		gas(this).addClass('touched');
-
-        var touchobj = e.changedTouches[0]
-        distX = touchobj.clientX - startX
-        distY = touchobj.clientY - startY
-		
-		if (gas(this).hasClass('left')) {
-		
-			if (distX <= 0)  { 
-				this.style.left = distX+"px";
-			} else {
-				this.style.left = "0px"; 
-			} 
-			
-		}
-
-		if (gas(this).hasClass('right')) {
-			
-			if (distX > 0)  { 
-				this.style.right = "-"+distX+"px";
-			} else {
-				this.style.right = "0px"; 
-			} 
-			
-		}
-		
-    }, false)
-  
-    touchsurface.addEventListener('touchend', function(e){
-		
-		gas(this).removeClass('touched')
-	
-        var touchobj = e.changedTouches[0]
-        distX = touchobj.clientX - startX // get horizontal dist traveled by finger while in contact with surface
-        distY = touchobj.clientY - startY // get vertical dist traveled by finger while in contact with surface
-		
-		//console.log(distX,distY,elapsedTime)
-		
-        elapsedTime = new Date().getTime() - startTime // get time elapsed
-        if (elapsedTime <= allowedTime){ // first condition for awipe met
-            if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
-                swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
-
-				var block = this.closest('.g-block');
-
-				if ( (gas(this).hasClass('left')) && (swipedir=='left')) {
-					gas(block).removeClass('show'); 
-					this.style.left = "";				
-				}
-
-				if ( (gas(this).hasClass('right')) && (swipedir=='right')) {
-					gas(block).removeClass('show'); 
-					this.style.right = "";				
-				}
-				
-				
-            }
-            else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
-                swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
-            }
-        }
-
-        handleswipe(swipedir)
-
-        e.preventDefault()
-    }, false)
-}
-
-	
-/*
-function handleTouch(e) {
-	var total = this.clientWidth;
-	var x =  e.changedTouches[0].clientX;
-	gas(this).addClass('touched');
-
-	if ( (x < total/2) && (gas(this).hasClass('left'))) {
-		this.style.left = (x-total)+"px";
-	}
-}
-
-function handleTouchStart(e) {
-	var x =  e.changedTouches[0].pageX;
-	var total = this.clientWidth;
-	console.log(e.touches);
-
-}
-
-function handleTouchEnd(e) {
-	gas(this).removeClass('touched')
-	var vx = [ this.clientWidth * .5,this.clientWidth *.5 ] ;
-	if (gas(this).hasClass('right')) {
-		//var x = parseInt(this.style.left)
-		
-		var x =  e.changedTouches[0].clientX;
-		
-		if (x >= this.clientWidth/2) { 
-			var block = this.closest('.g-block');
-			gas(block).removeClass('show'); 
-			this.style.left = "";
-		} else {
-			this.style.left = '0px';
-		}
-	} else {
-		
-		var x =  e.changedTouches[0].clientX;
-		
-		if (x <= this.clientWidth/2) { 
-			var block = this.closest('.g-block');
-			gas(block).removeClass('show'); 
-			this.style.left = "";
-		} else {
-			this.style.left = '0px';
-		}
-	}
-
-}
-*/
-
-function ncc_init_swipeable() {
-	
-	document.querySelectorAll('.res-content.swipe').forEach(function(t) {
-		swipedetect(t, function(swipedir) {
-			//console.log(swipedir)
-		})
-	});
-	
-}/* w3color.js ver.1.18 by w3schools.com (Do not remove this line)*/
+/* Compile Time: 12/13/20 23:27:44 */
+/* w3color.js ver.1.18 by w3schools.com (Do not remove this line)*/
 (function () {
 function w3color(color, elmnt) {
   if (!(this instanceof w3color)) { return new w3color(color, elmnt); }
@@ -1018,4 +644,560 @@ function w3SetColorsByAttribute() {
       z[i].style.backgroundColor = w3color(att).toRgbString();      
     }
   }
+}/*
+ * gas.js -- for Gakeun.js on Gasnoda Grav theme
+ *
+ */
+
+(function () {
+
+function gas(query) {
+
+	/*
+	 * gas is Gasnoda Script
+	 *
+	 */
+
+	if (typeof(query) == 'object') {
+		this.ele = query
+	} else {
+		this.ele = document.querySelector(query);
+	}
+
+	if (this.ele === null) { return false; }
+
+	if (!(this instanceof gas)) { return new gas(query); }
+
+}
+
+gas.prototype = {
+
+	cl: function() {
+		return console.log(this.ele);
+	},
+
+	load: function(source,functions=false) {
+		var request = new XMLHttpRequest();
+		request.open('GET', source, true);
+		var ele = this.ele;
+
+		const send = XMLHttpRequest.prototype.send
+		XMLHttpRequest.prototype.send = function(e) {
+			this.addEventListener('load', function(event) {
+				if (functions) { functions(); }
+			})
+			return send.apply(this, arguments)
+		}
+
+		request.onload = function(e) {
+			if (request.status >= 200 && request.status < 400) {
+				var resp = request.responseText;
+				ele.innerHTML = resp;
+			} else {
+				console.log(source+' not loading.');
+			}
+		};
+
+
+		request.send()
+
+	},
+	id: function(what) {
+		return this.ele.id;
+	},
+	data: function(what,value=false) {
+
+		if (value) { this.ele.setAttribute('data-'+what,value); }
+		else if (value==null){ this.ele.removeAttribute('data-'+what); }
+		return this.ele.getAttribute('data-'+what);
+	},
+
+	attr: function(what,value=false) {
+		if (value) { this.ele.setAttribute(what,value); }
+		else if (value==null){ this.ele.removeAttribute(what); }
+		return this.ele.getAttribute(what);
+	},
+
+	offset: function() {
+			return [ this.ele.offsetTop, this.ele.offsetLeft, this.ele.offsetWidth, this.ele.offsetHeight];
+	},
+
+	class: function() {
+		return this.ele.classList.value;
+	},
+
+	hasClass: function(nclass) {
+		if (this.ele.classList.contains(nclass)) {
+			return true;
+		} else {
+			return false;
+		}
+	},
+	addClass: function(nclass) {
+		if (!this.ele.classList.contains(nclass)) {
+			this.ele.classList.add(nclass);
+		}
+	},
+	removeClass: function(nclass) {
+		if (this.ele.classList.contains(nclass)) {
+			this.ele.classList.remove(nclass);
+		}
+	},
+	toggleClass: function(nclass) {
+		if (this.ele.classList.contains(nclass)) {
+			this.ele.classList.remove(nclass);
+		} else {
+			this.ele.classList.add(nclass);
+		}
+	},
+	content: function(newcontent=false) {
+		if (newcontent) { this.ele.innerHTML = newcontent; }
+		else { return this.ele.innerHTML; }
+	},
+
+	styleParse: function() {
+		var styles = this.ele.style;
+		var res = '';
+		for (var p in styles) {
+			if ((styles[styles[p]]) && styles[styles[p]]!=='initial') {
+					res += styles[p]+": "+ styles[styles[p]].toString()+'; ';
+			}
+		}
+		return res.trim();
+	},
+
+
+	cssConstruct: function(styles) {
+		const newSheet = new CSSStyleSheet();
+		newSheet.replaceSync(styles);
+		document.adoptedStyleSheets = document.adoptedStyleSheets.concat(newSheet);
+	},
+	cssvar: function(what,value=false,important=false) {
+		var c = getComputedStyle(this.ele)
+		if (value) {
+			if (important) {
+				this.ele.style.setProperty('--'+what,value,'important');
+			} else {
+				this.ele.style.setProperty('--'+what,value);
+			}
+	} else {
+			return c.getPropertyValue('--'+what).trim()
+		}
+	},
+
+	cssvarRemove: function(what) {
+		this.ele.style.removeProperty('--'+what);
+	},
+
+	style: function(what=false,value=false) {
+		var styles = this.ele.style;
+		var res = '';
+		if (!what) {
+
+			res = this.attr('style');
+			return res;
+		} else {
+			what = what.replace(/-/gi,function(r) {
+				return r.charAt(0).toUpperCase() + r.slice(1)
+			});
+			if (value) { this.ele.style[what]=value; }
+		}
+	},
+	hide: function() {
+		this.style('display','none');
+	},
+	show: function(mode='block') {
+		this.style('display',mode);
+	},
+	value: function(val=false) {
+		if (val) {
+			this.ele.value = val;
+		} else {
+			return this.ele.val;
+		}
+	},
+	height: function(value=false) {
+		return this.ele.offsetHeight
+	},
+	width:function(value=false) {
+		return this.ele.offsetWidth;
+	},
+	append:function(value=false) {
+		if (value) { this.ele.insertAdjacentHTML("afterend",value.toString) }
+	},
+	prepend:function(value=false) {
+		if (value) { this.ele.insertAdjacentHTML("afterbegin",value) }
+	}
+
+}
+
+window.gas = gas;
+
+})();
+
+/* neoca/breakpoint.js */
+
+function ncc_breakpoint_tagging() {
+
+	var html = document.querySelector('html');
+	
+	if (window.innerWidth < gn_media_breakpoint.tablet) { media='gn-mobile'; }
+	if (window.innerWidth <= 520) { media='gn-small'; }
+	if (window.innerWidth <= gn_media_breakpoint.mobile) { media='gn-small'; }
+	if (window.innerWidth >= gn_media_breakpoint.tablet) { media='gn-tablet'; }
+	if (window.innerWidth >= gn_media_breakpoint.desktop) { media='gn-desktop'; }
+	if (window.innerWidth >= gn_media_breakpoint.wide) { media=false; }
+	
+	html.classList.remove('gn-small');
+	html.classList.remove('gn-desktop');
+	html.classList.remove('gn-tablet');
+	html.classList.remove('gn-mobile');
+	
+	if (media) { html.classList.add(media); }
+}
+
+function ncc_breakpoint_responsive_show() {
+
+	var bp = gas('body').cssvar('mobile-breakpoint').replace('rem','');
+
+	if ( window.innerWidth < (bp*16) ) {
+
+        document.querySelectorAll('.g-block.show').forEach( function(el) {
+        	if ( gas(el).hasClass('show') ) {
+                gas(el).data('desktop','show')
+        	}
+
+            gas(el).toggleClass('show');
+
+        });
+
+	} else {
+
+        document.querySelectorAll(".g-block[data-desktop='show']").forEach( function(el) {
+            gas(el).addClass('show');
+        });
+
+	}
+	
+}
+
+
+
+/* neoca/html5_interface.js */
+
+function ncc_html5_interface() {
+
+	document.querySelectorAll('.notices').forEach( function(el) {
+	
+		el.addEventListener("click", function(e) {
+			el.remove()
+		})
+		
+	});
+	
+	document.querySelectorAll('.alert').forEach( function(el) {
+	
+		el.addEventListener("click", function(e) {
+			el.remove()
+		})
+		
+	});	
+
+	document.querySelectorAll('.res-ctl').forEach( function(el) {
+    
+		var block = el.closest('.g-block')
+		var section = gas(el).data('section');
+		gas(block).addClass('responsive');
+		gas(block).cssvar('origin-width',block.offsetWidth+'px');
+		gas(block).data('ctl',section);
+		
+		el.addEventListener("click", function(e) {
+			var block = el.closest('.g-block')
+			gas(block).addClass('responsive');
+			gas(block).cssvar('origin-width',block.offsetWidth+'px');
+			gas(block).toggleClass('show');
+			gas(section).toggleClass('show');
+		});		
+	
+	});
+
+
+	document.querySelectorAll('.block-ctl').forEach( function(el) {
+		var b = el.closest('.g-block');
+		var g = el.closest('.g-grid');
+		var element =  document.createElement("DIV"); 
+		element.innerHTML = el.innerHTML;
+		element.setAttribute('class','g-block right middle grow block-ctl');
+
+		b.classList.add('block-res')
+    
+		//console.log(g.parentNode,g.parentNode.style.height);
+
+		b.style.top=g.offsetHeight+'px';
+
+		el.remove();
+
+		element.addEventListener("click", function(e) {
+			if (gas(b).hasClass('show') ) {
+				gas(b).removeClass('show')
+			} else {
+				gas(b).addClass('show')
+			}
+
+		});
+
+		g.insertBefore(element,b);
+
+	})
+
+
+	document.querySelectorAll("[data-height]").forEach(function(t) {
+		t.style.height = t.getAttribute('data-height');
+	});
+
+	document.querySelectorAll(".g-block.responsive").forEach(function(t) {
+		gas(t).cssvar('origin-width',t.offsetWidth+'px');
+	});
+	
+	if (document.querySelector('#neoca_scheme_switch')) {
+		
+		//store selected scheme
+		document.querySelector('#neoca_scheme_switch').addEventListener("click", function(e) {
+			if (gas('body').hasClass('dark-scheme')) {
+				localStorage.setItem('ncc-scheme','dark');
+			} else {
+				localStorage.setItem('ncc-scheme','light');
+			}
+		})
+	
+	}
+}	
+
+/* neoca/scheme.js */
+
+function ncc_scheme_switch(ele=false) {
+	
+	if (gas('body').hasClass('dark-scheme')) {
+		gas('body').removeClass('dark-scheme');
+		gas('body').addClass('light-scheme');
+	} else {
+		gas('body').removeClass('light-scheme');
+		gas('body').addClass('dark-scheme');
+	}
+}	
+
+
+function ncc_scheme() {
+
+	if (disable_scheme) {
+		gas('body').addClass('light-scheme');
+		localStorage.setItem('ncc-scheme','light')
+		return 'light';
+	}
+	
+	var prefer_scheme = localStorage.getItem('ncc-scheme');
+	
+	if (prefer_scheme == 'light') {
+		var scheme = 'light';
+    	gas('body').addClass('light-scheme');
+	} else if (prefer_scheme == 'dark') {
+		var scheme = 'dark';
+    	gas('body').addClass('dark-scheme');
+	} else {
+		
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			var scheme = 'dark';
+			gas('body').addClass('dark-scheme');
+		} else {
+			var scheme = 'light';
+			gas('body').addClass('light-scheme');
+		}
+
+	}
+	
+	return scheme;
+}
+
+
+/* neoca/slides-show.js */
+
+function gn_modular_slideshow(ele,sec=15) {
+
+	var r = gas(ele); 
+
+	if (r) {
+		var sec = r.data('delay')
+		window.value = 0
+		console.log(sec);
+		setInterval(function(){ 
+			gn_modular_slideshow_func(r);
+		}, sec*1000 );
+	}
+}
+
+function gn_modular_slideshow_func(r) {
+	var images = r.data('image').split(",");
+	window.value = window.value + 1;
+	if (window.value == images.length) { window.value = 0; }
+	console.log(window.value,images[window.value])
+	r.style('backgroundImage','url('+images[window.value]+')');
+}
+
+/* neoca/swipeable.js */
+
+function swipedetect(el, callback){
+  
+    var touchsurface = el,
+    swipedir,
+    startX,
+    startY,
+    distX,
+    distY,
+    threshold = el.clientWidth/4, //required min distance traveled to be considered swipe
+    restraint = el.clientWidth/2, // maximum distance allowed at the same time in perpendicular direction
+    allowedTime = 720, // maximum time allowed to travel that distance
+    elapsedTime,
+    startTime,
+    handleswipe = callback || function(swipedir){}
+  
+    touchsurface.addEventListener('touchstart', function(e){
+
+        var touchobj = e.changedTouches[0]
+        swipedir = 'none'
+        dist = 0
+        startX = touchobj.clientX
+        startY = touchobj.clientY
+        startTime = new Date().getTime() // record time when finger first makes contact with surface
+        e.preventDefault()
+    }, false)
+  
+    touchsurface.addEventListener('touchmove', function(e){
+        e.preventDefault() // prevent scrolling when inside DIV
+
+		gas(this).addClass('touched');
+
+        var touchobj = e.changedTouches[0]
+        distX = touchobj.clientX - startX
+        distY = touchobj.clientY - startY
+		
+		if (gas(this).hasClass('left')) {
+		
+			if (distX <= 0)  { 
+				this.style.left = distX+"px";
+			} else {
+				this.style.left = "0px"; 
+			} 
+			
+		}
+
+		if (gas(this).hasClass('right')) {
+			
+			if (distX > 0)  { 
+				this.style.right = "-"+distX+"px";
+			} else {
+				this.style.right = "0px"; 
+			} 
+			
+		}
+		
+    }, false)
+  
+    touchsurface.addEventListener('touchend', function(e){
+		
+		gas(this).removeClass('touched')
+	
+        var touchobj = e.changedTouches[0]
+        distX = touchobj.clientX - startX // get horizontal dist traveled by finger while in contact with surface
+        distY = touchobj.clientY - startY // get vertical dist traveled by finger while in contact with surface
+		
+		//console.log(distX,distY,elapsedTime)
+		
+        elapsedTime = new Date().getTime() - startTime // get time elapsed
+        if (elapsedTime <= allowedTime){ // first condition for awipe met
+            if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
+                swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
+
+				var block = this.closest('.g-block');
+
+				if ( (gas(this).hasClass('left')) && (swipedir=='left')) {
+					gas(block).removeClass('show'); 
+					this.style.left = "";				
+				}
+
+				if ( (gas(this).hasClass('right')) && (swipedir=='right')) {
+					gas(block).removeClass('show'); 
+					this.style.right = "";				
+				}
+				
+				
+            }
+            else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
+                swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
+            }
+        }
+
+        handleswipe(swipedir)
+
+        e.preventDefault()
+    }, false)
+}
+
+	
+/*
+function handleTouch(e) {
+	var total = this.clientWidth;
+	var x =  e.changedTouches[0].clientX;
+	gas(this).addClass('touched');
+
+	if ( (x < total/2) && (gas(this).hasClass('left'))) {
+		this.style.left = (x-total)+"px";
+	}
+}
+
+function handleTouchStart(e) {
+	var x =  e.changedTouches[0].pageX;
+	var total = this.clientWidth;
+	console.log(e.touches);
+
+}
+
+function handleTouchEnd(e) {
+	gas(this).removeClass('touched')
+	var vx = [ this.clientWidth * .5,this.clientWidth *.5 ] ;
+	if (gas(this).hasClass('right')) {
+		//var x = parseInt(this.style.left)
+		
+		var x =  e.changedTouches[0].clientX;
+		
+		if (x >= this.clientWidth/2) { 
+			var block = this.closest('.g-block');
+			gas(block).removeClass('show'); 
+			this.style.left = "";
+		} else {
+			this.style.left = '0px';
+		}
+	} else {
+		
+		var x =  e.changedTouches[0].clientX;
+		
+		if (x <= this.clientWidth/2) { 
+			var block = this.closest('.g-block');
+			gas(block).removeClass('show'); 
+			this.style.left = "";
+		} else {
+			this.style.left = '0px';
+		}
+	}
+
+}
+*/
+
+function ncc_init_swipeable() {
+	
+	document.querySelectorAll('.res-content.swipe').forEach(function(t) {
+		swipedetect(t, function(swipedir) {
+			//console.log(swipedir)
+		})
+	});
+	
 }

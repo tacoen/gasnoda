@@ -450,7 +450,8 @@ input[type="color" i]::-webkit-color-swatch {
       display: none; } }
 
 .dark-scheme .site-logo {
-  filter: invert(1); }
+  /* filter: invert(1); */
+  }
 
 .gn-card {
   display: flex;

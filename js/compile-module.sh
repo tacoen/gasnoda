@@ -1,5 +1,6 @@
 date +"/* Compile Time: %D %T */" > module.js
 
+cat 'gas/gas.js' >> module.js
 cat 'w3color/w3color.js' >> module.js
 	
 for f in gasnoda/*
@@ -13,6 +14,8 @@ done;
 
 
 date +"/* Compile Time: %D %T */" > ncc-module.js
+cat 'w3color/w3color.js' >> ncc-module.js
+cat 'gas/gas.js' >> ncc-module.js
 
 for f in neoca/*
 do
@@ -23,4 +26,3 @@ do
 	cat $f >> ncc-module.js
 done;
 
-cat 'w3color/w3color.js' >> ncc-module.js
