@@ -1,4 +1,4 @@
-# v1.0
+# 0.0.1
 ## 17/08/2020
 
 1. [](#new)
@@ -9,7 +9,7 @@
     * More Variations
 	* scss modified, 0.5rem
 	
-# v2.0
+# 0.1.0
 ## 01/11/2020
 
 1. [](#improved)
@@ -25,11 +25,38 @@
 	* constructed stylesheet
     * put some function from Gaskeun plugins into theme.php
 	* filedir() twig functions
+	* poko admin plugins.
+	
 
-# v2.1
+# 0.1.1
 ## 06/11/2020
 
 1. [](#new)
 	* templates and blueprints on user directory
 	* static pages generator
+
+2. [](#improved)
+	* become gasnoda
+	* accent, button and surface colors
+	
+# 0.1.5
+## 25/11/2020
+
+1. [](#improved)
+	* normalize.css + nucles-s + css vars() = neocatema
+	* remove theme-admin links
+	* renaming css var()
+	* section.yaml
+	* block.yaml
+
+2. [](#new)
+	* pre-release
+	* dark/light scheme
+	* move custom.css into workspaces
+
+# 0.2.0
+## 13/12/2020
+	
+1. [](#new)
+	* Initial release
 	
